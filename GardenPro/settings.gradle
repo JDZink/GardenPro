@@ -1,0 +1,3 @@
+
+rootProject.name = 'GardenPro'
+includeFlat 'GardenProJPA'
