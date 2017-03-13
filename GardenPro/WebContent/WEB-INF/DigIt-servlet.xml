@@ -16,7 +16,8 @@
 
 	<context:component-scan base-package="controllers" />
 	<bean id="plantdao" class="data.PlantDAOImpl" />
-	<bean id="authdao" class="data.AuthDAOImpl" />
+	<bean id="plantingdao" class="data.PlantingDAOImpl" />
+	<!-- <bean id="authdao" class="data.AuthDAOImpl" /> -->
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -39,7 +40,7 @@
 
 	<bean id="myEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="ToDoList" />
+		<property name="persistenceUnitName" value="GardenPro" />
 	</bean>
 
 	<bean id="myTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
