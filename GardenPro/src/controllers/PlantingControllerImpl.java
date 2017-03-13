@@ -48,7 +48,6 @@ public class PlantingControllerImpl implements PlantingController{
 	@PutMapping(path="{id}")
 	public Planting update(HttpServletRequest req, HttpServletResponse res,@PathVariable int id, @RequestBody String plantingJson) {
 		Planting planting = mapPlanting(plantingJson);
-		System.out.println(planting.isComplete() + " " + planting.getTask() + " " + planting.getDescription());
 		return dao.update(id, planting);
 	}
 

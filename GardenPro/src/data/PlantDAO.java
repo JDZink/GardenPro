@@ -12,7 +12,7 @@ public interface PlantDAO {
 
   public Plant update(int id, Plant plant);
 
-  public Plant create(Plant plant, int id);
+  public Plant create(Plant plant);
 
   public Plant destroy(int id);
 

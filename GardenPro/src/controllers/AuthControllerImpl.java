@@ -40,7 +40,7 @@ public class AuthControllerImpl implements AuthController {
 	    System.out.println("JSON in = " + userJson);
 	    try {
 	      user = mapper.readValue(userJson, User.class);
-	      System.out.println("username " + user.getUsername() + " email " + user.getEmail() + " pass " + user.getPassword() );
+	      System.out.println("username " + user.getUsername() +  " pass " + user.getPassword() );
 	    } catch (IOException ie) {
 	      ie.printStackTrace();
 	    }

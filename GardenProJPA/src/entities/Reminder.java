@@ -3,6 +3,7 @@ package entities;
 import java.util.*;
 import javax.persistence.*;
 
+@Entity
 public class Reminder {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

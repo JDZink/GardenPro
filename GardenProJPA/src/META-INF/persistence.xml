@@ -12,10 +12,11 @@
     <class>entities.Plant</class> 
     <class>entities.User</class> 
     <class>entities.Reminder</class> 
+    <class>entities.Planting</class> 
    
 
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tododb" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gardenprodb" />
       <property name="javax.persistence.jdbc.user" value="student"/>
       <property name="javax.persistence.jdbc.password" value="student" />
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

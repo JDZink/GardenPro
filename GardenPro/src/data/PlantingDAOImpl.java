@@ -41,9 +41,9 @@ public class PlantingDAOImpl implements PlantingDAO{
 	public Planting update(int id, Planting planting) {
 		System.out.println("planting id to change = " + id);
 		Planting oldPlanting = em.find(Planting.class,id);
-		oldPlanting.setComplete(planting.isComplete());
-		oldPlanting.setTask(planting.getTask());
-		oldPlanting.setDescription(planting.getDescription());
+//		oldPlanting.setComplete(planting.isComplete());
+//		oldPlanting.setTask(planting.getTask());
+//		oldPlanting.setDescription(planting.getDescription());
 		em.flush();
 		return oldPlanting;
 	}

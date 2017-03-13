@@ -20,6 +20,14 @@ public class User {
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<Planting> plantings;
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinTable(name = "user_plant", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "plant_id"))
+	private Set<Plant> plants;
+//	
+//	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
+//	@JoinTable(name = "user_tv_show", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "tv_show_id"))
+//	Set<TVShow> tvShows;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)	
 	private Set<Reminder> reminders;
@@ -27,9 +35,20 @@ public class User {
 	@JsonIgnore
 	private boolean reset;
 	
+	
+	
+	
+	
+	
 	//Getters & Setters
 	public Set<Planting> getPlantings() {
 		return plantings;
+	}
+	public Set<Plant> getPlants() {
+		return plants;
+	}
+	public void setPlants(Set<Plant> plants) {
+		this.plants = plants;
 	}
 	public void setPlantings(Set<Planting> plantings) {
 		this.plantings = plantings;

@@ -34,8 +34,7 @@ public class PlantControllerImpl implements PlantController {
 	@Override
 	@GetMapping
 	public Collection<Plant> index(HttpServletRequest req, HttpServletResponse res) {
-		int id = ((int)req.getAttribute("userId"));
-		return dao.index(id);
+		return dao.index();
 	}
 
 	@Override
@@ -48,7 +47,6 @@ public class PlantControllerImpl implements PlantController {
 	@PutMapping(path="{id}")
 	public Plant update(HttpServletRequest req, HttpServletResponse res,@PathVariable int id, @RequestBody String plantJson) {
 		Plant plant = mapPlant(plantJson);
-		System.out.println(plant.isComplete() + " " + plant.getTask() + " " + plant.getDescription());
 		return dao.update(id, plant);
 	}
 
@@ -56,8 +54,7 @@ public class PlantControllerImpl implements PlantController {
 	@Override
 	public Plant create(HttpServletRequest req, HttpServletResponse res,@RequestBody String plantJson) {
 		Plant plant = mapPlant(plantJson);
-		int id = ((int)req.getAttribute("userId"));
-		return dao.create(plant, id);
+		return dao.create(plant);
 	}
 
 	@Override

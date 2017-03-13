@@ -1,6 +1,11 @@
 package entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 @Entity
 public class Plant {
@@ -8,11 +13,11 @@ public class Plant {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne(mappedBy="plant")
-	private Planting planting;
-	
-	@OneToOne(mappedBy="plant")
-	private Reminder reminder;
+//	@OneToOne(mappedBy="plant")
+//	private Planting planting;
+//	
+//	@OneToOne(mappedBy="plant")
+//	private Reminder reminder;
 	
 	@Column(name = "common_name")
 	private String commonName;
@@ -38,12 +43,12 @@ public class Plant {
 	private String comment;
 	
 	//Getters & Setters
-	public Planting getPlanting() {
-		return planting;
-	}
-	public void setPlanting(Planting planting) {
-		this.planting = planting;
-	}
+//	public Planting getPlanting() {
+//		return planting;
+//	}
+//	public void setPlanting(Planting planting) {
+//		this.planting = planting;
+//	}
 	public String getCommonName() {
 		return commonName;
 	}
@@ -122,13 +127,13 @@ public class Plant {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public int getId() {
+		return id;
 	}
-	public Reminder getReminder() {
-		return reminder;
-	}
-	public void setReminder(Reminder reminder) {
-		this.reminder = reminder;
-	}
+//	public Reminder getReminder() {
+//		return reminder;
+//	}
+//	public void setReminder(Reminder reminder) {
+//		this.reminder = reminder;
+//	}
 }

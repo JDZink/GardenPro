@@ -40,15 +40,14 @@ public class AuthDAOImpl implements AuthDAO {
 	@Override
 	public User authenticateUser(User user) {
 		// find the User by username
-		User u;
+		User u = null;
 		  try {
 			u = (User) em.createQuery("SELECT u FROM User u WHERE username = '" +
 			    user.getUsername() + "'").getSingleResult();
 			  System.out.println(u);
 			 return u;
 		} catch (Exception e) {
-			u = (User) em.createQuery("SELECT u FROM User u WHERE email = '" +
-				    user.getEmail() + "'").getSingleResult();
+			
 		}
 		  if (passwordEncoder.matches(user.getPassword(), u.getPassword())) {
 		    return u;
