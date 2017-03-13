@@ -32,7 +32,7 @@ app.component('registrationComponent', {
 
   <div style="margin-left:5%;">
     <form name="regForm">
-      <input type="email" name="email" ng-model="user.email" required placeholder="email"><br>
+      <input type="text" name="username" ng-model="user.username" placeholder="username" required ng-minlength="4"><br>
       <input type="password" name="password" ng-model="user.password" placeholder="password"
         required ng-minlength="6"><br>
       <input type="button" value="LogIn" ng-click="$ctrl.login(user)">
@@ -43,13 +43,13 @@ app.component('registrationComponent', {
   <div>
     <ul>
       <li ng-show="regForm.email.$dirty && regForm.email.$invalid">
-        Email must be valid
+        Username must be at least 4 characters
       </li>
       <li ng-show="regForm.email.$dirty && regForm.email.$error.required">
-        Email is required
+        Username is required
       </li>
       <li ng-show="regForm.password.$dirty && regForm.password.$invalid">
-        password must be more than 6 characters
+        password must be at least 6 characters
       </li>
       <li ng-show="regForm.password.$dirty && regForm.password.$error.required">
         password is required

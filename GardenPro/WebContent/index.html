@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html ng-app="ngTodo">
+<html ng-app="ngGarden">
   <head>
+  	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GardenPro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button1.css">
+    <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
+    <link rel="stylesheet" href="assets/css/Sidebar-Menu1.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/styles.css"><!-- 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/vendor/angular.min.js"></script>
     <script src="js/vendor/angular-route.min.js"></script>
     <script src="app_client/ngApp.js"></script>
@@ -18,9 +27,74 @@
     <script src="app_client/components/gardenTable.js"></script>
     <script src="app_client/components/navComponent.js"></script>
     <script src="app_client/components/plantingDetail.js"></script>
+    <script>
+    $(document).ready(function () {
+      $('.nav li').click(function(e) {
+
+        $('.nav li').removeClass('active');
+
+        var $this = $(this);
+        if (!$this.hasClass('active')) {
+          $this.addClass('active');
+        }
+        //e.preventDefault();
+      });
+    });
+    </script>
   </head>
-  <body style="background-color:#ddd">
-    <!-- <h1>{{"Hello Angular"}}</h1> -->
-    <app-component>Loading...</app-component>
-  </body>
+  <body>
+	<div>
+        <nav class="navbar navbar-default navigation-clean-button">
+            <div class="container">
+                <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">DigIt</a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active" role="presentation"><a href="#/">Add Plants</a></li>
+                        <li role="presentation"><a href="#/">Second Item</a></li>
+                    </ul>
+                    <p class="navbar-text navbar-right actions"><a class="navbar-link login" href="#">Log In</a> <a class="btn btn-default action-button" role="button" href="#">Sign Up</a></p>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+<!--******************************************** Reminders *******************************************************-->
+                <li class="sidebar-brand"> <a href="#">Home </a></li>
+                <li> <a href="#">Dashboard </a></li>
+                <li> <a href="#">Dashboard </a></li>
+                <li> <a href="#">Dashboard </a></li>
+            </ul>
+<!--**********************************************************************************************************************-->
+        </div>
+        <div class="page-content-wrapper">
+            <div class="container-fluid"><a class="btn btn-link reminders" role="button" href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></a>
+                <div class="row">
+                    <div class="col-md-12">
+<!--******************************************** Page Content Here *******************************************************-->
+                            <app-component></app-component>
+<!--**********************************************************************************************************************-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-basic">
+        <footer>
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">Company Name © 2016</p>
+        </footer>
+    </div>
+    <script src="assets/js/Sidebar-Menu.js"></script>
+</body>
+
 </html>
