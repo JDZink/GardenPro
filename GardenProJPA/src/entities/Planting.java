@@ -1,14 +1,17 @@
 package entities;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -25,23 +28,27 @@ public class Planting {
 	@JoinColumn(name="plant_id")
 	private Plant plant;
 	
+	@OneToMany(mappedBy="planting", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Set<Reminder> reminders;
+	
 	private int qty;
 	private int stage;
-	private Date started;
-	private Date planted;
-	private Date harvest;
-	
-	public int getUserId() {
-		return userId;
+	private LocalDate started;
+	private LocalDate planted;
+	private LocalDate harvest;
+
+	//Getters & Setters
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public int getPlantId() {
-		return plantId;
+	public Plant getPlant() {
+		return plant;
 	}
-	public void setPlantId(int plantId) {
-		this.plantId = plantId;
+	public void setPlant(Plant plant) {
+		this.plant = plant;
 	}
 	public int getQty() {
 		return qty;
@@ -55,25 +62,31 @@ public class Planting {
 	public void setStage(int stage) {
 		this.stage = stage;
 	}
-	public Date getStarted() {
+	public LocalDate getStarted() {
 		return started;
 	}
-	public void setStarted(Date started) {
+	public void setStarted(LocalDate started) {
 		this.started = started;
 	}
-	public Date getPlanted() {
+	public LocalDate getPlanted() {
 		return planted;
 	}
-	public void setPlanted(Date planted) {
+	public void setPlanted(LocalDate planted) {
 		this.planted = planted;
 	}
-	public Date getHarvest() {
+	public LocalDate getHarvest() {
 		return harvest;
 	}
-	public void setHarvest(Date harvest) {
+	public void setHarvest(LocalDate harvest) {
 		this.harvest = harvest;
 	}
 	public int getId() {
 		return id;
+	}
+	public Set<Reminder> getReminders() {
+		return reminders;
+	}
+	public void setReminders(Set<Reminder> reminders) {
+		this.reminders = reminders;
 	}	
 }
