@@ -1,7 +1,14 @@
 package entities;
 
-import java.util.*;
-import javax.persistence.*;
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Reminder {
@@ -21,7 +28,7 @@ public class Reminder {
 	@JoinColumn(name="plant_id")
 	private Plant plant;
 	
-	private Date date;
+	private LocalDate date;
 	private String title;
 	private int category;
 	private String description;
@@ -46,10 +53,10 @@ public class Reminder {
 	public void setPlant(Plant plant) {
 		this.plant = plant;
 	}
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public String getTitle() {
