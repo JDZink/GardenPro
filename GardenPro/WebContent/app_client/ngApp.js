@@ -2,15 +2,15 @@ angular.module('ngGarden',['ngRoute'])
 .config(function($routeProvider){
   $routeProvider
     .when('/', {
-      template : `<home-component>loading...</home-component>`
+      template : `<registration-component>loading...</registration-component>`
     })
     .when('/garden', {
-      template : `<todos-component>loading...</todos-component>`
+      template : `<garden-component>loading...</garden-component>`
     })
     .when('/garden/:id', {
-      template : `<todo-detail todo="$resolve.todo">loading...</todo-detail>`,
+      template : `<planting-detail planting="$resolve.planting">loading...</planting-detail>`,
       resolve : {
-        todo : function(gardenService, $route, $location){
+        planting : function(gardenService, $route, $location){
           return gardenService.getPlantingInfo($route.current.params.id)
             .then(function(res){
               return res.data;
