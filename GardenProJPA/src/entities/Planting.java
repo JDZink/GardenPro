@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 
+@Entity
 public class Planting {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
