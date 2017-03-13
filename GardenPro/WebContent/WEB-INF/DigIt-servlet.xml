@@ -15,9 +15,9 @@
 	<mvc:annotation-driven />
 
 	<context:component-scan base-package="controllers" />
-	<!-- <bean id="tododao" class="data.TodoDAOImpl" />
-	<bean id="authdao" class="data.AuthDAOImpl" /> -->
-
+	<bean id="plantdao" class="data.PlantDAOImpl" />
+	<bean id="authdao" class="data.AuthDAOImpl" />
+	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/planting/**" />
