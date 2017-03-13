@@ -1,7 +1,9 @@
 package entities;
 
+import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,11 +22,24 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
+	
+	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Set<Planting> plantings;
+	
 	@JsonIgnore
 	private boolean reset;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)	
 	private Set<Reminder> reminders;
+	
+	
+	public Set<Planting> getPlantings() {
+		return plantings;
+	}
+	public void setPlantings(Set<Planting> plantings) {
+		this.plantings = plantings;
+	}
 	public String getUsername() {
 		return username;
 	}
