@@ -1,15 +1,7 @@
 package entities;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import java.util.*;
+import javax.persistence.*;
 
 @Entity
 public class Planting {
@@ -25,23 +17,27 @@ public class Planting {
 	@JoinColumn(name="plant_id")
 	private Plant plant;
 	
+	@OneToMany(mappedBy="planting", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Set<Reminder> reminders;
+	
 	private int qty;
 	private int stage;
 	private Date started;
 	private Date planted;
 	private Date harvest;
-	
-	public int getUserId() {
-		return userId;
+
+	//Getters & Setters
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public int getPlantId() {
-		return plantId;
+	public Plant getPlant() {
+		return plant;
 	}
-	public void setPlantId(int plantId) {
-		this.plantId = plantId;
+	public void setPlant(Plant plant) {
+		this.plant = plant;
 	}
 	public int getQty() {
 		return qty;
@@ -75,5 +71,11 @@ public class Planting {
 	}
 	public int getId() {
 		return id;
+	}
+	public Set<Reminder> getReminders() {
+		return reminders;
+	}
+	public void setReminders(Set<Reminder> reminders) {
+		this.reminders = reminders;
 	}	
 }

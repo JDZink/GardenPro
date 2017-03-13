@@ -1,16 +1,7 @@
 package entities;
 
-import java.util.Map;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
+import java.util.*;
+import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -20,20 +11,23 @@ public class User {
 	private int id;
 	
 	private String username;
-	private String email;
 	private String password;
+	private String zone;
+	
+	@Column(name="frost_date")
+	private Date frostDate;
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<Planting> plantings;
 	
 	@JsonIgnore
-	private boolean reset;
-	
-	@JsonIgnore
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)	
 	private Set<Reminder> reminders;
 	
+	@JsonIgnore
+	private boolean reset;
 	
+	//Getters & Setters
 	public Set<Planting> getPlantings() {
 		return plantings;
 	}
@@ -45,12 +39,6 @@ public class User {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getPassword() {
 		return password;
@@ -73,11 +61,16 @@ public class User {
 	public int getId() {
 		return id;
 	}
-
-
-	
-	
-	
-	
-
+	public String getZone() {
+		return zone;
+	}
+	public void setZone(String zone) {
+		this.zone = zone;
+	}
+	public Date getFrostDate() {
+		return frostDate;
+	}
+	public void setFrostDate(Date frostDate) {
+		this.frostDate = frostDate;
+	}
 }
