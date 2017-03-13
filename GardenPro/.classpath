@@ -8,5 +8,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="src" path="/GardenProJPA"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

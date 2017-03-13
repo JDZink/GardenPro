@@ -1,0 +1,3 @@
+.reminders:hover, .reminders:checked, .reminders:visited {
+	text-decoration: none;
+}

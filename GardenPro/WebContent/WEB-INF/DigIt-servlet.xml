@@ -15,12 +15,13 @@
 	<mvc:annotation-driven />
 
 	<context:component-scan base-package="controllers" />
-	<!-- <bean id="tododao" class="data.TodoDAOImpl" />
-	<bean id="authdao" class="data.AuthDAOImpl" /> -->
-
+	<bean id="plantdao" class="data.PlantDAOImpl" />
+	<bean id="plantingdao" class="data.PlantingDAOImpl" />
+	<bean id="authdao" class="data.AuthDAOImpl" /> 
+	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/planting/**" />
+			<mvc:mapping path="/plantings/**" />
 			<bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
@@ -39,7 +40,7 @@
 
 	<bean id="myEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="ToDoList" />
+		<property name="persistenceUnitName" value="GardenPro" />
 	</bean>
 
 	<bean id="myTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
