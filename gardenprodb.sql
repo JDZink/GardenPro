@@ -30,7 +30,8 @@ CREATE TABLE `reminder` (
 
 CREATE TABLE `planting` (
    `id` int(11) AUTO_INCREMENT NOT NULL,
-   `plant_id` int(128) NOT NULL,
+   `user_id` int(11) NOT NULL,
+   `plant_id` int(11) NOT NULL,
    `qty` int(11) NOT NULL default 1,
    `stage` int(1) NOT NULL default 0,
    `started` date,
@@ -52,19 +53,18 @@ CREATE TABLE `user_plant` (
   `id` int(11) AUTO_INCREMENT NOT NULL,
   `user_id` int(11) NOT NULL,
   `plant_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL default 1,
 
   primary key(`id`)
 );
 
 create table `plant` (
    `id` int(11)  AUTO_INCREMENT NOT NULL,
-   `common_name` int(11) NOT NULL,
-   `botanical_name` int(11) NOT NULL,
+   `common_name` varchar(128) NOT NULL,
+   `botanical_name` varchar(128) NOT NULL,
    `variety` varchar(128),
    `type` enum('orn', 'veg', 'herb', 'vine', 'tree', 'shrub', 'grass'),
    `method_num` int(5),
-   `sowing_method` int(5),
+   `sowing_method` varchar(256),
    `last_frost` int(5) NOT NULL,
    `depth` enum('covr', 'thin', 'surf'),
    `space` int(5),
