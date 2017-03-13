@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +42,8 @@ public class AuthControllerImpl implements AuthController {
 	    try {
 	      user = mapper.readValue(userJson, User.class);
 	      System.out.println("username " + user.getUsername() +  " pass " + user.getPassword() );
+	      user.setZone("5a");
+	      user.setFrostDate(LocalDate.parse("2017-4-31"));
 	    } catch (IOException ie) {
 	      ie.printStackTrace();
 	    }
