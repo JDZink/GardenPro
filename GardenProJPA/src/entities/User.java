@@ -1,7 +1,19 @@
 package entities;
 
-import java.util.*;
-import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -15,7 +27,7 @@ public class User {
 	private String zone;
 	
 	@Column(name="frost_date")
-	private Date frostDate;
+	private LocalDate frostDate;
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<Planting> plantings;
@@ -86,10 +98,10 @@ public class User {
 	public void setZone(String zone) {
 		this.zone = zone;
 	}
-	public Date getFrostDate() {
+	public LocalDate getFrostDate() {
 		return frostDate;
 	}
-	public void setFrostDate(Date frostDate) {
+	public void setFrostDate(LocalDate frostDate) {
 		this.frostDate = frostDate;
 	}
 }
