@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import data.PlantDAO;
-import entities.Plant;
+import data.PlantingDAO;
+import entities.Planting;
 
 @RestController
-@RequestMapping(path="plants")
-public class PlantControllerImpl implements PlantController {
+@RequestMapping(path="plantings")
+public class PlantingControllerImpl implements PlantingController{
 	@Autowired
-	private PlantDAO dao;
+	private PlantingDAO dao;
 	
 	@GetMapping(path="ping")
 	public String ping(){
@@ -33,43 +33,45 @@ public class PlantControllerImpl implements PlantController {
 
 	@Override
 	@GetMapping
-	public Collection<Plant> index(HttpServletRequest req, HttpServletResponse res) {
-		return dao.index();
+	public Collection<Planting> index(HttpServletRequest req, HttpServletResponse res) {
+		int id = ((int)req.getAttribute("userId"));
+		return dao.index(id);
 	}
 
 	@Override
 	@GetMapping(path="{id}")
-	public Plant show(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+	public Planting show(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
 		return dao.show(id);
 	}
 
 	@Override
 	@PutMapping(path="{id}")
-	public Plant update(HttpServletRequest req, HttpServletResponse res,@PathVariable int id, @RequestBody String plantJson) {
-		Plant plant = mapPlant(plantJson);
-		return dao.update(id, plant);
+	public Planting update(HttpServletRequest req, HttpServletResponse res,@PathVariable int id, @RequestBody String plantingJson) {
+		Planting planting = mapPlanting(plantingJson);
+		return dao.update(id, planting);
 	}
 
 	@PostMapping
 	@Override
-	public Plant create(HttpServletRequest req, HttpServletResponse res,@RequestBody String plantJson) {
-		Plant plant = mapPlant(plantJson);
-		return dao.create(plant);
+	public Planting create(HttpServletRequest req, HttpServletResponse res,@RequestBody String plantingJson) {
+		Planting planting = mapPlanting(plantingJson);
+		int id = ((int)req.getAttribute("userId"));
+		return dao.create(planting, id);
 	}
 
 	@Override
 	@DeleteMapping(path="{id}")
-	public Plant destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int id) {
+	public Planting destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int id) {
 		
 		return dao.destroy(id);
 	}
 	
-	private Plant mapPlant(String plantJson){
+	private Planting mapPlanting(String plantingJson){
 		ObjectMapper om = new ObjectMapper();
-		Plant newPlant = null;
+		Planting newPlanting = null;
 		try {
-			newPlant = om.readValue(plantJson, Plant.class);
-			return newPlant;
+			newPlanting = om.readValue(plantingJson, Planting.class);
+			return newPlanting;
 		} catch (Exception e) {
 			e.printStackTrace();
 			

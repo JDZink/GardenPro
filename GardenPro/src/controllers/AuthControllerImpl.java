@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,12 @@ public class AuthControllerImpl implements AuthController {
 
 	@Autowired
 	AuthDAO dao;
-
+	
+	@GetMapping(path="ping")
+	public String ping(){
+		return "pong";
+	}
+	
 	@Override
 	@PostMapping(path = "/register")
 	public Map<String,String> register(@RequestBody String userJson) {
@@ -34,7 +40,7 @@ public class AuthControllerImpl implements AuthController {
 	    System.out.println("JSON in = " + userJson);
 	    try {
 	      user = mapper.readValue(userJson, User.class);
-	      System.out.println("username " + user.getUsername() + " email " + user.getEmail() + " pass " + user.getPassword() );
+	      System.out.println("username " + user.getUsername() +  " pass " + user.getPassword() );
 	    } catch (IOException ie) {
 	      ie.printStackTrace();
 	    }

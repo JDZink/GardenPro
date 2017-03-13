@@ -20,7 +20,7 @@ public class PlantDAOImpl implements PlantDAO{
 
 	@Override
 	public Collection<Plant> index() {
-		String q = "select t from Plant t";
+		String q = "select p from Plant p";
 		List<Plant> plants = em.createQuery(q, Plant.class).getResultList();
 		return plants;
 	}
@@ -41,17 +41,15 @@ public class PlantDAOImpl implements PlantDAO{
 	public Plant update(int id, Plant plant) {
 		System.out.println("plant id to change = " + id);
 		Plant oldPlant = em.find(Plant.class,id);
-		oldPlant.setComplete(plant.isComplete());
-		oldPlant.setTask(plant.getTask());
-		oldPlant.setDescription(plant.getDescription());
+//		oldPlant.setComplete(plant.isComplete());
+//		oldPlant.setTask(plant.getTask());
+//		oldPlant.setDescription(plant.getDescription());
 		em.flush();
 		return oldPlant;
 	}
 
 	@Override
-	public Plant create(Plant plant, int userId) {
-		User u = em.find(User.class, userId);
-		plant.setUser(u);
+	public Plant create(Plant plant) {
 		em.persist(plant);
 		em.flush();
 		
