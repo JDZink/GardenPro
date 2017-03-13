@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -26,6 +27,7 @@ public class User {
 	private String password;
 	private String zone;
 	
+	@JsonFormat(pattern="LocalDate")
 	@Column(name="frost_date")
 	private LocalDate frostDate;
 	
@@ -44,13 +46,8 @@ public class User {
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)	
 	private Set<Reminder> reminders;
 	
-	@JsonIgnore
-	private boolean reset;
 	
-	
-	
-	
-	
+//	private boolean reset;
 	
 	//Getters & Setters
 	public Set<Planting> getPlantings() {
@@ -77,12 +74,12 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean isReset() {
-		return reset;
-	}
-	public void setReset(boolean reset) {
-		this.reset = reset;
-	}
+//	public boolean isReset() {
+//		return reset;
+//	}
+//	public void setReset(boolean reset) {
+//		this.reset = reset;
+//	}
 	public Set<Reminder> getReminders() {
 		return reminders;
 	}

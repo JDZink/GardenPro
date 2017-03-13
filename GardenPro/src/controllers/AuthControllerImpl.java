@@ -43,8 +43,9 @@ public class AuthControllerImpl implements AuthController {
 	      user = mapper.readValue(userJson, User.class);
 	      System.out.println("username " + user.getUsername() +  " pass " + user.getPassword() );
 	      user.setZone("5a");
-	      user.setFrostDate(LocalDate.parse("2017-4-31"));
+	      user.setFrostDate(LocalDate.parse("2017-04-30"));
 	    } catch (IOException ie) {
+	    System.out.println("IN REGISTER CATCH " + user);
 	      ie.printStackTrace();
 	    }
 		if(user!= null){
