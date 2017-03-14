@@ -41,6 +41,9 @@ public class Plant {
 	private String transplant;
 	private String img;
 	private String comment;
+	private int startGerm;
+	private int endGerm;
+	
 	
 	//Getters & Setters
 //	public Planting getPlanting() {
@@ -130,10 +133,16 @@ public class Plant {
 	public int getId() {
 		return id;
 	}
-//	public Reminder getReminder() {
-//		return reminder;
-//	}
-//	public void setReminder(Reminder reminder) {
-//		this.reminder = reminder;
-//	}
+	public int getStartGerm() {
+		return startGerm;
+	}
+	public void setStartGerm(int startGerm) {
+		this.startGerm = startGerm;
+	}
+	public int getEndGerm() {
+		return endGerm;
+	}
+	public void setEndGerm(int endGerm) {
+		this.endGerm = endGerm;
+	}
 }
