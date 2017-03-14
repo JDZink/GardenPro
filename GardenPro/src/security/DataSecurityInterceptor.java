@@ -36,7 +36,7 @@ public class DataSecurityInterceptor extends HandlerInterceptorAdapter {
     }
 
     // if you got here, the user is not authenticated, redirect to a route which will respond 401
-    res.sendRedirect("http://localhost:8080/unauthorized");
+    res.sendRedirect("http://localhost:8080/GardenPro/#/");
     return false;
   }
 }

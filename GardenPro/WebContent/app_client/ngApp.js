@@ -23,7 +23,7 @@ angular.module('ngGarden',['ngRoute'])
       }
     })
     .when('/about', {
-      templateUrl : `<about-component>loading...</about-component>`
+      template : `<about-component>loading...</about-component>`
     })
     .when('/contact', {
       template : `<contact-component>loading...</contact-component>`

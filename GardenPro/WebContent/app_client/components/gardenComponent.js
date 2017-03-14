@@ -23,7 +23,7 @@ var gardenController = function(gardenService) {
 
 app.component('gardenComponent',{
   template : `
-   
+    
   `,
   controller : gardenController
 });
