@@ -56,6 +56,7 @@ public class PlantingControllerImpl implements PlantingController{
 	public Planting create(HttpServletRequest req, HttpServletResponse res,@RequestBody String plantingJson) {
 		Planting planting = mapPlanting(plantingJson);
 		int id = ((int)req.getAttribute("userId"));
+		System.out.println("user Id from req: " + id);
 		return dao.create(planting, id);
 	}
 
