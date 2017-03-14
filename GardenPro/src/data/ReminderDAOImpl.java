@@ -4,16 +4,14 @@ import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.User;
 import entities.Plant;
 import entities.Planting;
 import entities.Reminder;
+import entities.User;
 
 @Transactional
 @Repository
@@ -22,9 +20,12 @@ public class ReminderDAOImpl implements ReminderDAO{
 	private EntityManager em;
 
 	@Override
-	public Reminder update(int id, Plant plant) {
+	public Reminder update(int id, Reminder reminder) {
 		Reminder r = em.find(Reminder.class,id);
-
+		r.setCategory(reminder.getCategory());
+		r.setComplete(reminder.isComplete());
+		r.setDescription(reminder.getDescription());
+		r.setTitle(reminder.getTitle());
 		em.flush();
 		return r;
 	}
@@ -50,7 +51,7 @@ public class ReminderDAOImpl implements ReminderDAO{
 		Plant plant = em.find(Plant.class, p.getPlant());
 		Reminder r = new Reminder();
 
-		int sowDate = plant.getLastFrost() + plant.getEndGerm();
+		int sowDate = plant.getLastFrost();
 		r.setDate(user.getFrostDate().minusWeeks(sowDate));
 		
 		if(LocalDate.now() == r.getDate()){
@@ -59,7 +60,7 @@ public class ReminderDAOImpl implements ReminderDAO{
 	}
 
 	@Override
-	public void reminderToPlant(Planting p, User user){
+	public void reminderToPlantIndoors(Planting p, User user){
 		Plant plant = em.find(Plant.class, p.getPlant());
 		Reminder r = new Reminder();
 
@@ -72,7 +73,21 @@ public class ReminderDAOImpl implements ReminderDAO{
 	}
 	
 	@Override
+	public void reminderToPlantOutdoors(Planting p, User user){
+		Plant plant = em.find(Plant.class, p.getPlant());
+		Reminder r = new Reminder();
+		
+		r.setDate(user.getFrostDate().minusWeeks(plant.getLastFrost()));
+		
+		if(LocalDate.now() == r.getDate()){
+			//Trigger reminder
+		}
+	}
+	
+	@Override
 	public void reminderToHarvest(Planting p, User user){
 		
 	}
+
+
 }

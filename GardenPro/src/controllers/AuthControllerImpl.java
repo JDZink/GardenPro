@@ -43,11 +43,11 @@ public class AuthControllerImpl implements AuthController {
 	    try {
 	      mapper.registerModule(new JavaTimeModule());
 	      user = mapper.readValue(userJson, User.class);
+	      String rawPassword = user.getPassword();
 	      
 //	      user.setZone("5a");
 	      user = dao.resetUserFrostDate(user);
 	      dao.register(user);
-	      String rawPassword = user.getPassword();
 	      user = dao.authenticateUser(user, rawPassword);
 	      String jws = jwtGen.generateUserJwt(user);
 	      Map<String,String> responseJson = new HashMap<>();
@@ -93,6 +93,8 @@ public class AuthControllerImpl implements AuthController {
 	    // Create encoded JWT for User
 	    String jws = jwtGen.generateUserJwt(user);
 	    Map<String, String> responseJson = new HashMap<>();
+//	    req.setAttribute("userId", user.getId());
+//	    System.out.println("setting user attr " + user.getId());
 	    responseJson.put("jwt", jws);
 	    return responseJson;
 	  }

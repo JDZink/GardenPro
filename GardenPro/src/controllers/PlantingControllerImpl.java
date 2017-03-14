@@ -34,8 +34,8 @@ public class PlantingControllerImpl implements PlantingController{
 	@Override
 	@GetMapping
 	public Collection<Planting> index(HttpServletRequest req, HttpServletResponse res) {
-		int id = 4;
-		System.out.println(req.getAttributeNames());
+		System.out.println("req.getAttribute(userId): " + req.getAttribute("userId"));
+		int id = (int)req.getAttribute("userId");
 		return dao.index(id);
 	}
 
