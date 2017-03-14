@@ -16,7 +16,7 @@ app.component('plantsComponent', {
       <h3>{{plant.plant.commonName}}</h3>
       <h4>Quantity: {{plant.qty}}<h4>
       <h4>Stage: {{plant.stage}}<h4>
-      <button class="delete" ng-click="$ctrl.deleteplant(plant)">Delete</button>
+      <button class="delete btn btn-danger" ng-click="$ctrl.deleteplant(plant)">Delete</button>
     </div>
   </div>
   `,

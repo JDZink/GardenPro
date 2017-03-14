@@ -28,9 +28,9 @@ app.component('seedsComponent', {
       <h3>{{seed.plant.commonName}}</h3>
       <h4>Quantity: {{seed.qty}}<h4>
       <h4>Stage: {{seed.stage}}<h4>
-      <button class="plant-button {seed.stage}" ng-click="$ctrl.plantSeed(seed)">Plant</button>
-      <button class="transplant-button {seed.stage}" ng-click="$ctrl.transplantSeed(seed)">Transplant</button>
-      <button class="delete" ng-click="$ctrl.deleteSeed(seed)">Delete</button>
+      <button class="plant-button btn btn-primary {seed.stage}" ng-click="$ctrl.plantSeed(seed)">Plant</button>
+      <button class="transplant-button btn btn-primary {seed.stage}" ng-click="$ctrl.transplantSeed(seed)">Transplant</button>
+      <button class="delete btn btn-danger" ng-click="$ctrl.deleteSeed(seed)">Delete</button>
       <script>
         if ($('.plant-button').hasClass('0')){
           $('.plant-button').attr('display','inherit');

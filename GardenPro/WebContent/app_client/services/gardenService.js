@@ -4,6 +4,16 @@ var app = angular.module("ngGarden");
 app.factory('gardenService', function($http, authenticationService){
   var service = {};
 
+  service.getPlants = function() {
+    return $http({
+      method : 'GET',
+      url : 'api/plants',
+      headers : {
+        'x-access-token' : authenticationService.getToken()
+      }
+    });
+  };
+
   service.getGarden = function(){
     return $http({
       method : 'GET',
@@ -24,15 +34,18 @@ app.factory('gardenService', function($http, authenticationService){
     });
   };
 
-  service.createPlanting = function(planting){
+  service.createPlanting = function(plant,qty,stage){
     return $http({
       method : 'POST',
-      url : 'api/plantings',
+      url : 'api/plantings/'+plant.id,
       headers : {
         'Content-Type' : 'application/json',
         'x-access-token' : authenticationService.getToken()
       },
-      data : planting
+      data : {
+        "qty" : qty,
+        "stage" : stage
+      }
     });
   };
 
