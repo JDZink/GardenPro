@@ -25,7 +25,7 @@ import entities.Planting;
 public class PlantingControllerImpl implements PlantingController{
 	@Autowired
 	private PlantingDAO dao;
-	
+
 	@GetMapping(path="ping")
 	public String ping(){
 		return "pong";
@@ -34,7 +34,8 @@ public class PlantingControllerImpl implements PlantingController{
 	@Override
 	@GetMapping
 	public Collection<Planting> index(HttpServletRequest req, HttpServletResponse res) {
-		int id = ((int)req.getAttribute("userId"));
+		int id = 4;
+		System.out.println(req.getAttributeNames());
 		return dao.index(id);
 	}
 
@@ -52,21 +53,21 @@ public class PlantingControllerImpl implements PlantingController{
 		return dao.update(id, planting);
 	}
 
-	@PostMapping
+	@PostMapping(path="{pid}")
 	@Override
-	public Planting create(HttpServletRequest req, HttpServletResponse res,@RequestBody String plantingJson) {
+	public Planting create(HttpServletRequest req, HttpServletResponse res,@RequestBody String plantingJson, @PathVariable int pid) {
 		Planting planting = mapPlanting(plantingJson);
-		int id = ((int)req.getAttribute("userId"));
-		return dao.create(planting, id);
+		int uid = ((int)req.getAttribute("userId"));
+		return dao.create(planting, uid, pid);
 	}
 
 	@Override
 	@DeleteMapping(path="{id}")
 	public Planting destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int id) {
-		
+
 		return dao.destroy(id);
 	}
-	
+
 	private Planting mapPlanting(String plantingJson){
 		ObjectMapper om = new ObjectMapper();
 		Planting newPlanting = null;
@@ -75,9 +76,9 @@ public class PlantingControllerImpl implements PlantingController{
 			return newPlanting;
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 		}
 		return null;
-		
+
 	}
 }

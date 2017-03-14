@@ -14,7 +14,9 @@ public interface PlantingController {
 
   public Planting update(HttpServletRequest req, HttpServletResponse res, int id, String plantingJson);
 
-  public Planting create(HttpServletRequest req, HttpServletResponse res, String plantingJson);
+//  public Planting create(HttpServletRequest req, HttpServletResponse res, String plantingJson);
 
   public Planting destroy(HttpServletRequest req, HttpServletResponse res, int id);
+
+  public Planting create(HttpServletRequest req, HttpServletResponse res, String plantingJson, int pid);
 }
