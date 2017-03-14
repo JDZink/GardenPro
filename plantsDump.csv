@@ -808,3 +808,34 @@ INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Zinnia','Zinnia elegans','Giant red','orn','1','<2 wks @ 72�F, rapid germ.','-5','thin','20','a','fsun','grow cool, pinch after 4 prs true leaves. very sensitive to mildew',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Heart-leaved alexanders','Zizia aptera','yellow','orn ','4','12 wks @ 39�F, move to 70�F for germ.','-12','thin','10','p','psha','ground cover. ',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Italian zucchini','Zucchetta rampicante tromboncino','yellow','vege','1','<2 wks @ 72�F, rapid germ., sow outdoors','1','covr','96','a','fsun','do not grow more than one plant. ',NULL);
+
+
+UPDATE plant SET startGerm = 0 WHERE method_num = 1;
+UPDATE plant SET endGerm = -2 WHERE method_num = 1;
+
+UPDATE plant SET startGerm = -2 WHERE method_num = 2;
+UPDATE plant SET endGerm = -6 WHERE method_num = 2;
+
+UPDATE plant SET startGerm = -3 WHERE method_num = 3;
+UPDATE plant SET endGerm = -4 WHERE method_num = 3;
+
+UPDATE plant SET startGerm = -4 WHERE method_num = 4;
+UPDATE plant SET endGerm = -12 WHERE method_num = 4;
+
+UPDATE plant SET startGerm = -2 WHERE method_num = 8;
+UPDATE plant SET endGerm = -4 WHERE method_num = 8;
+
+UPDATE plant SET startGerm = -2 WHERE method_num = 9;
+UPDATE plant SET endGerm = -4 WHERE method_num = 9;
+
+UPDATE plant SET startGerm = -2 WHERE method_num = 11;
+UPDATE plant SET endGerm = -4 WHERE method_num = 11;
+
+UPDATE plant SET startGerm = -4 WHERE method_num = 13;
+UPDATE plant SET endGerm = -6 WHERE method_num = 13;
+
+UPDATE plant SET startGerm = 0 WHERE method_num = 14;
+UPDATE plant SET endGerm = -1 WHERE method_num = 14;
+
+UPDATE plant SET startGerm = -1 WHERE method_num = 17;
+UPDATE plant SET endGerm = -2 WHERE method_num = 17;
