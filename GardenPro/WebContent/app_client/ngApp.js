@@ -2,13 +2,16 @@ angular.module('ngGarden',['ngRoute'])
 .config(function($routeProvider){
   $routeProvider
     .when('/', {
-      template : `<registration-component>loading...</registration-component>`
+      template : `<registration-component>loading registration-component...</registration-component>`
+    })
+    .when('/register', {
+      template : `<signup-component>loading signup-component...</signup-component>`
     })
     .when('/garden', {
-      template : `<garden-component>loading...</garden-component>`
+      template : `<garden-component>loading garden-component...</garden-component>`
     })
     .when('/garden/:id', {
-      template : `<planting-detail planting="$resolve.planting">loading...</planting-detail>`,
+      template : `<planting-detail planting="$resolve.planting">loading planting-detail...</planting-detail>`,
       resolve : {
         planting : function(gardenService, $route, $location){
           return gardenService.getPlantingInfo($route.current.params.id)
@@ -23,15 +26,15 @@ angular.module('ngGarden',['ngRoute'])
       }
     })
     .when('/addPlants', {
-      template : `<addplants-component>loading...</addplants-component>`
+      template : `<addplants-component>loading addplants-component...</addplants-component>`
     })
     .when('/about', {
-      template : `<about-component>loading...</about-component>`
+      template : `<about-component>loading about-component...</about-component>`
     })
     .when('/contact', {
-      template : `<contact-component>loading...</contact-component>`
+      template : `<contact-component>loading contact-component...</contact-component>`
     })
     .otherwise({
-      template : `<not-found>loading...</not-found>`
+      template : `<not-found>loading not-found...</not-found>`
     });
 });

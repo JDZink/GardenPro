@@ -13,7 +13,7 @@ app.component('navComponent', {
   <div>
       <nav class="navbar navbar-default navigation-clean-button">
           <div class="container nav-container">
-              <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">DigIt</a>
+              <div class="navbar-header"><a class="navbar-brand navbar-link" href="#/">DigIt</a>
                   <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
               </div>
               <div class="collapse navbar-collapse" id="navcol-1">
