@@ -22,6 +22,9 @@ angular.module('ngGarden',['ngRoute'])
         }
       }
     })
+    .when('/addPlants', {
+      template : `<addplants-component>loading...</addplants-component>`
+    })
     .when('/about', {
       template : `<about-component>loading...</about-component>`
     })

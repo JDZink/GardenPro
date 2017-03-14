@@ -1,3 +1,12 @@
 .nav-container {
 	width: 95%;
 }
+.content-div, .seed, .plant {
+	text-align: center;
+}
+
+.plantings-box {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+}
