@@ -9,9 +9,8 @@ var registrationController = function($location, authenticationService){
     });
     regForm.reset();
   };
-  vm.register = function(user) {
-    authenticationService.register(user);
-    regForm.reset();
+  vm.signup = function() {
+    $location.path('/register');
   };
 };
 
@@ -35,8 +34,8 @@ app.component('registrationComponent', {
       <input type="text" name="username" ng-model="user.username" placeholder="username" required ng-minlength="4"><br>
       <input type="password" name="password" ng-model="user.password" placeholder="password"
         required ng-minlength="6"><br>
-      <input type="button" value="LogIn" ng-click="$ctrl.login(user)">
-      <input type="button" value="Register" ng-click="$ctrl.register(user)">
+      <input type="submit" value="LogIn" ng-click="$ctrl.login(user)">
+      <input type="button" value="Sign Up" ng-click="$ctrl.signup()">
     </form>
   </div>
 
