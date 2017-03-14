@@ -51,12 +51,12 @@ public class PlantingControllerImpl implements PlantingController{
 		return dao.update(id, planting);
 	}
 
-	@PostMapping
+	@PostMapping(path="{pid}")
 	@Override
-	public Planting create(HttpServletRequest req, HttpServletResponse res,@RequestBody String plantingJson) {
+	public Planting create(HttpServletRequest req, HttpServletResponse res,@RequestBody String plantingJson, @PathVariable int pid) {
 		Planting planting = mapPlanting(plantingJson);
-		int id = ((int)req.getAttribute("userId"));
-		return dao.create(planting, id);
+		int uid = ((int)req.getAttribute("userId"));
+		return dao.create(planting, uid, pid);
 	}
 
 	@Override

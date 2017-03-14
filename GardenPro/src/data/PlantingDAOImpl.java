@@ -1,5 +1,6 @@
 package data;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Plant;
 import entities.Planting;
 import entities.User;
 
@@ -49,9 +51,32 @@ public class PlantingDAOImpl implements PlantingDAO{
 	}
 
 	@Override
-	public Planting create(Planting planting, int userId) {
+	public Planting create(Planting planting, int userId, int plantId) {
 		User u = em.find(User.class, userId);
 		planting.setUser(u);
+		Plant p = em.find(Plant.class, plantId);
+		planting.setPlant(p);
+		int weeksBefore = p.getLastFrost();
+//		int tillHarvest = p.getHarvest()
+		switch(planting.getStage()){
+			case 1: planting.setStarted(LocalDate.now());
+			break;
+			
+			case 2: planting.setStarted(LocalDate.now().minusWeeks(weeksBefore/2));
+			break;
+			
+			case 3: planting.setStarted(LocalDate.now().minusWeeks(weeksBefore));
+			break;
+
+			case 4: planting.setPlanted(LocalDate.now());
+			//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
+			break;
+			
+			case 5: planting.setPlanted(LocalDate.now());
+					planting.setHarvest(LocalDate.now().plusMonths(2));
+			break;
+			
+		}
 		em.persist(planting);
 		em.flush();
 		
