@@ -27,6 +27,12 @@
     <script src="app_client/components/gardenTable.js"></script>
     <script src="app_client/components/navComponent.js"></script>
     <script src="app_client/components/plantingDetail.js"></script>
+    <script src="app_client/components/seedsComponent.js"></script>
+    <script src="app_client/components/plantsComponent.js"></script>
+    <script src="app_client/components/outlineComponent.js"></script>
+    <script src="app_client/components/footerComponent.js"></script>
+    <script src="app_client/filters/seedFilter.js"></script>
+    <script src="app_client/filters/plantFilter.js"></script>
     <script>
     $(document).ready(function () {
       $('.nav li').click(function(e) {
@@ -43,22 +49,7 @@
     </script>
   </head>
   <body>
-	<div>
-        <nav class="navbar navbar-default navigation-clean-button">
-            <div class="container">
-                <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">DigIt</a>
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                </div>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active" role="presentation"><a href="#/">Add Plants</a></li>
-                        <li role="presentation"><a href="#/">Second Item</a></li>
-                    </ul>
-                    <p class="navbar-text navbar-right actions"><a class="navbar-link login" href="#">Log In</a> <a class="btn btn-default action-button" role="button" href="#">Sign Up</a></p>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <nav-component></nav-component>
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -86,15 +77,13 @@
         <footer>
             <ul class="list-inline">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
-            <p class="copyright">Company Name © 2016</p>
+            <p class="copyright">DigIt © 2017</p>
         </footer>
     </div>
     <script src="assets/js/Sidebar-Menu.js"></script>
-</body>
+  </body>
 
 </html>

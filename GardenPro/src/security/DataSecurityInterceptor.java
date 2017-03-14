@@ -18,26 +18,28 @@ public class DataSecurityInterceptor extends HandlerInterceptorAdapter {
 
   @Override
   public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
+
 	  return true;
-	  //    // check if a 'x-access-token' header exists on the request
-//    if (req.getHeader("x-access-token") != null) {
-//    	System.out.println("x access token = " + req.getHeader("x-access-token"));
-//      // retrieve the jwt from the request header
-//      String jwt = req.getHeader("x-access-token");
-//      // parse the jwt's claims using the injected secret key
-//      Jws<Claims> jws = Jwts.parser()
-//                          .setSigningKey(keyGen.getSecretKey())
-//                          .parseClaimsJws(jwt);
-//      // extract the user id from the claims (cast it from an Object to an int)
-//      int userId = (int) jws.getBody().get("id");
-//      // add the user_id to the HttpServletRequest's attributes
-//      req.setAttribute("userId", userId);
-//
-//      return true;
-//    }
-//
-//    // if you got here, the user is not authenticated, redirect to a route which will respond 401
-//    res.sendRedirect("http://localhost:8080/unauthorized");
-//    return false;
+
+    // // check if a 'x-access-token' header exists on the request
+    // if (req.getHeader("x-access-token") != null) {
+    // 	System.out.println("x access token = " + req.getHeader("x-access-token"));
+    //   // retrieve the jwt from the request header
+    //   String jwt = req.getHeader("x-access-token");
+    //   // parse the jwt's claims using the injected secret key
+    //   Jws<Claims> jws = Jwts.parser()
+    //                       .setSigningKey(keyGen.getSecretKey())
+    //                       .parseClaimsJws(jwt);
+    //   // extract the user id from the claims (cast it from an Object to an int)
+    //   int userId = (int) jws.getBody().get("id");
+    //   // add the user_id to the HttpServletRequest's attributes
+    //   req.setAttribute("userId", userId);
+    //
+    //   return true;
+    // }
+    //
+    // // if you got here, the user is not authenticated, redirect to a route which will respond 401
+    // res.sendRedirect("http://localhost:8080/GardenPro/#/");
+    // return false;
   }
 }

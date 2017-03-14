@@ -25,7 +25,7 @@ import entities.Planting;
 public class PlantingControllerImpl implements PlantingController{
 	@Autowired
 	private PlantingDAO dao;
-	
+
 	@GetMapping(path="ping")
 	public String ping(){
 		return "pong";
@@ -64,10 +64,10 @@ public class PlantingControllerImpl implements PlantingController{
 	@Override
 	@DeleteMapping(path="{id}")
 	public Planting destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int id) {
-		
+
 		return dao.destroy(id);
 	}
-	
+
 	private Planting mapPlanting(String plantingJson){
 		ObjectMapper om = new ObjectMapper();
 		Planting newPlanting = null;
@@ -76,9 +76,9 @@ public class PlantingControllerImpl implements PlantingController{
 			return newPlanting;
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 		}
 		return null;
-		
+
 	}
 }

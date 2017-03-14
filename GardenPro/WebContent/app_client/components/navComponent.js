@@ -10,20 +10,22 @@ var navController = function($location, authenticationService){
 
 app.component('navComponent', {
   template : `
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand">ngGarden</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#/">Home</a></li>
-      <li><a href="#/garden">Garden</a></li>
-      <li><a href="#/about">About</a></li>
-      <li><a href="#/contact">Contact</a></li>
-      <li><button class="logout" type="button" ng-click='$ctrl.logout()'>LogOut</button></li>
-    </ul>
+  <div>
+      <nav class="navbar navbar-default navigation-clean-button">
+          <div class="container nav-container">
+              <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">DigIt</a>
+                  <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+              </div>
+              <div class="collapse navbar-collapse" id="navcol-1">
+                  <ul class="nav navbar-nav">
+                      <li class="active" role="presentation"><a href="#/garden">Garden</a></li>
+                      <li role="presentation"><a href="#/addPlants">Add Plants</a></li>
+                  </ul>
+                  <p class="navbar-text navbar-right actions"> <a class="btn btn-default action-button" role="button" ng-click='$ctrl.logout()'>Log Out</a></p>
+              </div>
+          </div>
+      </nav>
   </div>
-</nav>
   `,
   controller : navController
 });
