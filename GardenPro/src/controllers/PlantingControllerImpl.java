@@ -41,6 +41,7 @@ public class PlantingControllerImpl implements PlantingController{
 	@Override
 	@GetMapping(path="{id}")
 	public Planting show(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
+		System.out.println("In Planting show");
 		return dao.show(id);
 	}
 

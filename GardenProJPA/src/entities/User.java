@@ -91,12 +91,6 @@ public class User {
 	public void setZone(String zone) {
 		this.zone = zone;
 	}
-//	public Date getFrostDate() {
-//		return frostDate;
-//	}
-//	public void setFrostDate(Date frostDate) {
-//		this.frostDate = frostDate;
-//	}
 	public LocalDate getFrostDate() {
 		return frostDate;
 	}

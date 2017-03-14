@@ -43,17 +43,11 @@ public class AuthControllerImpl implements AuthController {
 	    try {
 	      mapper.registerModule(new JavaTimeModule());
 	      user = mapper.readValue(userJson, User.class);
-	      user.setZone("5a");
 	      
-	      String rawPassword = user.getPassword();
-	      
-	      if(user.getFrostDate() == null){
-	    	  user.setFrostDate(LocalDate.parse("2017-04-30"));
-	      }
-	      
-	      System.out.println("Raw pw: " + rawPassword);
-	      	      
+//	      user.setZone("5a");
+	      user = dao.resetUserFrostDate(user);
 	      dao.register(user);
+	      String rawPassword = user.getPassword();
 	      user = dao.authenticateUser(user, rawPassword);
 	      String jws = jwtGen.generateUserJwt(user);
 	      Map<String,String> responseJson = new HashMap<>();
@@ -74,6 +68,7 @@ public class AuthControllerImpl implements AuthController {
 		}
 		return u;
 	}
+	
 	@Override
 	  @PostMapping(path = "/login")
 	  public Map<String,String> login(HttpServletRequest req, HttpServletResponse res, @RequestBody String userJsonString) {
