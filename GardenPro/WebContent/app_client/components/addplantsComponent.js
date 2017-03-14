@@ -24,8 +24,8 @@ var addplantsController = function(gardenService) {
   };
   vm.loadData();
 
-  vm.addPlanting = function(planting){
-    gardenService.createPlanting(planting)
+  vm.addPlanting = function(plant,qty,stage){
+    gardenService.createPlanting(plant,qty,stage)
       .then(vm.loadData);
   };
 };
@@ -39,7 +39,7 @@ app.component('addplantsComponent',{
           <div class="plant" ng-repeat="plant in $ctrl.plants | plantsFilter">
             <h3>{{plant.commonName}}</h3>
             <h4>Quantity: {{plant.variety}}<h4>
-            <button class="add btn btn-primary" ng-click="$ctrl.deleteplant(plant)">Delete</button>
+            <button class="add btn btn-primary" ng-click="$ctrl.addPlanting(plant,1,0)">Add Plant</button>
           </div>
         </div>
 
