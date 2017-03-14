@@ -11,9 +11,12 @@ public interface ReminderDAO {
 	  
 	  public void reminderToWater(Planting p);
 	  
+	  
 	  public void reminderToSow(Planting p, User user);
 	  
-	  public void reminderToPlant(Planting p, User user);
-	  
 	  public void reminderToHarvest(Planting p, User user);
+
+	  public void reminderToPlantOutdoors(Planting p, User user);
+
+	  public void reminderToPlantIndoors(Planting p, User user);
 }

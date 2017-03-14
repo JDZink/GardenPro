@@ -21,7 +21,7 @@ import data.PlantDAO;
 import entities.Plant;
 
 @RestController
-@RequestMapping(path="plants")
+@RequestMapping(path="reminders")
 public class ReminderControllerImpl implements PlantController {
 	@Autowired
 	private PlantDAO dao;

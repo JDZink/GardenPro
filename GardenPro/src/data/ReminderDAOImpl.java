@@ -60,7 +60,7 @@ public class ReminderDAOImpl implements ReminderDAO{
 	}
 
 	@Override
-	public void reminderToStart(Planting p, User user){
+	public void reminderToPlantIndoors(Planting p, User user){
 		Plant plant = em.find(Plant.class, p.getPlant());
 		Reminder r = new Reminder();
 
@@ -73,11 +73,10 @@ public class ReminderDAOImpl implements ReminderDAO{
 	}
 	
 	@Override
-	public void reminderToPlant(Planting p, User user){
+	public void reminderToPlantOutdoors(Planting p, User user){
 		Plant plant = em.find(Plant.class, p.getPlant());
 		Reminder r = new Reminder();
 		
-		int plantDate = plant.getLastFrost();
 		r.setDate(user.getFrostDate().minusWeeks(plant.getLastFrost()));
 		
 		if(LocalDate.now() == r.getDate()){
@@ -89,4 +88,6 @@ public class ReminderDAOImpl implements ReminderDAO{
 	public void reminderToHarvest(Planting p, User user){
 		
 	}
+
+
 }

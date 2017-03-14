@@ -49,11 +49,12 @@ public class AuthDAOImpl implements AuthDAO {
 			  String q = "SELECT u FROM User u WHERE username = :un";
 					  
 			us = em.createQuery(q, User.class).setParameter("un", user.getUsername()).getSingleResult();
-//			us = em.createQuery("SELECT u FROM User u WHERE username = '" +
-//			  user.getUsername() + "'").getSingleResult();
 			System.out.println("U: " + us);
 			
-//			 return u;
+			//resets frost date year if frost date has already passed
+			while(us.getFrostDate().isBefore(LocalDate.now())){
+				us.setFrostDate(us.getFrostDate().plusYears(1));
+			}
 		} catch (Exception e) {
 			
 		}
@@ -91,7 +92,7 @@ public class AuthDAOImpl implements AuthDAO {
 	public User resetUserFrostDate(User user){
 		
 		//removes zone specifying character
-		 int tempZone = Integer.parseInt(user.getZone().substring(0, user.getZone().length()-1));
+		 int tempZone = Integer.parseInt(user.getZone());
 		
 		if (tempZone >= 11){
 			user.setFrostDate(null);
