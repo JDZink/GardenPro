@@ -6,6 +6,27 @@ var navController = function($location, authenticationService){
     authenticationService.logout();
     $location.path('/');
   };
+  vm.login = function(){
+    $location.path('/login');
+  };
+
+  vm.signup = function() {
+    $location.path('/register');
+  };
+
+  vm.setButtons = function(){
+    console.log("setting buttons");
+    if(authenticationService.isLoggedIn()){
+      console.log("logged in");
+      $('.login-button').attr("display","none");
+      $('.signup-button').attr("display","none");
+    } else {
+      console.log("not logged in");
+      $('.logout-button').attr("display","none");
+      $('.signup-button').attr("display","");
+    }
+  };
+  vm.setButtons();
 };
 
 app.component('navComponent', {
@@ -21,7 +42,9 @@ app.component('navComponent', {
                       <li class="active" role="presentation"><a href="#/garden">Garden</a></li>
                       <li role="presentation"><a href="#/addPlants">Add Plants</a></li>
                   </ul>
-                  <p class="navbar-text navbar-right actions"> <a class="btn btn-default action-button" role="button" ng-click='$ctrl.logout()'>Log Out</a></p>
+                  <p class="navbar-text navbar-right actions"> <a class="btn btn-default action-button signup-button" role="button" ng-click="$ctrl.signup()">Sign Up</a></p>
+                  <p class="navbar-text navbar-right actions"> <a class="btn btn-default action-button login-button" role="button" ng-click="$ctrl.login()">Log In</a></p>
+                  <p class="navbar-text navbar-right actions"> <a class="btn btn-default action-button logout-button" role="button" ng-click="$ctrl.logout()">Log Out</a></p>
               </div>
           </div>
       </nav>

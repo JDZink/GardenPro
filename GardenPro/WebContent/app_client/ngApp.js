@@ -1,7 +1,7 @@
 angular.module('ngGarden',['ngRoute'])
 .config(function($routeProvider){
   $routeProvider
-    .when('/', {
+    .when('/login', {
       template : `<registration-component>loading registration-component...</registration-component>`
     })
     .when('/register', {

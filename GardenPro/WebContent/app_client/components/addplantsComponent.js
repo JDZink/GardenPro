@@ -4,8 +4,6 @@ var app = angular.module('ngGarden');
 var addplantsController = function(gardenService) {
   var vm = this;
 
-  vm.garden = [];
-
   vm.plants = [];
 
   vm.loadPlants = function(){
@@ -15,14 +13,6 @@ var addplantsController = function(gardenService) {
     });
   };
   vm.loadPlants();
-
-  vm.loadData = function(){
-    gardenService.getGarden()
-      .then(function(res){
-        vm.garden = res.data;
-      });
-  };
-  vm.loadData();
 
   vm.addPlanting = function(plant,qty,stage){
     gardenService.createPlanting(plant,qty,stage)
@@ -36,7 +26,7 @@ app.component('addplantsComponent',{
       <h1>Plants</h1>
 
         <div class="plants-box">
-          <div class="plant" ng-repeat="plant in $ctrl.plants | plantsFilter">
+          <div class="plant" ng-repeat="plant in $ctrl.plants">
             <h3>{{plant.commonName}}</h3>
             <h4>Quantity: {{plant.variety}}<h4>
             <button class="add btn btn-primary" ng-click="$ctrl.addPlanting(plant,1,0)">Add Plant</button>

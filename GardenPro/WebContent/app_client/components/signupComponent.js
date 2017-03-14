@@ -3,8 +3,10 @@ var app = angular.module('ngGarden');
 var signupController = function($location, authenticationService){
   var vm = this;
   vm.register = function(user) {
-    authenticationService.register(user);
-    regForm.reset();
+    authenticationService.register(user)
+    .then(function(res){
+      $location.path('/garden');
+    });
   };
 };
 
