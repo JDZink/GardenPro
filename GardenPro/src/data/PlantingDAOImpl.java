@@ -29,7 +29,9 @@ public class PlantingDAOImpl implements PlantingDAO{
 
 	@Override
 	public Collection<Planting> index(int userId) {
+		System.out.println("User id in index: " + userId);
 		User u = em.find(User.class, userId);
+		System.out.println(u);
 		return u.getPlantings();
 	}
 
