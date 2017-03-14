@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class User {
@@ -36,6 +37,7 @@ public class User {
 	private LocalDate frostDate;
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JsonManagedReference
 	private Set<Planting> plantings;
 	
 	@OneToMany(fetch=FetchType.EAGER)
@@ -89,12 +91,6 @@ public class User {
 	public void setZone(String zone) {
 		this.zone = zone;
 	}
-//	public Date getFrostDate() {
-//		return frostDate;
-//	}
-//	public void setFrostDate(Date frostDate) {
-//		this.frostDate = frostDate;
-//	}
 	public LocalDate getFrostDate() {
 		return frostDate;
 	}

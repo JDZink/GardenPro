@@ -12,7 +12,7 @@ public interface PlantingDAO {
 
   public Planting update(int id, Planting planting);
 
-  public Planting create(Planting planting, int id);
+  public Planting create(Planting planting, int id, int pid);
 
   public Planting destroy(int id);
 
