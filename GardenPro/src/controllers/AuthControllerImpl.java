@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import data.AuthDAO;
 import entities.User;
@@ -36,26 +37,26 @@ public class AuthControllerImpl implements AuthController {
 	@Override
 	@PostMapping(path = "/register")
 	public Map<String,String> register(@RequestBody String userJson) {
+		
 		ObjectMapper mapper = new ObjectMapper();
 	    User user = null;
-	    System.out.println("JSON in = " + userJson);
 	    try {
+	      mapper.registerModule(new JavaTimeModule());
 	      user = mapper.readValue(userJson, User.class);
-	      System.out.println("username " + user.getUsername() +  " pass " + user.getPassword() );
-	      user.setZone("5a");
-	      user.setFrostDate(LocalDate.parse("2017-04-30"));
+	      
+//	      user.setZone("5a");
+	      user = dao.resetUserFrostDate(user);
+	      dao.register(user);
+	      String rawPassword = user.getPassword();
+	      user = dao.authenticateUser(user, rawPassword);
+	      String jws = jwtGen.generateUserJwt(user);
+	      Map<String,String> responseJson = new HashMap<>();
+	      responseJson.put("jwt", jws);
+	      return responseJson;
 	    } catch (IOException ie) {
-	    System.out.println("IN REGISTER CATCH " + user);
 	      ie.printStackTrace();
 	    }
-		if(user!= null){
-			dao.Register(user);
-		}
-		user = dao.authenticateUser(user);
-		String jws = jwtGen.generateUserJwt(user);
-	    Map<String,String> responseJson = new HashMap<>();
-	    responseJson.put("jwt", jws);
-	    return responseJson;
+	    return null;
 	}
 	
 	@Override
@@ -67,6 +68,7 @@ public class AuthControllerImpl implements AuthController {
 		}
 		return u;
 	}
+	
 	@Override
 	  @PostMapping(path = "/login")
 	  public Map<String,String> login(HttpServletRequest req, HttpServletResponse res, @RequestBody String userJsonString) {

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class User {
@@ -27,20 +31,18 @@ public class User {
 	private String password;
 	private String zone;
 	
-	@JsonFormat(pattern="LocalDate")
+//	@Convert(converter = LocalDateAttributeConverter.class)
+//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	@Column(name="frost_date")
 	private LocalDate frostDate;
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JsonManagedReference
 	private Set<Planting> plantings;
 	
 	@OneToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "user_plant", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "plant_id"))
 	private Set<Plant> plants;
-//	
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
-//	@JoinTable(name = "user_tv_show", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "tv_show_id"))
-//	Set<TVShow> tvShows;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)	
@@ -74,12 +76,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-//	public boolean isReset() {
-//		return reset;
-//	}
-//	public void setReset(boolean reset) {
-//		this.reset = reset;
-//	}
 	public Set<Reminder> getReminders() {
 		return reminders;
 	}
@@ -100,5 +96,10 @@ public class User {
 	}
 	public void setFrostDate(LocalDate frostDate) {
 		this.frostDate = frostDate;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", zone=" + zone
+				+ ", frostDate=" + frostDate + "]";
 	}
 }
