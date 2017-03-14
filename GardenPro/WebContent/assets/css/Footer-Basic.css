@@ -3,7 +3,7 @@
   background-color:#ffffff;
   color:#4b4c4d;
   bottom:0;
-  position:absolute;
+  position:fixed;
   width:100%;
   z-index:1000;
 }
@@ -61,4 +61,3 @@
   color:#aaa;
   margin-bottom:0;
 }
-

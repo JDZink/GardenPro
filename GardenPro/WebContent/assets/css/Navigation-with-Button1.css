@@ -9,6 +9,13 @@
   margin-bottom:0;
 }
 
+.mynav {
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+  background-color: rgba(255, 255, 255,1)
+}
+
 @media (max-width:767px) {
   .navigation-clean-button {
     padding-top:0;

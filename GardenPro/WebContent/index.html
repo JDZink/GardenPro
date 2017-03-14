@@ -34,20 +34,6 @@
     <script src="app_client/components/footerComponent.js"></script>
     <script src="app_client/filters/seedFilter.js"></script>
     <script src="app_client/filters/plantFilter.js"></script>
-    <script>
-    $(document).ready(function () {
-      $('.nav li').click(function(e) {
-
-        $('.nav li').removeClass('active');
-
-        var $this = $(this);
-        if (!$this.hasClass('active')) {
-          $this.addClass('active');
-        }
-        //e.preventDefault();
-      });
-    });
-    </script>
   </head>
   <body>
     <nav-component></nav-component>

@@ -31,7 +31,7 @@ var navController = function($location, authenticationService){
 
 app.component('navComponent', {
   template : `
-  <div>
+  <div class="mynav">
       <nav class="navbar navbar-default navigation-clean-button">
           <div class="container nav-container">
               <div class="navbar-header"><a class="navbar-brand navbar-link" href="#/">DigIt</a>
@@ -39,7 +39,7 @@ app.component('navComponent', {
               </div>
               <div class="collapse navbar-collapse" id="navcol-1">
                   <ul class="nav navbar-nav">
-                      <li class="active" role="presentation"><a href="#/garden">Garden</a></li>
+                      <li role="presentation"><a href="#/garden">Garden</a></li>
                       <li role="presentation"><a href="#/addPlants">Add Plants</a></li>
                   </ul>
                   <p class="navbar-text navbar-right actions"> <a class="btn btn-default action-button signup-button" role="button" ng-click="$ctrl.signup()">Sign Up</a></p>
