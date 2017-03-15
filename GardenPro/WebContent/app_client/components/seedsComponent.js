@@ -19,30 +19,26 @@ var seedsComponentController = function(gardenService){
     gardenService.deletePlanting(planting)
     .then(vm.loadData);
   };
+
+  vm.isSeed = function(seed) {
+    if (seed.stage === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 };
 
 app.component('seedsComponent', {
   template : `
   <div class="plantings-box">
-    <div class="seed" ng-repeat="seed in $ctrl.garden | seedFilter:$ctrl.showSeeds">
+    <div class="seed" ng-repeat="seed in $ctrl.garden | seedFilter:$ctrl.showSeeds | orderBy:'commonName'">
       <h3>{{seed.plant.commonName}}</h3>
       <h4>Quantity: {{seed.qty}}<h4>
       <h4>Stage: {{seed.stage}}<h4>
-      <button class="plant-button btn btn-primary {seed.stage}" ng-click="$ctrl.plantSeed(seed)">Plant</button>
-      <button class="transplant-button btn btn-primary {seed.stage}" ng-click="$ctrl.transplantSeed(seed)">Transplant</button>
+      <button class="plant-button btn btn-primary" ng-click="$ctrl.plantSeed(seed)" ng-show="$ctrl.isSeed(seed)">Plant</button>
+      <button class="transplant-button btn btn-primary" ng-click="$ctrl.transplantSeed(seed)" ng-hide="$ctrl.isSeed(seed)">Transplant</button>
       <button class="delete btn btn-danger" ng-click="$ctrl.deleteSeed(seed)">Delete</button>
-      <script>
-        if ($('.plant-button').hasClass('0')){
-          $('.plant-button').attr('display','inherit');
-        } else {
-          $('.plant-button').attr('display','none');
-        }
-        if ($('.transplant-button').hasClass('0')){
-          $('.transplant-button').attr('display','none');
-        } else {
-          $('.transplant-button').attr('display','inherit');
-        }
-      </script>
     </div>
   </div>
   `,

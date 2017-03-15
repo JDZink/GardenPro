@@ -4,7 +4,7 @@ var app = angular.module('ngGarden');
 app.filter('plantFilter', function(){
   return function(garden){
     var results = [];
-    console.log(typeof garden);
+    // console.log(typeof garden);
     if(typeof garden === "object") {
       garden.forEach(function(planting){
         if(parseInt(planting.stage) > 3){

@@ -26,7 +26,7 @@ app.component('addplantsComponent',{
       <h1>Plants</h1>
 
         <div class="plants-box">
-          <div class="plant" ng-repeat="plant in $ctrl.plants">
+          <div class="plant" ng-repeat="plant in $ctrl.plants | orderBy:'commonName'">
             <h4>{{plant.commonName}}</h4>
             <h5>Variety: {{plant.variety}}<h5>
             <button class="add btn btn-primary" ng-click="$ctrl.addPlanting(plant,1,0)">Add Plant</button>
