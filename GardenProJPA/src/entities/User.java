@@ -35,7 +35,7 @@ public class User {
 	private LocalDate frostDate;
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JsonManagedReference
+	@JsonManagedReference(value="plantings")
 	private Set<Planting> plantings;
 	
 	@OneToMany(fetch=FetchType.EAGER)
@@ -44,7 +44,7 @@ public class User {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)	
-	@JsonManagedReference
+	@JsonManagedReference(value="reminders")
 	private Set<Reminder> reminders;
 	
 	

@@ -30,7 +30,7 @@ public class Planting {
 
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	@JsonBackReference
+	@JsonBackReference(value="plantings")
 	private User user;
 
 	@OneToOne
@@ -38,9 +38,9 @@ public class Planting {
 	private Plant plant;
 
 
-//	@OneToMany(mappedBy="planting", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	@JsonManagedReference
-//	private Set<Reminder> reminders;
+	@OneToMany(mappedBy="planting", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JsonManagedReference
+	private Set<Reminder> reminders;
 	
 	private int qty;
 	private int stage;
@@ -100,10 +100,10 @@ public class Planting {
 	public int getId() {
 		return id;
 	}
-//	public Set<Reminder> getReminders() {
-//		return reminders;
-//	}
-//	public void setReminders(Set<Reminder> reminders) {
-//		this.reminders = reminders;
-//	}
+	public Set<Reminder> getReminders() {
+		return reminders;
+	}
+	public void setReminders(Set<Reminder> reminders) {
+		this.reminders = reminders;
+	}
 }
