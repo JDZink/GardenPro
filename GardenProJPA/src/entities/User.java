@@ -31,8 +31,6 @@ public class User {
 	private String password;
 	private String zone;
 	
-//	@Convert(converter = LocalDateAttributeConverter.class)
-//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	@Column(name="frost_date")
 	private LocalDate frostDate;
 	
@@ -46,6 +44,7 @@ public class User {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)	
+	@JsonManagedReference
 	private Set<Reminder> reminders;
 	
 	
