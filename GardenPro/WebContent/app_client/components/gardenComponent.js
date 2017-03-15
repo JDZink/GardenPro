@@ -13,7 +13,7 @@ var gardenController = function(gardenService) {
       });
   };
 
-  vm.showSeeds = false;
+  vm.showSeeds = true;
 
   vm.loadData();
 

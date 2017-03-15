@@ -12,7 +12,7 @@ var plantsComponentController = function(gardenService){
 app.component('plantsComponent', {
   template : `
   <div class="plantings-box">
-    <div class="plant" ng-repeat="plant in $ctrl.garden | plantFilter">
+    <div class="plant" ng-repeat="plant in $ctrl.garden | plantFilter | orderBy:'commonName'">
       <h3>{{plant.plant.commonName}}</h3>
       <h4>Quantity: {{plant.qty}}<h4>
       <h4>Stage: {{plant.stage}}<h4>
