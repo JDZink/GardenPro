@@ -9,12 +9,17 @@
 	display: inline-flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
+	border: 3px solid grey;
+	border-radius: 10px;
+	padding: 20px;
 }
 
 .plant, .seed {
 	width: 15em;
+	margin: 5px;
 	border: 1px solid grey;
 	border-radius: 5px;
+	padding-bottom: 5px;
 }
 
 .container-fluid {
@@ -28,6 +33,20 @@
 	background-color: rgba(255, 255, 255,1);
 	border: 1px solid rgb(51, 81, 158);
 	border-radius: 5px;
+}
+
+a#menu-toggle {
+	margin-left: -55px;
+}
+.fa-bell-o {
+	font-size: 22px;
+	margin-right: -5px;
+	margin-left: -5px;
+	margin-bottom: -8px;
+}
+
+.fa-leaf {
+	color: #1f741a
 }
 
 /*****************POPUP*****************/
