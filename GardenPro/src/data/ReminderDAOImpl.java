@@ -1,6 +1,8 @@
 package data;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,13 +22,32 @@ public class ReminderDAOImpl implements ReminderDAO{
 	private EntityManager em;
 
 	@Override
+	public Reminder create(Reminder reminder) {
+		em.persist(reminder);
+		return reminder;
+	}
+	
+	@Override
+	public Set<Reminder> cleanupReminders(User user) {
+		Set<Reminder> tempReminders = new HashSet<>();
+		Set<Reminder> reminders = user.getReminders();
+		
+		for (Reminder r : reminders) {
+			if(r.getDate().isAfter(LocalDate.now().minusMonths(11))){
+				tempReminders.add(r);
+			}
+		}
+		return tempReminders;
+	}
+	
+	@Override
 	public Reminder update(int id, Reminder reminder) {
 		Reminder r = em.find(Reminder.class,id);
 		r.setCategory(reminder.getCategory());
 		r.setComplete(reminder.isComplete());
 		r.setDescription(reminder.getDescription());
 		r.setTitle(reminder.getTitle());
-		em.flush();
+		r.setDate(reminder.getDate());
 		return r;
 	}
 
@@ -36,27 +57,29 @@ public class ReminderDAOImpl implements ReminderDAO{
 		em.remove(r);
 		return r;
 	}
-
+	
 	@Override
 	public void reminderToWater(Planting p){
 		Reminder r = new Reminder();
-		r.setDate(p.getStarted().plusWeeks(2));
+		r.setDate(p.getStarted().plusWeeks(1));
 		if(LocalDate.now() == r.getDate()){
 			//Trigger reminder
 		}
+		create(r);
+
 	}
 	
 	@Override
-	public void reminderToSow(Planting p, User user){
+	public void reminderToStart(Planting p, User user){
 		Plant plant = em.find(Plant.class, p.getPlant());
 		Reminder r = new Reminder();
 
-		int sowDate = plant.getLastFrost();
-		r.setDate(user.getFrostDate().minusWeeks(sowDate));
+		r.setDate(user.getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost()));
 		
 		if(LocalDate.now() == r.getDate()){
 			//Trigger reminder
 		}
+		create(r);
 	}
 	
 	@Override
@@ -64,12 +87,13 @@ public class ReminderDAOImpl implements ReminderDAO{
 		Plant plant = em.find(Plant.class, p.getPlant());
 		Reminder r = new Reminder();
 
-		int sproutDate = plant.getLastFrost();
-		r.setDate(user.getFrostDate().minusWeeks(sowDate));
+		int sproutDate = plant.getWeeksBeforeLastFrost() - (Math.round((plant.getStartGerm() + plant.getEndGerm())/2));
+		r.setDate(user.getFrostDate().minusWeeks(sproutDate));
 		
 		if(LocalDate.now() == r.getDate()){
 			//Trigger reminder
 		}
+		create(r);
 
 	}
 
@@ -78,12 +102,12 @@ public class ReminderDAOImpl implements ReminderDAO{
 		Plant plant = em.find(Plant.class, p.getPlant());
 		Reminder r = new Reminder();
 
-		int plantDate = plant.getLastFrost();
-		r.setDate(user.getFrostDate().minusWeeks(plant.getLastFrost()));
+		r.setDate(user.getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost() - plant.getEndGerm()));
 		
 		if(LocalDate.now() == r.getDate()){
 			//Trigger reminder
 		}
+		create(r);
 	}
 	
 	@Override
@@ -91,15 +115,16 @@ public class ReminderDAOImpl implements ReminderDAO{
 		Plant plant = em.find(Plant.class, p.getPlant());
 		Reminder r = new Reminder();
 		
-		r.setDate(user.getFrostDate().minusWeeks(plant.getLastFrost()));
-		
+		r.setDate(user.getFrostDate());
 		if(LocalDate.now() == r.getDate()){
 			//Trigger reminder
 		}
+		create(r);
 	}
 	
 	@Override
 	public void reminderToHarvest(Planting p, User user){
 		
 	}
+
 }

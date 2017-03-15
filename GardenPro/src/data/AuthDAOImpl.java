@@ -103,23 +103,23 @@ public class AuthDAOImpl implements AuthDAO {
 		if (tempZone >= 11){
 			user.setFrostDate(null);
 			return user;
-		} else if(tempZone == 9 || tempZone == 10){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 12, 15));
+		} else if(tempZone == 10){
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 1, 31));
+			return user;
+		} else if(tempZone == 9){
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 2, 15));
 			return user;
 		} else if(tempZone == 8){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 11, 15));
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 3, 15));
 			return user;
 		} else if(tempZone >= 5 && tempZone <= 7){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 10, 15));
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 4, 15));
 			return user;
-		} else if(tempZone == 3 || tempZone == 4){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 9, 15));
-			return user;
-		} else if(tempZone == 2){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 8, 15));
+		} else if(tempZone >= 2 && tempZone <= 4){
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 5, 15));
 			return user;
 		} else if(tempZone == 1){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 7, 15));
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 6, 15));
 			return user;
 		}
 		return user;

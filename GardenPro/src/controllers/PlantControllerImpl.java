@@ -18,13 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.PlantDAO;
+import data.ReminderDAO;
 import entities.Plant;
+import entities.Reminder;
 
 @RestController
 @RequestMapping(path="plants")
 public class PlantControllerImpl implements PlantController {
 	@Autowired
 	private PlantDAO dao;
+	
+	@Autowired 
+	ReminderDAO rdao;
 	
 	@GetMapping(path="ping")
 	public String ping(){
@@ -72,9 +77,7 @@ public class PlantControllerImpl implements PlantController {
 			return newPlant;
 		} catch (Exception e) {
 			e.printStackTrace();
-			
 		}
 		return null;
-		
 	}
 }

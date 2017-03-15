@@ -3,6 +3,7 @@ package data;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -54,7 +55,7 @@ public class PlantingDAOImpl implements PlantingDAO{
 		oldPlanting.setStage(newStage);
 		
 		Plant p = oldPlanting.getPlant();
-		int weeksBefore = p.getLastFrost();
+		int weeksBefore = p.getWeeksBeforeLastFrost();
 		
 //		if (startStage != newStage){
 			switch(oldPlanting.getStage()){
@@ -89,7 +90,7 @@ public class PlantingDAOImpl implements PlantingDAO{
 		planting.setUser(u);
 		Plant p = em.find(Plant.class, plantId);
 		planting.setPlant(p);
-		int weeksBefore = p.getLastFrost();
+		int weeksBefore = p.getWeeksBeforeLastFrost();
 //		int tillHarvest = p.getHarvest()
 		
 		em.persist(planting);
@@ -105,4 +106,27 @@ public class PlantingDAOImpl implements PlantingDAO{
 		return planting;
 	}
 
+	@Override
+	public Set<Planting> updatePlantingsStatus(User user) {
+		LocalDate now = LocalDate.now();
+		
+		for (Planting p : user.getPlantings()) {
+			int s = p.getStage();
+			int sproutDate = p.getPlant().getWeeksBeforeLastFrost() - p.getPlant().getEndGerm();
+			
+			if(s > 0){
+				if(p.getStarted().minusWeeks(Math.round(sproutDate/2)).isBefore(now) && now.isBefore(p.getStarted().minusWeeks(sproutDate))){
+					p.setStage(2);
+				}
+				else if(p.getStarted().minusWeeks(sproutDate).isBefore(now) && now.isBefore(p.getUser().getFrostDate())){
+					p.setStage(3);
+				}
+				else if(s == 4 && p.getPlanted().plusWeeks(6).isBefore(now)){
+					p.setStage(5);
+				}
+			}
+			update(p.getId(), p);
+		}
+		return null;
+	}
 }

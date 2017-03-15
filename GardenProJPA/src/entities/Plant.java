@@ -34,7 +34,7 @@ public class Plant {
 	private String sowingMethod;
 	
 	@Column(name = "last_frost")
-	private int lastFrost;
+	private int weeksBeforeLastFrost;
 	private String depth;
 	private String space;
 	private String life;
@@ -52,8 +52,15 @@ public class Plant {
 //	public void setPlanting(Planting planting) {
 //		this.planting = planting;
 //	}
+	
 	public String getCommonName() {
 		return commonName;
+	}
+	public int getWeeksBeforeLastFrost() {
+		return weeksBeforeLastFrost;
+	}
+	public void setWeeksBeforeLastFrost(int weeksBeforeLastFrost) {
+		this.weeksBeforeLastFrost = weeksBeforeLastFrost;
 	}
 	public void setCommonName(String commonName) {
 		this.commonName = commonName;
@@ -87,12 +94,6 @@ public class Plant {
 	}
 	public void setSowingMethod(String sowingMethod) {
 		this.sowingMethod = sowingMethod;
-	}
-	public int getLastFrost() {
-		return lastFrost;
-	}
-	public void setLastFrost(int lastFrost) {
-		this.lastFrost = lastFrost;
 	}
 	public String getDepth() {
 		return depth;
