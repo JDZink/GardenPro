@@ -17,6 +17,7 @@
 	<context:component-scan base-package="controllers" />
 	<bean id="plantdao" class="data.PlantDAOImpl" />
 	<bean id="plantingdao" class="data.PlantingDAOImpl" />
+	<bean id="reminderdao" class="data.ReminderDAOImpl" />
 	<bean id="authdao" class="data.AuthDAOImpl" /> 
 	
 	<mvc:interceptors>
