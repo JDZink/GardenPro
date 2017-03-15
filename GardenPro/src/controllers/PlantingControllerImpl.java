@@ -64,7 +64,7 @@ public class PlantingControllerImpl implements PlantingController{
 	@Override
 	@DeleteMapping(path="{id}")
 	public Planting destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int id) {
-
+		
 		return dao.destroy(id);
 	}
 
