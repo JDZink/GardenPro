@@ -13,18 +13,19 @@ public interface ReminderDAO {
 	  
 	  public void reminderToWater(Planting p);
 	  
-	  
-	  public void reminderToHarvest(Planting p, User user);
+	  public void reminderToHarvest(Planting p);
 
-	  public void reminderToPlantOutdoors(Planting p, User user);
+	  public void reminderToPlantOutdoors(Planting p);
 
-	  public void reminderToPlantIndoors(Planting p, User user);
+	  public void reminderToPlantIndoors(Planting p);
 
-	  public void reminderOfSprouted(Planting p, User user);
+	  public Reminder reminderOfSprouted(Planting p);
 
 	  public Reminder create(Reminder reminder);
+	  
+	  public Reminder create(Planting p, String cat);
 
-	void reminderToStart(Planting p, User user);
+	  public void reminderToStart(Planting p);
 
-	public Set<Reminder> cleanupReminders(User user);
+	  public Set<Reminder> cleanupReminders(User user);
 }

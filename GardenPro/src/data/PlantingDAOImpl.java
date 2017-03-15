@@ -20,6 +20,8 @@ import entities.User;
 public class PlantingDAOImpl implements PlantingDAO{
 	@PersistenceContext
 	private EntityManager em;
+	
+	ReminderDAO rdao;
 
 	@Override
 	public Collection<Planting> index() {
@@ -57,27 +59,33 @@ public class PlantingDAOImpl implements PlantingDAO{
 		Plant p = oldPlanting.getPlant();
 		int weeksBefore = p.getWeeksBeforeLastFrost();
 
-		Plant p = oldPlanting.getPlant();
 //		int weeksBefore = p.getLastFrost();
-//		if (startStage != newStage){
+		if (startStage != newStage){
 			switch(newStage){
-			case 1: oldPlanting.setStarted(LocalDate.now());
-			break;
+			case 1: 
+					oldPlanting.setStarted(LocalDate.now());
+					rdao.create(oldPlanting, "start");
+					break;
+			case 2:
+				rdao.create(oldPlanting, "germinate");
+					break;
 
-			case 2: oldPlanting.setStarted(LocalDate.now().minusWeeks(-p.getEndGerm()/2));
-			break;
+			case 3:
+				rdao.create(oldPlanting, "indoors");
+				
+					break;
 
-			case 3: oldPlanting.setStarted(LocalDate.now().minusWeeks(-p.getEndGerm()));
-			break;
-
-			case 4: oldPlanting.setPlanted(LocalDate.now());
+			case 4: 
+				oldPlanting.setPlanted(LocalDate.now());
+				rdao.create(oldPlanting, "outdoors");
 			//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
-			break;
+					break;
 
-			case 5: oldPlanting.setPlanted(LocalDate.now());
-			break;
+			case 5: 
+				rdao.create(oldPlanting, "harvest");
+					break;
 
-//		}
+		}
 
 		}
 
