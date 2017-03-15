@@ -53,11 +53,12 @@ public class PlantingDAOImpl implements PlantingDAO{
 		int newStage = planting.getStage();
 		oldPlanting.setStage(newStage);
 		
-		Plant p = oldPlanting.getPlant();
-		int weeksBefore = p.getLastFrost();
+		System.out.println("old stage = " + startStage + "  new stage = " + newStage);
 		
+		Plant p = oldPlanting.getPlant();
+//		int weeksBefore = p.getLastFrost();
 //		if (startStage != newStage){
-			switch(oldPlanting.getStage()){
+			switch(newStage){
 			case 1: oldPlanting.setStarted(LocalDate.now());
 			break;
 			
@@ -77,8 +78,8 @@ public class PlantingDAOImpl implements PlantingDAO{
 //		}
 			
 		}
-		oldPlanting.setStarted(planting.getStarted());
-		oldPlanting.setPlanted(planting.getPlanted());
+
+		em.persist(oldPlanting);
 		em.flush();
 		return oldPlanting;
 	}
@@ -89,7 +90,7 @@ public class PlantingDAOImpl implements PlantingDAO{
 		planting.setUser(u);
 		Plant p = em.find(Plant.class, plantId);
 		planting.setPlant(p);
-		int weeksBefore = p.getLastFrost();
+//		int weeksBefore = p.getLastFrost();
 //		int tillHarvest = p.getHarvest()
 		
 		em.persist(planting);
@@ -101,7 +102,8 @@ public class PlantingDAOImpl implements PlantingDAO{
 	@Override
 	public Planting destroy(int id) {
 		Planting planting = em.find(Planting.class, id);
-		em.remove(planting);
+		planting.getUser().getPlantings().remove(planting);
+		em.remove(planting);		
 		return planting;
 	}
 
