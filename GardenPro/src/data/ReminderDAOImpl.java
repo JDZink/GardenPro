@@ -34,7 +34,7 @@ public class ReminderDAOImpl implements ReminderDAO{
 	
 	@Override
 	public Reminder create(Planting p, String cat) {
-		Plant plant = em.find(Plant.class, p.getPlant());
+		Plant plant = em.find(Plant.class, p.getPlant().getId());
 		Reminder r = new Reminder();
 		
 		r.setUser(p.getUser());

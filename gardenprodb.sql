@@ -65,7 +65,7 @@ DROP TABLE IF EXISTS `gardenprodb`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `gardenprodb`.`user` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(60) NOT NULL,
+  `username` VARCHAR(60) NOT NULL UNIQUE,
   `password` VARCHAR(1024) NOT NULL,
   `zone` VARCHAR(5) NOT NULL,
   `frost_date` DATE NOT NULL,

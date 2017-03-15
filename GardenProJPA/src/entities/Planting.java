@@ -15,6 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 @Entity
 public class Planting {
@@ -31,13 +36,20 @@ public class Planting {
 	@JoinColumn(name="plant_id")
 	private Plant plant;
 	
-	@OneToMany(mappedBy="planting", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private Set<Reminder> reminders;
+//	@OneToMany(mappedBy="planting", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+//	@JsonManagedReference
+//	private Set<Reminder> reminders;
 	
 	private int qty;
 	private int stage;
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	private LocalDate started;
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	private LocalDate planted;
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	private LocalDate harvest;
 
 	//Getters & Setters
@@ -86,10 +98,10 @@ public class Planting {
 	public int getId() {
 		return id;
 	}
-	public Set<Reminder> getReminders() {
-		return reminders;
-	}
-	public void setReminders(Set<Reminder> reminders) {
-		this.reminders = reminders;
-	}	
+//	public Set<Reminder> getReminders() {
+//		return reminders;
+//	}
+//	public void setReminders(Set<Reminder> reminders) {
+//		this.reminders = reminders;
+//	}	
 }

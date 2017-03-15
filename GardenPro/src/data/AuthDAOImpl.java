@@ -71,26 +71,6 @@ public class AuthDAOImpl implements AuthDAO {
 	
 	@Override
 	public User authenticateUser(User user) {
-		// find the User by username
-//		User us = null;
-//		try {
-//			System.out.println("IN AUTHENTICATEUSER");
-//			System.out.println(user);
-//			String q = "SELECT u FROM User u WHERE username = :un";
-//			
-//			us = em.createQuery(q, User.class).setParameter("un", user.getUsername()).getSingleResult();
-////			us = em.createQuery("SELECT u FROM User u WHERE username = '" +
-////			  user.getUsername() + "'").getSingleResult();
-//			System.out.println("U: " + us);
-//			while(us.getFrostDate().isBefore(LocalDate.now())){
-//				us.setFrostDate(us.getFrostDate().plusYears(1));
-//			}
-//			if (passwordEncoder.matches(user.getPassword(), us.getPassword())) {
-//				return us;
-//			}
-//		} catch (Exception e) {
-//			System.out.println("Authenticate user failed");
-//		}
 		return authenticateUser(user, user.getPassword());
 	}
 	

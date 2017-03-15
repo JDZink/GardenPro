@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ public class PlantingDAOImpl implements PlantingDAO{
 	@PersistenceContext
 	private EntityManager em;
 	
+	@Autowired
 	ReminderDAO rdao;
 
 	@Override
@@ -60,33 +62,38 @@ public class PlantingDAOImpl implements PlantingDAO{
 		int weeksBefore = p.getWeeksBeforeLastFrost();
 
 //		int weeksBefore = p.getLastFrost();
-		if (startStage != newStage){
-			switch(newStage){
-			case 1: 
-					oldPlanting.setStarted(LocalDate.now());
-					rdao.create(oldPlanting, "start");
-					break;
-			case 2:
-				rdao.create(oldPlanting, "germinate");
-					break;
+		try {
+			if (startStage != newStage){
+				switch(newStage){
+				case 1: 
+						oldPlanting.setStarted(LocalDate.now());
+						rdao.create(oldPlanting, "start");
+						break;
+				case 2:
+					rdao.create(oldPlanting, "germinate");
+						break;
 
-			case 3:
-				rdao.create(oldPlanting, "indoors");
-				
-					break;
+				case 3:
+					rdao.create(oldPlanting, "indoors");
+					
+						break;
 
-			case 4: 
-				oldPlanting.setPlanted(LocalDate.now());
-				rdao.create(oldPlanting, "outdoors");
-			//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
-					break;
+				case 4: 
+					oldPlanting.setPlanted(LocalDate.now());
+					rdao.create(oldPlanting, "outdoors");
+				//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
+						break;
 
-			case 5: 
-				rdao.create(oldPlanting, "harvest");
-					break;
+				case 5: 
+					rdao.create(oldPlanting, "harvest");
+						break;
 
-		}
+			}
 
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		em.persist(oldPlanting);
@@ -127,13 +134,13 @@ public class PlantingDAOImpl implements PlantingDAO{
 			int sproutDate = p.getPlant().getWeeksBeforeLastFrost() - p.getPlant().getEndGerm();
 
 			if(s > 0){
-				if(p.getStarted().minusWeeks(Math.round(sproutDate/2)).isBefore(now) && now.isBefore(p.getStarted().minusWeeks(sproutDate))){
+				if(p.getStarted() != null && p.getStarted().minusWeeks(Math.round(sproutDate/2)).isBefore(now) && now.isBefore(p.getStarted().minusWeeks(sproutDate))){
 					p.setStage(2);
 				}
-				else if(p.getStarted().minusWeeks(sproutDate).isBefore(now) && now.isBefore(p.getUser().getFrostDate())){
+				else if(p.getStarted() != null && p.getStarted().minusWeeks(sproutDate).isBefore(now) && now.isBefore(p.getUser().getFrostDate())){
 					p.setStage(3);
 				}
-				else if(s == 4 && p.getPlanted().plusWeeks(6).isBefore(now)){
+				else if(s == 4 && p.getPlanted()!= null && p.getPlanted().plusWeeks(6).isBefore(now)){
 					p.setStage(5);
 				}
 			}
