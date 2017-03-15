@@ -58,6 +58,20 @@ public class ReminderDAOImpl implements ReminderDAO{
 			//Trigger reminder
 		}
 	}
+	
+	@Override
+	public void reminderOfSprouted(Planting p, User user){
+		Plant plant = em.find(Plant.class, p.getPlant());
+		Reminder r = new Reminder();
+
+		int sproutDate = plant.getLastFrost();
+		r.setDate(user.getFrostDate().minusWeeks(sowDate));
+		
+		if(LocalDate.now() == r.getDate()){
+			//Trigger reminder
+		}
+
+	}
 
 	@Override
 	public void reminderToPlantIndoors(Planting p, User user){
@@ -88,6 +102,4 @@ public class ReminderDAOImpl implements ReminderDAO{
 	public void reminderToHarvest(Planting p, User user){
 		
 	}
-
-
 }
