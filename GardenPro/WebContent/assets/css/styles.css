@@ -1,3 +1,11 @@
+.fa-leaf {
+	color: #1f741a
+}
+
+.nav, .navbar {
+	background-color: #c8c8c8;
+}
+
 .nav-container {
 	width: 95%;
 }
@@ -12,6 +20,8 @@
 	border: 3px solid grey;
 	border-radius: 10px;
 	padding: 20px;
+	min-width: 30em;
+	min-height: 15em;
 }
 
 .plant, .seed {
@@ -24,7 +34,6 @@
 
 .container-fluid {
 	margin-top: 70px;
-
 }
 
 .reminders, .reminders:hover, .reminders:focus, .reminders:active {
@@ -37,6 +46,7 @@
 
 a#menu-toggle {
 	margin-left: -55px;
+	background-color: #c8c8c8;
 }
 .fa-bell-o {
 	font-size: 22px;
@@ -45,8 +55,14 @@ a#menu-toggle {
 	margin-bottom: -8px;
 }
 
-.fa-leaf {
-	color: #1f741a
+
+#noPlants {
+	text-align: center;
+	display: none;
+}
+#noSeeds {
+	text-align: center;
+	display: none;
 }
 
 /*****************POPUP*****************/

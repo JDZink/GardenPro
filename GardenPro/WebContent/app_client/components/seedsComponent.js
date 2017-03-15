@@ -23,7 +23,6 @@ var seedsComponentController = function(gardenService){
 
   vm.transplantSeed = function(planting) {
     var qty = parseInt($('#transplantqty'+planting.id).val());
-    console.log(qty);
     if(planting.qty === qty) {
       planting.stage = 4;
       gardenService.updatePlanting(planting)
@@ -65,10 +64,19 @@ var seedsComponentController = function(gardenService){
   vm.transplant_form_hide = function(seed) {
     document.getElementById("transplant"+seed.id).style.display = "none";
   };
+
+  vm.noSeeds = function(garden){
+    if(garden.length === 0) {
+      document.getElementById("noSeeds").style.display = "block";
+    } else {
+      document.getElementById("noSeeds").style.display = "none";
+    }
+  };
 };
 
 app.component('seedsComponent', {
   template : `
+  {{$ctrl.noSeeds($ctrl.garden | seedFilter:true)}}
   <div class="plantings-box">
     <div class="seed" ng-repeat="seed in $ctrl.garden | seedFilter:$ctrl.showSeeds | orderBy:'commonName'">
       <h3>{{seed.plant.commonName}}</h3>
@@ -111,6 +119,13 @@ app.component('seedsComponent', {
       </div>
 
     </div>
+
+    <div id="noSeeds">
+      <h2>You don't have any Seeds yet.</h2>
+      <h3>To add Seeds, either click the "Add New Seeds" button, or click the
+      "Add Plants" button and select the Seeds you would like to add.</h3>
+    </div>
+
   </div>
   `,
 
