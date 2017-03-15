@@ -38,48 +38,50 @@ public class PlantingDAOImpl implements PlantingDAO{
 
 	@Override
 	public Planting show(int id) {
-		
+
 		return em.find(Planting.class, id);
 	}
 
 	@Override
 	public Planting update(int id, Planting planting) {
 		System.out.println("planting id to change = " + id);
-		
+
 		Planting oldPlanting = em.find(Planting.class,id);
-		
+
 		oldPlanting.setQty(planting.getQty());
-		
+
 		int startStage = oldPlanting.getStage();
 		int newStage = planting.getStage();
 		oldPlanting.setStage(newStage);
-		
+
 		Plant p = oldPlanting.getPlant();
 		int weeksBefore = p.getWeeksBeforeLastFrost();
-		
+
+		Plant p = oldPlanting.getPlant();
+//		int weeksBefore = p.getLastFrost();
 //		if (startStage != newStage){
-			switch(oldPlanting.getStage()){
+			switch(newStage){
 			case 1: oldPlanting.setStarted(LocalDate.now());
 			break;
-			
+
 			case 2: oldPlanting.setStarted(LocalDate.now().minusWeeks(-p.getEndGerm()/2));
 			break;
-			
+
 			case 3: oldPlanting.setStarted(LocalDate.now().minusWeeks(-p.getEndGerm()));
 			break;
 
 			case 4: oldPlanting.setPlanted(LocalDate.now());
 			//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
 			break;
-			
+
 			case 5: oldPlanting.setPlanted(LocalDate.now());
 			break;
-			
+
 //		}
-			
+
 		}
-		oldPlanting.setStarted(planting.getStarted());
-		oldPlanting.setPlanted(planting.getPlanted());
+
+		em.persist(oldPlanting);
 		em.flush();
 		return oldPlanting;
 	}
@@ -91,17 +93,19 @@ public class PlantingDAOImpl implements PlantingDAO{
 		Plant p = em.find(Plant.class, plantId);
 		planting.setPlant(p);
 		int weeksBefore = p.getWeeksBeforeLastFrost();
+
 //		int tillHarvest = p.getHarvest()
-		
+
 		em.persist(planting);
 		em.flush();
-		
+
 		return em.find(Planting.class, planting.getId());
 	}
 
 	@Override
 	public Planting destroy(int id) {
 		Planting planting = em.find(Planting.class, id);
+		planting.getUser().getPlantings().remove(planting);
 		em.remove(planting);
 		return planting;
 	}
@@ -109,11 +113,11 @@ public class PlantingDAOImpl implements PlantingDAO{
 	@Override
 	public Set<Planting> updatePlantingsStatus(User user) {
 		LocalDate now = LocalDate.now();
-		
+
 		for (Planting p : user.getPlantings()) {
 			int s = p.getStage();
 			int sproutDate = p.getPlant().getWeeksBeforeLastFrost() - p.getPlant().getEndGerm();
-			
+
 			if(s > 0){
 				if(p.getStarted().minusWeeks(Math.round(sproutDate/2)).isBefore(now) && now.isBefore(p.getStarted().minusWeeks(sproutDate))){
 					p.setStage(2);

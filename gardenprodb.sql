@@ -53,11 +53,7 @@ CREATE TABLE IF NOT EXISTS `gardenprodb`.`planting` (
   `started` DATE NULL DEFAULT NULL,
   `planted` DATE NULL DEFAULT NULL,
   `harvest` DATE NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `planting_plant_id_fk` (`plant_id` ASC),
-  CONSTRAINT `planting_plant_id_fk`
-    FOREIGN KEY (`plant_id`)
-    REFERENCES `gardenprodb`.`plant` (`id`))
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -1003,3 +999,5 @@ UPDATE plant SET endGerm = -1 WHERE method_num = 14;
 
 UPDATE plant SET startGerm = -1 WHERE method_num = 17;
 UPDATE plant SET endGerm = -2 WHERE method_num = 17;
+
+DELETE from plant WHERE common_name = "";
