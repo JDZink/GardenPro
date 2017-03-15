@@ -44,10 +44,41 @@ public class PlantingDAOImpl implements PlantingDAO{
 	@Override
 	public Planting update(int id, Planting planting) {
 		System.out.println("planting id to change = " + id);
+		
 		Planting oldPlanting = em.find(Planting.class,id);
-//		oldPlanting.setComplete(planting.isComplete());
-//		oldPlanting.setTask(planting.getTask());
-//		oldPlanting.setDescription(planting.getDescription());
+		
+		oldPlanting.setQty(planting.getQty());
+		
+		int startStage = oldPlanting.getStage();
+		int newStage = planting.getStage();
+		oldPlanting.setStage(newStage);
+		
+		Plant p = oldPlanting.getPlant();
+		int weeksBefore = p.getLastFrost();
+		
+//		if (startStage != newStage){
+			switch(oldPlanting.getStage()){
+			case 1: oldPlanting.setStarted(LocalDate.now());
+			break;
+			
+			case 2: oldPlanting.setStarted(LocalDate.now().minusWeeks(-p.getEndGerm()/2));
+			break;
+			
+			case 3: oldPlanting.setStarted(LocalDate.now().minusWeeks(-p.getEndGerm()));
+			break;
+
+			case 4: oldPlanting.setPlanted(LocalDate.now());
+			//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
+			break;
+			
+			case 5: oldPlanting.setPlanted(LocalDate.now());
+			break;
+			
+//		}
+			
+		}
+		oldPlanting.setStarted(planting.getStarted());
+		oldPlanting.setPlanted(planting.getPlanted());
 		em.flush();
 		return oldPlanting;
 	}
@@ -60,25 +91,7 @@ public class PlantingDAOImpl implements PlantingDAO{
 		planting.setPlant(p);
 		int weeksBefore = p.getLastFrost();
 //		int tillHarvest = p.getHarvest()
-		switch(planting.getStage()){
-			case 1: planting.setStarted(LocalDate.now());
-			break;
-			
-			case 2: planting.setStarted(LocalDate.now().minusWeeks(weeksBefore/2));
-			break;
-			
-			case 3: planting.setStarted(LocalDate.now().minusWeeks(weeksBefore));
-			break;
-
-			case 4: planting.setPlanted(LocalDate.now());
-			//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
-			break;
-			
-			case 5: planting.setPlanted(LocalDate.now());
-					planting.setHarvest(LocalDate.now().plusMonths(2));
-			break;
-			
-		}
+		
 		em.persist(planting);
 		em.flush();
 		
