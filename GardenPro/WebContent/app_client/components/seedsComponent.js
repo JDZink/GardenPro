@@ -78,7 +78,7 @@ app.component('seedsComponent', {
   template : `
   {{$ctrl.noSeeds($ctrl.garden | seedFilter:true)}}
   <div class="plantings-box">
-    <div class="seed" ng-repeat="seed in $ctrl.garden | seedFilter:$ctrl.showSeeds | orderBy:'commonName'">
+    <div class="seed stage{{seed.stage}}" ng-repeat="seed in $ctrl.garden | seedFilter:$ctrl.showSeeds | orderBy:'commonName'">
       <h3>{{seed.plant.commonName}}</h3>
       <h4>Quantity: {{seed.qty}}<h4>
       <h4>Stage: {{seed.stage}}<h4>

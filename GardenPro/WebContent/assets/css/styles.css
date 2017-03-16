@@ -34,6 +34,9 @@
 	border-radius: 5px;
 	padding-bottom: 5px;
 }
+.stage0 {
+	background-color: red;
+}
 
 .container-fluid {
 	margin-top: 70px;
