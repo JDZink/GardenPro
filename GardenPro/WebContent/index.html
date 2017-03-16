@@ -20,6 +20,7 @@
     <script src="app_client/ngApp.js"></script>
 	  <script src="app_client/services/gardenService.js"></script>
     <script src="app_client/services/authenticationService.js"></script>
+    <script src="app_client/services/reminderService.js"></script>
     <script src="app_client/components/appComponent.js"></script>
     <script src="app_client/components/registrationComponent.js"></script>
     <script src="app_client/components/signupComponent.js"></script>
@@ -35,32 +36,12 @@
     <script src="app_client/components/homeComponent.js"></script>
     <script src="app_client/filters/seedFilter.js"></script>
     <script src="app_client/filters/plantFilter.js"></script>
+    <script src="app_client/filters/searchFilter.js"></script>
+    <script src="app_client/filters/completeFilter.js"></script>
   </head>
   <body>
     <nav-component></nav-component>
-    <div id="wrapper">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-<!--******************************************** Reminders *******************************************************-->
-                <li class="sidebar-brand"> <a href="#">Home </a></li>
-                <li> <a href="#">Dashboard </a></li>
-                <li> <a href="#">Dashboard </a></li>
-                <li> <a href="#">Dashboard </a></li>
-            </ul>
-<!--**********************************************************************************************************************-->
-        </div>
-        <div class="page-content-wrapper">
-            <div class="container-fluid"><a class="btn btn-link reminders" role="button" href="#menu-toggle" id="menu-toggle"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
-                <div class="row">
-                    <div class="col-md-12">
-<!--******************************************** Page Content Here *******************************************************-->
-                            <app-component></app-component>
-<!--**********************************************************************************************************************-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-component></app-component>
     <div class="footer-basic">
         <footer>
             <ul class="list-inline">
@@ -71,7 +52,6 @@
             <p class="copyright">DigIt © 2017</p>
         </footer>
     </div>
-    <script src="assets/js/Sidebar-Menu.js"></script>
   </body>
 
 </html>
