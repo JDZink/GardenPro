@@ -1,6 +1,6 @@
 var app = angular.module('ngGarden');
 
-var seedsComponentController = function(gardenService){
+var seedsComponentController = function(gardenService, $rootScope){
   var vm = this;
 
   vm.plantSeed = function(planting) {
@@ -8,18 +8,24 @@ var seedsComponentController = function(gardenService){
     if(planting.qty === qty) {
       planting.stage = 1;
       gardenService.updatePlanting(planting)
-      .then(vm.plant_form_hide(planting))
-      .then(vm.loadData)
-      .then(vm.loadReminders);
+      .then(function(){
+        vm.plant_form_hide(planting);
+        $rootScope.$broadcast('reminderUpdateEvent');
+      })
+      .then(vm.loadData);
     } else {
       planting.qty = (planting.qty - qty);
       gardenService.updatePlanting(planting)
-      .then(vm.loadData)
-      .then(vm.loadReminders);
+      .then(function(){
+        $rootScope.$broadcast('reminderUpdateEvent');
+      })
+      .then(vm.loadData);
       gardenService.createPlanting(planting.plant,qty,1)
-      .then(vm.plant_form_hide(planting))
-      .then(vm.loadData)
-      .then(vm.loadReminders);
+      .then(function(){
+        vm.plant_form_hide(planting);
+        $rootScope.$broadcast('reminderUpdateEvent');
+      })
+      .then(vm.loadData);
     }
   };
 
@@ -28,25 +34,33 @@ var seedsComponentController = function(gardenService){
     if(planting.qty === qty) {
       planting.stage = 4;
       gardenService.updatePlanting(planting)
-      .then(vm.transplant_form_hide(planting))
-      .then(vm.loadData)
-      .then(vm.loadReminders);
+      .then(function(){
+        vm.transplant_form_hide(planting);
+        $rootScope.$broadcast('reminderUpdateEvent');
+      })
+      .then(vm.loadData);
     } else {
       planting.qty = (planting.qty - qty);
       gardenService.updatePlanting(planting)
-      .then(vm.loadData)
-      .then(vm.loadReminders);
+      .then(function(){
+        $rootScope.$broadcast('reminderUpdateEvent');
+      })
+      .then(vm.loadData);
       gardenService.createPlanting(planting.plant,qty,4)
-      .then(vm.transplant_form_hide(planting))
-      .then(vm.loadData)
-      .then(vm.loadReminders);
+      .then(function(){
+        vm.transplant_form_hide(planting);
+        $rootScope.$broadcast('reminderUpdateEvent');
+      })
+      .then(vm.loadData);
     }
   };
 
   vm.deleteSeed = function(planting) {
     gardenService.deletePlanting(planting)
-    .then(vm.loadData)
-    .then(vm.loadReminders);
+    .then(function(){
+      $rootScope.$broadcast('reminderUpdateEvent');
+    })
+    .then(vm.loadData);
   };
 
   vm.isSeed = function(seed) {
@@ -140,7 +154,6 @@ app.component('seedsComponent', {
   bindings : {
     garden: '=',
     showSeeds: '<',
-    loadData: '<',
-    loadReminders: '&'
+    loadData: '<'
   }
 });
