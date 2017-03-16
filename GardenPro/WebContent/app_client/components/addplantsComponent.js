@@ -28,10 +28,14 @@ var addplantsController = function(gardenService, $scope, $filter) {
   vm.addplant_form_hide= function(plant) {
     document.getElementById("plant"+plant.id).style.display = "none";
   };
-  
+
+  vm.searchTerm = "";
+
   vm.search= function(){
-	    plants = $filter('searchFilter')(plants, $('#searchString').val());
-  }
+    console.log("Search String in vm.search: " + $('#searchString').val());
+
+	    vm.searchTerm = $('#searchString').val();
+  };
 };
 
 app.component('addplantsComponent',{
@@ -43,7 +47,7 @@ app.component('addplantsComponent',{
 	  	<input type="submit" value="Submit" ng-click="$ctrl.search()">
 	  </form>
         <div class="plants-box">
-          <div class="plant" ng-repeat="plant in $ctrl.plants | orderBy:'commonName'">
+          <div class="plant" ng-repeat="plant in $ctrl.plants | searchFilter:$ctrl.searchTerm | orderBy:'commonName'">
             <h4>{{plant.commonName}}</h4>
             <h5>Variety: {{plant.variety}}</h5>
             <button class="add btn btn-primary" ng-click="$ctrl.addplant_form_show(plant)">Add Plant</button>
