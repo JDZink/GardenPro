@@ -49,8 +49,10 @@
 	border-radius: 5px;
 }
 a#menu-toggle {
-	margin-left: -55px;
-	background-color: #c8c8c8;
+	margin-left: -35px;
+	margin-top: 10px;
+	background-color: #cccfbc;
+	
 }
 .fa-bell-o {
 	font-size: 22px;
