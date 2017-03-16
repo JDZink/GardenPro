@@ -44,21 +44,21 @@ public class ReminderDAOImpl implements ReminderDAO{
 			case "start":
 				r.setCategory(1);
 				r.setTitle("Start " + p.getPlant().getCommonName());
-				r.setDate(p.getUser().getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost()));
+				r.setDate(p.getUser().getFrostDate().plusWeeks(plant.getWeeksBeforeLastFrost()));
 				r.setDescription("It's time to start your " + p.getPlant().getCommonName() + "!" + nl
 						+ "Sowing Method: " + plant.getSowingMethod() + nl +  "Comments: " + plant.getComment() );
 				break;
 
 			case "germinate":
 				r.setCategory(2);
-				r.setDate(p.getUser().getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost() - plant.getStartGerm()));
+				r.setDate(p.getStarted().plusWeeks(- plant.getStartGerm()));
 				r.setTitle( p.getPlant().getCommonName() + " Seeds Germinating.");
 				r.setDescription("Getting Close! Keep the seeds moist. ");
 				break;
 
 			case "indoors":
 				r.setCategory(3);
-				r.setDate(p.getUser().getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost() - plant.getEndGerm()));
+				r.setDate(p.getStarted().plusWeeks(- plant.getEndGerm()));
 				r.setTitle( p.getPlant().getCommonName() + " has Sprouted!");
 				r.setDescription("It's time to Pot your " + p.getPlant().getCommonName() + "!"+ nl
 					 +  "Comments: " + plant.getComment() );
@@ -75,7 +75,7 @@ public class ReminderDAOImpl implements ReminderDAO{
 
 			case "water":
 				r.setCategory(5);
-				r.setDate(p.getStarted().plusWeeks(1));
+				r.setDate(LocalDate.now().plusWeeks(1));
 				r.setTitle("Water " + p.getPlant().getCommonName());
 				r.setDescription("It's time to water your " + p.getPlant().getCommonName() + "!");
 				break;
