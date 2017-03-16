@@ -71,8 +71,8 @@ a#menu-toggle {
 
 /***************REMINDERS***************/
 .reminder {
-	list-style: none;
 	color: #8e8e8e;
+	
 }
 .reminderDetail {
 	display: none;
