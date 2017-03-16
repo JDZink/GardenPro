@@ -1,7 +1,7 @@
 var app = angular.module('ngGarden');
 
 /*****************APP COMPONENT*******************/
-var appController = function(authenticationService, reminderService, $scope){
+var appController = function(authenticationService, reminderService, $rootScope){
   var vm = this;
   vm.noUser = function() {
     authenticationService.noUser();
@@ -20,9 +20,11 @@ var appController = function(authenticationService, reminderService, $scope){
       });
     }
   };
-  $scope.$on('$viewContentLoaded', function(event) {
+  vm.loadReminders();
+  $rootScope.$on('reminderUpdateEvent', function(event) {
     vm.loadReminders();
   });
+
 
 
   vm.show_reminder_detail = function(reminder){
@@ -66,7 +68,7 @@ app.component('appComponent', {
               <div class="row">
                   <div class="col-md-12">
 <!--******************************************** Page Content Here **********************-->
-                    <ng-view load-reminders="$ctrl.loadReminders"></ng-view>
+                    <ng-view></ng-view>
 <!--*************************************************************************************-->
                   </div>
               </div>

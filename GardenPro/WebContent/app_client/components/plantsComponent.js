@@ -1,12 +1,14 @@
 var app = angular.module('ngGarden');
 
-var plantsComponentController = function(gardenService){
+var plantsComponentController = function(gardenService, $rootScope){
   var vm = this;
 
   vm.deletePlant = function(planting) {
     gardenService.deletePlanting(planting)
-    .then(vm.loadData)
-    .then(vm.loadReminders);
+    .then(function(){
+      $rootScope.$broadcast('reminderUpdateEvent');
+    })
+    .then(vm.loadData);
   };
 
   vm.noPlants = function(garden) {
@@ -41,7 +43,6 @@ app.component('plantsComponent', {
 
   bindings : {
     garden: '=',
-    loadData: '<',
-    loadReminders: '&'
+    loadData: '<'
   }
 });

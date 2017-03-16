@@ -37,8 +37,5 @@ app.component('gardenComponent',{
 
     </div>
   `,
-  controller : gardenController,
-  bindings : {
-    loadReminders: '&'
-  }
+  controller : gardenController
 });

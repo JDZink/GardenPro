@@ -1,7 +1,7 @@
 var app = angular.module('ngGarden');
 
 
-var addplantsController = function(gardenService, $scope, $filter) {
+var addplantsController = function(gardenService, $rootScope, $filter) {
   var vm = this;
 
   vm.plants = [];
@@ -18,9 +18,11 @@ var addplantsController = function(gardenService, $scope, $filter) {
     var stage = $('#stage'+plant.id).val();
     var qty = $('#qty'+plant.id).val();
     gardenService.createPlanting(plant,qty,stage)
-      .then(vm.addplant_form_hide(plant))
-      .then(vm.loadData)
-      .then(vm.loadReminders);
+      .then(function(){
+        vm.addplant_form_hide(plant);
+        $rootScope.$broadcast('reminderUpdateEvent');
+      })
+      .then(vm.loadData);
   };
 
   vm.addplant_form_show = function(plant) {
