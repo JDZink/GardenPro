@@ -16,11 +16,6 @@ var gardenController = function(gardenService) {
   vm.showSeeds = true;
 
   vm.loadData();
-
-  vm.addPlanting = function(planting){
-    gardenService.createPlanting(planting)
-      .then(vm.loadData);
-  };
 };
 
 app.component('gardenComponent',{
@@ -32,14 +27,18 @@ app.component('gardenComponent',{
     <div class="content-div">
       <h1>Plants in Seed Stages <a href="#/addPlants"<button class="btn btn-primary">Add New Seeds</button></a></h1>
 
-      <seeds-component garden="$ctrl.garden" show-seeds="$ctrl.showSeeds" load-data="$ctrl.loadData"></seeds-component>
+      <seeds-component garden="$ctrl.garden" show-seeds="$ctrl.showSeeds" load-data="$ctrl.loadData"
+      reminders="$ctrl.reminders" load-reminders="$ctrl.loadReminders"></seeds-component>
     </div>
     <div class="content-div">
       <h1>Plants</h1>
 
-      <plants-component garden="$ctrl.garden" load-data="$ctrl.loadData"></plants-component>
+      <plants-component garden="$ctrl.garden" load-data="$ctrl.loadData" load-reminders="$ctrl.loadReminders"></plants-component>
 
     </div>
   `,
-  controller : gardenController
+  controller : gardenController,
+  bindings : {
+    loadReminders: '&'
+  }
 });

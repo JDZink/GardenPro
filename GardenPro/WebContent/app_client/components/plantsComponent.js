@@ -5,7 +5,8 @@ var plantsComponentController = function(gardenService){
 
   vm.deletePlant = function(planting) {
     gardenService.deletePlanting(planting)
-    .then(vm.loadData);
+    .then(vm.loadData)
+    .then(vm.loadReminders);
   };
 
   vm.noPlants = function(garden) {
@@ -40,6 +41,7 @@ app.component('plantsComponent', {
 
   bindings : {
     garden: '=',
-    loadData: '<'
+    loadData: '<',
+    loadReminders: '&'
   }
 });
