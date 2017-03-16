@@ -15,10 +15,10 @@ var appController = function(authenticationService, reminderService){
     reminderService.getReminders()
     .then(function(res){
       vm.reminders = res.data;
-    })
-    .then(console.log(vm.reminders));
+    });
   };
   vm.loadReminders();
+  console.log(vm.reminders);
 
   vm.show_reminder_detail = function(reminder){
     if(document.getElementById("rDetail"+reminder.id).style.display === "none"){
