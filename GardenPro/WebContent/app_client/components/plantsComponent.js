@@ -24,10 +24,10 @@ app.component('plantsComponent', {
   template : `
   {{$ctrl.noPlants($ctrl.garden | plantFilter)}}
   <div class="plantings-box">
-    <div class="plant" ng-repeat="plant in $ctrl.garden | plantFilter | orderBy:'commonName'">
+    <div class="plant stage{{plant.stage}}" ng-repeat="plant in $ctrl.garden | plantFilter | orderBy:'commonName'">
       <h3>{{plant.plant.commonName}}</h3>
       <h4>Quantity: {{plant.qty}}<h4>
-      <h4>Stage: {{plant.stage}}<h4>
+      <h4>Stage: {{plant.stage}}<h4>      
       <button class="delete btn btn-danger" ng-click="$ctrl.deletePlant(plant)">Delete</button>
     </div>
     <div id="noPlants">

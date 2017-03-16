@@ -51,7 +51,7 @@ app.component('appComponent', {
               <div class="reminder" ng-repeat="reminder in $ctrl.reminders | completeFilter:$ctrl.showComplete | orderBy:['date[0]', 'date[1]', 'date[2]']">
                 <h4 class="reminderTitle">
                   <span class="detailClick" ng-click="$ctrl.show_reminder_detail(reminder)">{{reminder.title}}
-                   {{reminder.date[1]}}/{{reminder.date[2]}}</span>
+                   {{reminder.date[1] + "/" + reminder.date[2]}}</span>
                   <input type='checkbox' ng-model='reminder.complete' ng-change='$ctrl.updateReminder(reminder)'></input>
                 </h4>
                 <h5 class="reminderDetail" id="rDetail{{reminder.id}}">
