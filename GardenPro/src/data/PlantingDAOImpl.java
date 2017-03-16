@@ -66,7 +66,7 @@ public class PlantingDAOImpl implements PlantingDAO {
 				case 1: 
 						oldPlanting.setStarted(LocalDate.now());
 						clearReminder(oldPlanting, 1);
-//						rdao.create(oldPlanting, "germinate");
+						rdao.create(oldPlanting, "germinate");
 						rdao.create(oldPlanting, "indoors");
 						break;
 				case 2:
@@ -80,7 +80,7 @@ public class PlantingDAOImpl implements PlantingDAO {
 				case 4: 
 					oldPlanting.setPlanted(LocalDate.now());
 					rdao.create(oldPlanting, "harvest");
-					clearReminder(planting, 1,2,3,4);
+					clearReminder(oldPlanting, 1,2,3,4);
 				//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
 						break;
 

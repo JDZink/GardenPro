@@ -51,7 +51,7 @@ public class ReminderDAOImpl implements ReminderDAO{
 
 			case "germinate":
 				r.setCategory(2);
-				r.setDate(p.getStarted().plusWeeks(- plant.getStartGerm()));
+				r.setDate(p.getStarted().plusWeeks(-plant.getStartGerm()));
 				r.setTitle( p.getPlant().getCommonName() + " Seeds Germinating.");
 				r.setDescription("Getting Close! Keep the seeds moist. ");
 				break;
