@@ -44,8 +44,7 @@ app.component('addplantsComponent',{
     <div class="content-div">
       <h1>Plants</h1>
 	  <form>
-	  	<input id="searchString" type="text" placeholder="Search..." name="searchStr">
-	  	<input type="submit" value="Submit" ng-click="$ctrl.search()">
+	  	<input id="searchString" type="text" placeholder="Search..." ng-change="$ctrl.search(value)" ng-model="value" ng-model-options="{debounce: 500}" name="searchStr">
 	  </form>
         <div class="plants-box">
           <div class="plant" ng-repeat="plant in $ctrl.plants | searchFilter:$ctrl.searchTerm | orderBy:'commonName'">

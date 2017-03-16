@@ -52,7 +52,7 @@ public class AuthControllerImpl implements AuthController {
 	      user = mapper.readValue(userJson, User.class);
 	      String rawPassword = user.getPassword();
 	      
-//	      user.setZone("5a");
+	      if(user.getZone() == null) user.setZone("5");
 	      user = dao.resetUserFrostDate(user);
 	      dao.register(user);
 	      user = dao.authenticateUser(user, rawPassword);
