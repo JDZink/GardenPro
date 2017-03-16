@@ -1,7 +1,6 @@
 package controllers;
 
-import java.util.List;
-import java.util.Set;
+import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +24,7 @@ public interface ReminderController {
 
 	Reminder mapReminder(String ReminderJson);
 
-	List<Reminder> index(HttpServletRequest req, HttpServletResponse res);
+	Collection<Reminder> index(HttpServletRequest req, HttpServletResponse res);
 
 	Reminder create(HttpServletRequest req, HttpServletResponse res, String ReminderJson);
 

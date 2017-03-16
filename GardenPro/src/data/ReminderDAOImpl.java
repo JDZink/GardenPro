@@ -1,8 +1,8 @@
 package data;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -10,8 +10,6 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.fasterxml.jackson.databind.ext.Java7Support;
 
 import entities.Plant;
 import entities.Planting;
@@ -136,9 +134,10 @@ public class ReminderDAOImpl implements ReminderDAO{
 	}
 
 	@Override
-	public List<Reminder> index(int userId) {
-		String query = "SELECT r FROM Reminder r WHERE r.user.id = :id";
-		List<Reminder> reminders = em.createQuery(query, Reminder.class).setParameter("id", userId).getResultList();
-		return reminders;
+	public Collection<Reminder> index(int userId) {
+		System.out.println("User id in index: " + userId);
+		User u = em.find(User.class, userId);
+		System.out.println(u);
+		return u.getReminders();
 	}
 }
