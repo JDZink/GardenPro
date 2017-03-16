@@ -1,8 +1,8 @@
 package data;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -10,8 +10,6 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.fasterxml.jackson.databind.ext.Java7Support;
 
 import entities.Plant;
 import entities.Planting;
@@ -46,21 +44,21 @@ public class ReminderDAOImpl implements ReminderDAO{
 			case "start":
 				r.setCategory(1);
 				r.setTitle("Start " + p.getPlant().getCommonName());
-				r.setDate(p.getUser().getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost()));
+				r.setDate(p.getUser().getFrostDate().plusWeeks(plant.getWeeksBeforeLastFrost()));
 				r.setDescription("It's time to start your " + p.getPlant().getCommonName() + "!" + nl
 						+ "Sowing Method: " + plant.getSowingMethod() + nl +  "Comments: " + plant.getComment() );
 				break;
 
 			case "germinate":
 				r.setCategory(2);
-				r.setDate(p.getUser().getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost() - plant.getStartGerm()));
+				r.setDate(p.getStarted().plusWeeks(-plant.getStartGerm()));
 				r.setTitle( p.getPlant().getCommonName() + " Seeds Germinating.");
 				r.setDescription("Getting Close! Keep the seeds moist. ");
 				break;
 
 			case "indoors":
 				r.setCategory(3);
-				r.setDate(p.getUser().getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost() - plant.getEndGerm()));
+				r.setDate(p.getStarted().plusWeeks(- plant.getEndGerm()));
 				r.setTitle( p.getPlant().getCommonName() + " has Sprouted!");
 				r.setDescription("It's time to Pot your " + p.getPlant().getCommonName() + "!"+ nl
 					 +  "Comments: " + plant.getComment() );
@@ -77,7 +75,7 @@ public class ReminderDAOImpl implements ReminderDAO{
 
 			case "water":
 				r.setCategory(5);
-				r.setDate(p.getStarted().plusWeeks(1));
+				r.setDate(LocalDate.now().plusWeeks(1));
 				r.setTitle("Water " + p.getPlant().getCommonName());
 				r.setDescription("It's time to water your " + p.getPlant().getCommonName() + "!");
 				break;
@@ -136,9 +134,10 @@ public class ReminderDAOImpl implements ReminderDAO{
 	}
 
 	@Override
-	public List<Reminder> index(int userId) {
-		String query = "SELECT r FROM Reminder r WHERE r.user.id = :id";
-		List<Reminder> reminders = em.createQuery(query, Reminder.class).setParameter("id", userId).getResultList();
-		return reminders;
+	public Collection<Reminder> index(int userId) {
+		System.out.println("User id in index: " + userId);
+		User u = em.find(User.class, userId);
+		System.out.println(u);
+		return u.getReminders();
 	}
 }

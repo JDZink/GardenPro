@@ -1,6 +1,6 @@
 package data;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Set;
 
 import entities.Planting;
@@ -20,5 +20,5 @@ public interface ReminderDAO {
 
 	  public Set<Reminder> cleanupReminders(User user);
 
-	  public List<Reminder> index(int userId);
+	  public Collection<Reminder> index(int userId);
 }

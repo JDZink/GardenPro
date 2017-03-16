@@ -1,6 +1,6 @@
 package controllers;
 
-import java.util.List;
+import java.util.Collection;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,11 +33,11 @@ public class ReminderControllerImpl implements ReminderController {
 
 	@Override
 	@GetMapping
-	public List<Reminder> index(HttpServletRequest req, HttpServletResponse res) {
+	public Collection<Reminder> index(HttpServletRequest req, HttpServletResponse res) {
 		String userId = req.getParameter("userId");
 //		int userId = 29;
-		System.out.println(userId);
-		int uid = Integer.parseInt(userId);
+		System.out.println("userId: " + userId);
+		int uid = (int)req.getAttribute("userId");
 		return dao.index(uid);
 	}
 

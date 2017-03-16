@@ -2,6 +2,7 @@ package data;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,14 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.Plant;
 import entities.Planting;
+import entities.Reminder;
 import entities.User;
 
 @Transactional
 @Repository
-public class PlantingDAOImpl implements PlantingDAO{
+public class PlantingDAOImpl implements PlantingDAO {
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Autowired
 	ReminderDAO rdao;
 
@@ -58,29 +60,27 @@ public class PlantingDAOImpl implements PlantingDAO{
 		int newStage = planting.getStage();
 		oldPlanting.setStage(newStage);
 
-		Plant p = oldPlanting.getPlant();
-		int weeksBefore = p.getWeeksBeforeLastFrost();
-
-//		int weeksBefore = p.getLastFrost();
 		try {
 			if (startStage != newStage){
 				switch(newStage){
 				case 1: 
 						oldPlanting.setStarted(LocalDate.now());
-						rdao.create(oldPlanting, "start");
+						clearReminder(oldPlanting, 1);
+						rdao.create(oldPlanting, "germinate");
+						rdao.create(oldPlanting, "indoors");
 						break;
 				case 2:
-					rdao.create(oldPlanting, "germinate");
 						break;
 
 				case 3:
-					rdao.create(oldPlanting, "indoors");
+					rdao.create(oldPlanting, "outdoors");
 					
 						break;
 
 				case 4: 
 					oldPlanting.setPlanted(LocalDate.now());
-					rdao.create(oldPlanting, "outdoors");
+					rdao.create(oldPlanting, "harvest");
+					clearReminder(oldPlanting, 1,2,3,4);
 				//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
 						break;
 
@@ -92,7 +92,7 @@ public class PlantingDAOImpl implements PlantingDAO{
 
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.out.println("//////////planting update failed.//////////");
 			e.printStackTrace();
 		}
 
@@ -101,19 +101,45 @@ public class PlantingDAOImpl implements PlantingDAO{
 		return oldPlanting;
 	}
 
+	private void clearReminder(Planting planting, int... stages) {
+		Set<Reminder> reminders = planting.getReminders();
+		if (reminders != null && reminders.size() > 0) {
+			for (Reminder r : reminders) {
+				if (stages != null && stages.length > 0) {
+					for (int s : stages) {
+						if (r.getCategory() == s) {
+							r.setComplete(true);
+						}
+					}
+				}
+
+			} 
+		}
+
+	}
+
 	@Override
 	public Planting create(Planting planting, int userId, int plantId) {
 		User u = em.find(User.class, userId);
 		planting.setUser(u);
 		Plant p = em.find(Plant.class, plantId);
 		planting.setPlant(p);
-		int weeksBefore = p.getWeeksBeforeLastFrost();
-
-//		int tillHarvest = p.getHarvest()
 
 		em.persist(planting);
-		em.flush();
 
+		em.flush();
+		switch (planting.getStage()) {
+		case 0:
+			rdao.create(planting, "start");
+			break;
+		case 4:
+			rdao.create(planting, "harvest");
+			rdao.create(planting, "water");
+			break;
+		case 5:
+			rdao.create(planting, "water");
+
+		}
 		return em.find(Planting.class, planting.getId());
 	}
 
@@ -133,14 +159,14 @@ public class PlantingDAOImpl implements PlantingDAO{
 			int s = p.getStage();
 			int sproutDate = p.getPlant().getWeeksBeforeLastFrost() - p.getPlant().getEndGerm();
 
-			if(s > 0){
-				if(p.getStarted() != null && p.getStarted().minusWeeks(Math.round(sproutDate/2)).isBefore(now) && now.isBefore(p.getStarted().minusWeeks(sproutDate))){
+			if (s > 0) {
+				if (p.getStarted() != null && p.getStarted().minusWeeks(Math.round(sproutDate / 2)).isBefore(now)
+						&& now.isBefore(p.getStarted().minusWeeks(sproutDate))) {
 					p.setStage(2);
-				}
-				else if(p.getStarted() != null && p.getStarted().minusWeeks(sproutDate).isBefore(now) && now.isBefore(p.getUser().getFrostDate())){
+				} else if (p.getStarted() != null && p.getStarted().minusWeeks(sproutDate).isBefore(now)
+						&& now.isBefore(p.getUser().getFrostDate())) {
 					p.setStage(3);
-				}
-				else if(s == 4 && p.getPlanted()!= null && p.getPlanted().plusWeeks(6).isBefore(now)){
+				} else if (s == 4 && p.getPlanted() != null && p.getPlanted().plusWeeks(6).isBefore(now)) {
 					p.setStage(5);
 				}
 			}
