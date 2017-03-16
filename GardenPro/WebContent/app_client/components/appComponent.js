@@ -26,12 +26,7 @@ var appController = function(authenticationService, reminderService, $scope){
 
 
   vm.show_reminder_detail = function(reminder){
-    $('#rDetail'+reminder.id).fadeToggle("slow");
-    // if(document.getElementById("rDetail"+reminder.id).style.display !== "block"){
-    //   document.getElementById("rDetail"+reminder.id).style.display = "block";
-    // } else {
-    //   document.getElementById("rDetail"+reminder.id).style.display = "none";
-    // }
+    $('#rDetail'+reminder.id).slideToggle("slow");
   };
 
   vm.updateReminder = function(reminder){
@@ -51,7 +46,7 @@ app.component('appComponent', {
                 <input id="completeCheck" type='checkbox' ng-model='$ctrl.showComplete'></input> Show Complete?
               </span></h3>
               <hr class="reminderHeadDivider">
-              <div class="reminder" ng-repeat="reminder in $ctrl.reminders | completeFilter:$ctrl.showComplete | orderBy:'date'">
+              <div class="reminder" ng-repeat="reminder in $ctrl.reminders | completeFilter:$ctrl.showComplete | orderBy:['date[0]', 'date[1]', 'date[2]']">
                 <h4 class="reminderTitle">
                   <span class="detailClick" ng-click="$ctrl.show_reminder_detail(reminder)">{{reminder.title}}
                    {{reminder.date[1]}}/{{reminder.date[2]}}</span>
@@ -71,7 +66,7 @@ app.component('appComponent', {
               <div class="row">
                   <div class="col-md-12">
 <!--******************************************** Page Content Here **********************-->
-                    <ng-view reminders="$ctrl.reminders" load-reminders="$ctrl.loadReminders"></ng-view>
+                    <ng-view load-reminders="$ctrl.loadReminders"></ng-view>
 <!--*************************************************************************************-->
                   </div>
               </div>

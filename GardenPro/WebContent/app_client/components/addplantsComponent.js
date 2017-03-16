@@ -33,9 +33,7 @@ var addplantsController = function(gardenService, $scope, $filter) {
   vm.searchTerm = "";
 
   vm.search= function(){
-    console.log("Search String in vm.search: " + $('#searchString').val());
-
-	    vm.searchTerm = $('#searchString').val();
+	  vm.searchTerm = $('#searchString').val();
   };
 };
 
@@ -75,14 +73,15 @@ app.component('addplantsComponent',{
               </form>
               </div>
             </div>
+
           </div>
+
         </div>
 
     </div>
   `,
   controller : addplantsController,
   bindings : {
-    reminders: '=',
-    loadReminders: '<'
+    loadReminders: '&'
   }
 });

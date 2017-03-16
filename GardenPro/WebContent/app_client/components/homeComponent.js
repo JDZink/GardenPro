@@ -1,6 +1,12 @@
 var app = angular.module('ngGarden');
 
-var homeController = function(){};
+var homeController = function($scope){
+  var vm = this;
+  vm.hideReminders = function() {
+    $('#wrapper').addClass('toggled');
+  };
+  vm.hideReminders();
+};
 
 app.component('homeComponent', {
   template : `

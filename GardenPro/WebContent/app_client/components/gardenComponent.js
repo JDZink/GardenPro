@@ -33,13 +33,12 @@ app.component('gardenComponent',{
     <div class="content-div">
       <h1>Plants</h1>
 
-      <plants-component garden="$ctrl.garden" load-data="$ctrl.loadData"></plants-component>
+      <plants-component garden="$ctrl.garden" load-data="$ctrl.loadData" load-reminders="$ctrl.loadReminders"></plants-component>
 
     </div>
   `,
   controller : gardenController,
   bindings : {
-    reminders: '=',
-    loadReminders: '<'
+    loadReminders: '&'
   }
 });

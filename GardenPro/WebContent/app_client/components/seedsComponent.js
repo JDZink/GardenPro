@@ -141,7 +141,6 @@ app.component('seedsComponent', {
     garden: '=',
     showSeeds: '<',
     loadData: '<',
-    reminders: '=',
-    loadReminders: '<'
+    loadReminders: '&'
   }
 });

@@ -80,7 +80,6 @@ app.factory('authenticationService', function($window, $http){
       $('#signup').show();
       $('#nav-links').hide();
     } else {
-      $('#wrapper').removeClass('toggled');
       $('#sidebar-wrapper').show();
       $('#menu-toggle').show();
       $('#logout').show();
