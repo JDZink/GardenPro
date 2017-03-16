@@ -1,3 +1,4 @@
+/****************NAVBAR****************/
 .fa-leaf {
 	color: #1f741a
 }
@@ -9,6 +10,8 @@
 .nav-container {
 	width: 95%;
 }
+
+/*************GARDEN DISPLAY*************/
 .content-div, .seed, .plant {
 	text-align: center;
 }
@@ -36,6 +39,8 @@
 	margin-top: 70px;
 }
 
+
+/***********REMINDER TOGGLE BTN*********/
 .reminders, .reminders:hover, .reminders:focus, .reminders:active {
 	position: fixed;
 	z-index: 10001;
@@ -43,7 +48,6 @@
 	border: 1px solid rgb(51, 81, 158);
 	border-radius: 5px;
 }
-
 a#menu-toggle {
 	margin-left: -55px;
 	background-color: #c8c8c8;
@@ -55,7 +59,7 @@ a#menu-toggle {
 	margin-bottom: -8px;
 }
 
-
+/***********EMPTY BOX MESSAGES***********/
 #noPlants {
 	text-align: center;
 	display: none;
@@ -63,6 +67,24 @@ a#menu-toggle {
 #noSeeds {
 	text-align: center;
 	display: none;
+}
+
+/***************REMINDERS***************/
+.reminderDetail {
+	display: none;
+}
+#remindersHead {
+	color: #e0e0e0;
+	margin-bottom: 0;
+	margin-left: 15px;
+}
+#showComplete {
+	margin-left: 5px;
+	font-size: 15px;
+	color: #949494;
+}
+#completeCheck {
+	margin-top: -10px;
 }
 
 /*****************POPUP*****************/
