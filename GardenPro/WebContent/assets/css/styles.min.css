@@ -443,14 +443,31 @@ div.col-md-12 {
 	border-radius: 0
 }
 
+li a{
+	padding: 0;
+	color: black;
+	text-decoration: strikethrough;
+}
+
+li a:hover{
+	color: black;
+}
+
+li.active{
+	height: 100%;
+}
+
 .nav-pills>li[data-slide-to="0"].active a {
 	background-color: #86942a;
+	height: 100%;
 }
 
 .nav-pills>li[data-slide-to="1"].active a {
 	background-color: #a37b45;
+	height: 100%;
 }
 
 .nav-pills>li[data-slide-to="2"].active a {
 	background-color: #507642;
+	height: 100%;
 }

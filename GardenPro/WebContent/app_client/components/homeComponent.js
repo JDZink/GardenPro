@@ -1,15 +1,15 @@
 var app = angular.module('ngGarden');
 
-var homeController = function($scope){
-  var vm = this;
-  vm.hideReminders = function() {
-    $('#wrapper').addClass('toggled');
-  };
-  vm.hideReminders();
+var homeController = function($scope) {
+    var vm = this;
+    vm.hideReminders = function() {
+        $('#wrapper').addClass('toggled');
+    };
+    vm.hideReminders();
 };
 
 app.component('homeComponent', {
-  template : `
+    template: `
 <div>
         <div class="header-dark">
             <h1 class="text-left"><strong> DigIt </strong><i class="fa fa-leaf"></i></h1></div>
@@ -25,7 +25,7 @@ app.component('homeComponent', {
                 <div class="col-md-6">
                     <div class="row icon-features">
                         <a href="#/register"><div class="col-xs-4 icon-feature"><i class="glyphicon glyphicon-user"></i>
-                            <p>Create New User</p></a>
+                            <p>Create New Account</p></a>
                         </div>
                         <a href="#/addPlants"><div class="col-xs-4 icon-feature"><i class="fa fa-leaf"></i>
                             <p>Add Plants to your Garden</p></a>
@@ -46,7 +46,7 @@ app.component('homeComponent', {
                 <div class="col-sm-6 item">
                     <div class="row">
                         <div class="col-md-5">
-                            <a href="#"><img class="img-responsive" src="assets/img/icons/gardening-tools.svg"></a>
+                            <img class="img-responsive" src="assets/img/icons/gardening-tools.svg">
                         </div>
                         <div class="col-md-7">
                             <h3 class="name">By gardeners for gardeners </h3>
@@ -57,7 +57,7 @@ app.component('homeComponent', {
                 <div class="col-sm-6 item">
                     <div class="row">
                         <div class="col-md-5">
-                            <a href="#"><img class="img-responsive" src="assets/img/icons/aloe.svg"></a>
+                            <img class="img-responsive" src="assets/img/icons/aloe.svg">
                         </div>
                         <div class="col-md-7">
                             <h3 class="name">Region-Specific Gardening Tips</h3>
@@ -68,7 +68,7 @@ app.component('homeComponent', {
                 <div class="col-sm-6 item">
                     <div class="row">
                         <div class="col-md-5">
-                            <a href="#"><img class="img-responsive" src="assets/img/icons/watering-can.svg"></a>
+                            <img class="img-responsive" src="assets/img/icons/watering-can.svg">
                         </div>
                         <div class="col-md-7">
                             <h3 class="name">Never let your plants die</h3>
@@ -79,7 +79,7 @@ app.component('homeComponent', {
                 <div class="col-sm-6 item">
                     <div class="row">
                         <div class="col-md-5">
-                            <a href="#"><img class="img-responsive" src="assets/img/icons/ecology.svg"></a>
+                            <img class="img-responsive" src="assets/img/icons/ecology.svg">
                         </div>
                         <div class="col-md-7">
                             <h3 class="name">Crowdsourcing </h3>
@@ -108,12 +108,8 @@ app.component('homeComponent', {
             <!-- End Item -->
             <div class="item" background-color="#a37b45">
                 <div class="carousel-caption">
-//HARDINESS ZONES
-                    <p>
-                    HARDINESS
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
-                        ipsum dolor sit amet, consetetur sadipscing elitr.</p>
+// HARDINESS ZONES
+<iframe name="zonelookup" src="https://www.arborday.org/webtools/hortzones/ziplookup.cfm?RegID=4559" height="150" width="300" scrolling="No" frameborder="0" marginheight="0" marginwidth="0">[Your browser doesn't support IFrames. <a href="https://www.arborday.org/TreeInfo/ZoneLookup.cfm" target="_blank">Click here</a> to look up your arborday.org hardiness zone.]</iframe>
                 </div>
             </div>
             <!-- End Item -->
@@ -150,5 +146,5 @@ app.component('homeComponent', {
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/script.min.js"></script>
 	  <link rel="stylesheet" href="assets/css/styles.min.css">  `,
-  controller : homeController
+    controller: homeController
 });
