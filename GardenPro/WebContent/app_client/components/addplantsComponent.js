@@ -1,7 +1,7 @@
 var app = angular.module('ngGarden');
 
 
-var addplantsController = function(gardenService) {
+var addplantsController = function(gardenService, $scope, $filter) {
   var vm = this;
 
   vm.plants = [];
@@ -28,13 +28,20 @@ var addplantsController = function(gardenService) {
   vm.addplant_form_hide= function(plant) {
     document.getElementById("plant"+plant.id).style.display = "none";
   };
+  
+  vm.search= function(){
+	    plants = $filter('searchFilter')(plants, $('#searchString').val());
+  }
 };
 
 app.component('addplantsComponent',{
   template : `
     <div class="content-div">
       <h1>Plants</h1>
-
+	  <form>
+	  	<input id="searchString" type="text" placeholder="Search..." name="searchStr">
+	  	<input type="submit" value="Submit" ng-click="$ctrl.search()">
+	  </form>
         <div class="plants-box">
           <div class="plant" ng-repeat="plant in $ctrl.plants | orderBy:'commonName'">
             <h4>{{plant.commonName}}</h4>

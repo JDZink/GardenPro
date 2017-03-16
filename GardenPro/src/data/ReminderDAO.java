@@ -1,5 +1,6 @@
 package data;
 
+import java.util.List;
 import java.util.Set;
 
 import entities.Planting;
@@ -12,20 +13,12 @@ public interface ReminderDAO {
 	  public Reminder destroy(int id);
 	  
 	  public void reminderToWater(Planting p);
-	  
-	  public void reminderToHarvest(Planting p);
 
-	  public void reminderToPlantOutdoors(Planting p);
-
-	  public void reminderToPlantIndoors(Planting p);
-
-	  public Reminder reminderOfSprouted(Planting p);
-
-	  public Reminder create(Reminder reminder);
+	  public Reminder create(Reminder reminder, int userId);
 	  
 	  public Reminder create(Planting p, String cat);
 
-	  public void reminderToStart(Planting p);
-
 	  public Set<Reminder> cleanupReminders(User user);
+
+	  public List<Reminder> index(int userId);
 }
