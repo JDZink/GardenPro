@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,12 +31,16 @@ public class ReminderControllerImpl implements ReminderController {
 		return "pong";
 	}
 
-//	@Override
-//	@GetMapping
-//	public Collection<Reminder> index(HttpServletRequest req, HttpServletResponse res) {
-//		return dao.index();
-//	}
-//
+	@Override
+	@GetMapping
+	public List<Reminder> index(HttpServletRequest req, HttpServletResponse res) {
+		String userId = req.getParameter("userId");
+//		int userId = 29;
+		System.out.println(userId);
+		int uid = Integer.parseInt(userId);
+		return dao.index(uid);
+	}
+
 //	@Override
 //	@GetMapping(path="{id}")
 //	public Reminder show(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
@@ -48,17 +54,17 @@ public class ReminderControllerImpl implements ReminderController {
 		return dao.update(id, Reminder);
 	}
 
-//	@PostMapping
-//	@Override
-//	public Reminder create(HttpServletRequest req, HttpServletResponse res,@RequestBody String ReminderJson) {
-//		Reminder Reminder = mapReminder(ReminderJson);
-//		return dao.create(Reminder);
-//	}
+	@PostMapping
+	@Override
+	public Reminder create(HttpServletRequest req, HttpServletResponse res,@RequestBody String ReminderJson) {
+		Reminder reminder = mapReminder(ReminderJson);
+		
+		return dao.create(reminder, (int)req.getAttribute("userId"));
+	}
 
 	@Override
 	@DeleteMapping(path="{id}")
 	public Reminder destroy(HttpServletRequest req, HttpServletResponse res,@PathVariable int id) {
-		
 		return dao.destroy(id);
 	}
 	

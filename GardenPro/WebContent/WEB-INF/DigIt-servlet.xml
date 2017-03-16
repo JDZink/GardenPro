@@ -23,7 +23,11 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/plantings/**" />
-			<bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" />
+			<bean id="DataSecurityInterceptorPlantings" class="security.DataSecurityInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/reminders/**" />
+			<bean id="DataSecurityInterceptorReminders" class="security.DataSecurityInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 

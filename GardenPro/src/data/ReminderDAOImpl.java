@@ -2,6 +2,7 @@ package data;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -26,11 +27,10 @@ public class ReminderDAOImpl implements ReminderDAO{
 	private String nl = System.lineSeparator();
 
 	@Override
-	public Reminder create(Reminder reminder) {
+	public Reminder create(Reminder reminder, int userId) {
 		em.persist(reminder);
 		return reminder;
 	}
-
 
 	@Override
 	public Reminder create(Planting p, String cat) {
@@ -89,8 +89,6 @@ public class ReminderDAOImpl implements ReminderDAO{
 				r.setTitle("Harvest " + p.getPlant().getCommonName());
 				r.setDescription("It's time to harvest your " + p.getPlant().getCommonName() + "!");
 				break;
-
-
 		}
 		em.persist(r);
 		return r;
@@ -134,69 +132,13 @@ public class ReminderDAOImpl implements ReminderDAO{
 		if(LocalDate.now() == r.getDate()){
 			//Trigger reminder
 		}
-		create(r);
-
+		create(r, p.getUser().getId());
 	}
 
 	@Override
-	public void reminderToStart(Planting p){
-		Plant plant = em.find(Plant.class, p.getPlant());
-		Reminder r = new Reminder();
-		r.setDate(p.getUser().getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost()));
-		r.setUser(p.getUser());
-		r.setCategory(1);
-		r.setTitle("Start " + p.getPlant().getCommonName());
-		r.setDescription("It's time to start your " + p.getPlant().getCommonName() + "!");
-		r.setPlanting(p);
-		r.setPlant(p.getPlant());
-		r.setComplete(false);
-		create(r);
+	public List<Reminder> index(int userId) {
+		String query = "SELECT r FROM Reminder r WHERE r.user.id = :id";
+		List<Reminder> reminders = em.createQuery(query, Reminder.class).setParameter("id", userId).getResultList();
+		return reminders;
 	}
-
-	@Override
-	public Reminder reminderOfSprouted(Planting p){
-		Plant plant = em.find(Plant.class, p.getPlant());
-		Reminder r = new Reminder();
-
-		int sproutDate = plant.getWeeksBeforeLastFrost() - (Math.round((plant.getStartGerm() + plant.getEndGerm())/2));
-		r.setDate(p.getUser().getFrostDate().minusWeeks(sproutDate));
-
-		if(LocalDate.now() == r.getDate()){
-			//Trigger reminder
-		}
-		return create(r);
-	}
-
-	@Override
-	public void reminderToPlantIndoors(Planting p){
-		Plant plant = em.find(Plant.class, p.getPlant());
-		Reminder r = new Reminder();
-
-		r.setDate(p.getUser().getFrostDate().minusWeeks(plant.getWeeksBeforeLastFrost() - plant.getEndGerm()));
-
-		if(LocalDate.now() == r.getDate()){
-			//Trigger reminder
-		}
-		create(r);
-	}
-
-	@Override
-	public void reminderToPlantOutdoors(Planting p){
-		Plant plant = em.find(Plant.class, p.getPlant());
-		Reminder r = new Reminder();
-
-		r.setDate(p.getUser().getFrostDate());
-		if(LocalDate.now() == r.getDate()){
-			//Trigger reminder
-		}
-		create(r);
-	}
-
-
-	@Override
-	public void reminderToHarvest(Planting p) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
