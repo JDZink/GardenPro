@@ -15,10 +15,18 @@ var appController = function(authenticationService, reminderService){
     reminderService.getReminders()
     .then(function(res){
       vm.reminders = res.data;
-    });
+    })
+    .then(console.log(vm.reminders));
   };
   vm.loadReminders();
 
+  vm.show_reminder_detail = function(reminder){
+    if(document.getElementById("rDetail"+reminder.id).style.display === "none"){
+      document.getElementById("rDetail"+reminder.id).style.display = "block";
+    } else {
+      document.getElementById("rDetail"+reminder.id).style.display = "none";
+    }
+  };
 };
 
 app.component('appComponent', {
@@ -27,9 +35,10 @@ app.component('appComponent', {
       <div id="sidebar-wrapper">
           <ul class="sidebar-nav">
 <!--******************************************** Reminders ******************************-->
-              <li class="sidebar-brand"> <a href="#">Reminders </a>
-              <br> Show Complete? <input type='checkbox' ng-model='$ctrl.showComplete'></input>
-              </li>
+              <h3 id="remindersHead">Reminders
+                <br><span id="showComplete">
+                <input id="completeCheck" type='checkbox' ng-model='$ctrl.showComplete'></input> Show Complete?
+              </span></h3>
               <li class="reminder" ng-repeat="reminder in $ctrl.reminders | completeFilter:$ctrl.showComplete | orderBy:'date'">
                 <h4 class="reminderTitle" ng-click="$ctrl.show_reminder_detail(reminder)">
                   {{reminder.title}}
