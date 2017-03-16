@@ -41,9 +41,6 @@ public class PlantDAOImpl implements PlantDAO{
 	public Plant update(int id, Plant plant) {
 		System.out.println("plant id to change = " + id);
 		Plant oldPlant = em.find(Plant.class,id);
-//		oldPlant.setComplete(plant.isComplete());
-//		oldPlant.setTask(plant.getTask());
-//		oldPlant.setDescription(plant.getDescription());
 		em.flush();
 		return oldPlant;
 	}
@@ -62,5 +59,4 @@ public class PlantDAOImpl implements PlantDAO{
 		em.remove(plant);
 		return plant;
 	}
-
 }

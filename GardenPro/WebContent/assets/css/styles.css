@@ -1,3 +1,177 @@
-.reminders:hover, .reminders:checked, .reminders:visited {
-	text-decoration: none;
+/****************NAVBAR****************/
+.fa-leaf {
+	color: #1f741a
+}
+
+.nav, .navbar {
+	background-color: #c8c8c8;
+}
+
+.nav-container {
+	width: 95%;
+}
+
+/*************GARDEN DISPLAY*************/
+.content-div, .seed, .plant {
+	text-align: center;
+}
+
+.plantings-box, .plants-box {
+	display: inline-flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	border: 3px solid grey;
+	border-radius: 10px;
+	padding: 20px;
+	min-width: 30em;
+	min-height: 15em;
+}
+
+.plant, .seed {
+	width: 15em;
+	margin: 5px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	padding-bottom: 5px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* ****** BACKGROUNDS FOR PLANT BOXES*********/
+.stage0 {
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage0.svg");
+	
+}
+.stage1 {
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage1.svg");
+	
+}
+.stage2 {
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage2.svg");
+	background-repeat: no-repeat;
+	
+}
+.stage3 {
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage3.svg");
+	
+}
+.stage4 {
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage4.svg");
+}
+/* ****** BACKGROUNDS FOR PLANT BOXES*********/
+
+
+.container-fluid {
+	margin-top: 70px;
+}
+
+
+/***********REMINDER TOGGLE BTN*********/
+.reminders, .reminders:hover, .reminders:focus, .reminders:active {
+	position: fixed;
+	z-index: 10001;
+	background-color: rgba(255, 255, 255,1);
+	border: 1px solid rgb(51, 81, 158);
+	border-radius: 5px;
+}
+a#menu-toggle {
+	margin-left: -55px;
+	background-color: #c8c8c8;
+}
+.fa-bell-o {
+	font-size: 22px;
+	margin-right: -5px;
+	margin-left: -5px;
+	margin-bottom: -8px;
+}
+
+/***********EMPTY BOX MESSAGES***********/
+#noPlants {
+	text-align: center;
+	display: none;
+}
+#noSeeds {
+	text-align: center;
+	display: none;
+}
+
+/***************REMINDERS***************/
+.reminder {
+	color: #8e8e8e;
+	
+}
+.reminderDetail {
+	display: none;
+}
+#remindersHead {
+	color: #e0e0e0;
+	margin-bottom: 0;
+	margin-left: 15px;
+}
+#showComplete {
+	margin-left: 5px;
+	font-size: 15px;
+	color: #949494;
+}
+#completeCheck {
+	margin-top: -10px;
+}
+.reminderTitle{
+	margin-left: 10px;
+}
+.detailClick {
+	color: #e9e9e9;
+	text-align: center;
+}
+.detailClick:hover {
+	color: #268024;
+	cursor: pointer;
+}
+.reminderHeadDivider {
+	margin-bottom: 0;
+}
+.reminderDivider {
+	margin-top: 0;
+	margin-bottom: 0;
+	background-color: #403526;
+	color: #403526;
+}
+
+/*****************POPUP*****************/
+.popup {
+	text-align: center;
+	width:100%;
+	height:100%;
+	opacity:.98;
+	top:0;
+	left:0;
+	display:none;
+	position:fixed;
+	background-color:#292318;
+	overflow:auto;
+	z-index: 1000001;
+}
+div.popupAddPlant {
+	background-color: #256019;
+	border: 3px solid black;
+	opacity: 1;
+	border-radius: 10px;
+	position: fixed;
+	left:55%;
+	top:40%;
+	padding: 15px 30px;
+	margin-left:-202px;
+	font-family:'Raleway',sans-serif
+}
+.btn {
+	opacity: 1;
+}
+.popup-label {
+	color: rgb(255, 255, 255);
+}
+.qtyInput {
+	width: 40px;
+}
+.black-text {
+	color: black;
 }

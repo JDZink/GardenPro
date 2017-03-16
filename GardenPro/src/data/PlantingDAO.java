@@ -1,9 +1,10 @@
 package data;
 
 import java.util.Collection;
+import java.util.Set;
 
-import entities.Plant;
 import entities.Planting;
+import entities.User;
 
 public interface PlantingDAO {
   public Collection<Planting> index();
@@ -16,5 +17,7 @@ public interface PlantingDAO {
 
   public Planting destroy(int id);
 
-Collection<Planting> index(int userId);
+  public Collection<Planting> index(int userId);
+
+  public Set<Planting> updatePlantingsStatus(User user);
 }

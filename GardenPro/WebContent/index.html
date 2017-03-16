@@ -4,6 +4,13 @@
   	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GardenPro</title>
+
+
+    <!-- HOMEPAGE CSS -->
+
+   <!--  <link rel="stylesheet" href="assets/css/styles.min.css"> -->
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,83 +25,40 @@
     <script src="js/vendor/angular.min.js"></script>
     <script src="js/vendor/angular-route.min.js"></script>
     <script src="app_client/ngApp.js"></script>
-	<script src="app_client/services/gardenService.js"></script>
+	  <script src="app_client/services/gardenService.js"></script>
     <script src="app_client/services/authenticationService.js"></script>
+    <script src="app_client/services/reminderService.js"></script>
     <script src="app_client/components/appComponent.js"></script>
     <script src="app_client/components/registrationComponent.js"></script>
+    <script src="app_client/components/signupComponent.js"></script>
     <script src="app_client/components/contactComponent.js"></script>
     <script src="app_client/components/gardenComponent.js"></script>
-    <script src="app_client/components/gardenTable.js"></script>
     <script src="app_client/components/navComponent.js"></script>
     <script src="app_client/components/plantingDetail.js"></script>
-    <script>
-    $(document).ready(function () {
-      $('.nav li').click(function(e) {
-
-        $('.nav li').removeClass('active');
-
-        var $this = $(this);
-        if (!$this.hasClass('active')) {
-          $this.addClass('active');
-        }
-        //e.preventDefault();
-      });
-    });
-    </script>
+    <script src="app_client/components/addplantsComponent.js"></script>
+    <script src="app_client/components/seedsComponent.js"></script>
+    <script src="app_client/components/plantsComponent.js"></script>
+    <script src="app_client/components/outlineComponent.js"></script>
+    <script src="app_client/components/footerComponent.js"></script>
+    <script src="app_client/components/homeComponent.js"></script>
+    <script src="app_client/filters/seedFilter.js"></script>
+    <script src="app_client/filters/plantFilter.js"></script>
+    <script src="app_client/filters/searchFilter.js"></script>
+    <script src="app_client/filters/completeFilter.js"></script>
   </head>
   <body>
-	<div>
-        <nav class="navbar navbar-default navigation-clean-button">
-            <div class="container">
-                <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">DigIt</a>
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                </div>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active" role="presentation"><a href="#/">Add Plants</a></li>
-                        <li role="presentation"><a href="#/">Second Item</a></li>
-                    </ul>
-                    <p class="navbar-text navbar-right actions"><a class="navbar-link login" href="#">Log In</a> <a class="btn btn-default action-button" role="button" href="#">Sign Up</a></p>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <div id="wrapper">
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-<!--******************************************** Reminders *******************************************************-->
-                <li class="sidebar-brand"> <a href="#">Home </a></li>
-                <li> <a href="#">Dashboard </a></li>
-                <li> <a href="#">Dashboard </a></li>
-                <li> <a href="#">Dashboard </a></li>
-            </ul>
-<!--**********************************************************************************************************************-->
-        </div>
-        <div class="page-content-wrapper">
-            <div class="container-fluid"><a class="btn btn-link reminders" role="button" href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></a>
-                <div class="row">
-                    <div class="col-md-12">
-<!--******************************************** Page Content Here *******************************************************-->
-                            <app-component></app-component>
-<!--**********************************************************************************************************************-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <nav-component></nav-component>
+    <app-component></app-component>
     <div class="footer-basic">
         <footer>
             <ul class="list-inline">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Services</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
-            <p class="copyright">Company Name © 2016</p>
+            <p class="copyright">DigIt © 2017</p>
         </footer>
     </div>
-    <script src="assets/js/Sidebar-Menu.js"></script>
-</body>
+  </body>
 
 </html>

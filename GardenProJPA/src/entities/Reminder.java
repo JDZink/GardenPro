@@ -10,6 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 @Entity
 public class Reminder {
 	@Id
@@ -18,9 +24,11 @@ public class Reminder {
 
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonBackReference(value="reminders")
 	private User user;
 
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="planting_id")
 	private Planting planting;
 
@@ -28,6 +36,8 @@ public class Reminder {
 	@JoinColumn(name="plant_id")
 	private Plant plant;
 	
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
 	private LocalDate date;
 	private String title;
 	private int category;

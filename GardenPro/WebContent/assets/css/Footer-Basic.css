@@ -1,9 +1,9 @@
 .footer-basic {
-  padding:20px 0;
+  padding:5px 0;
   background-color:#ffffff;
   color:#4b4c4d;
   bottom:0;
-  position:absolute;
+  position: inherit;
   width:100%;
   z-index:1000;
 }
@@ -55,10 +55,9 @@
 }
 
 .footer-basic .copyright {
-  margin-top:15px;
+  margin-top:5px;
   text-align:center;
   font-size:13px;
   color:#aaa;
   margin-bottom:0;
 }
-

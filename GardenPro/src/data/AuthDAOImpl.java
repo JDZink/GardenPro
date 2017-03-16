@@ -47,72 +47,59 @@ public class AuthDAOImpl implements AuthDAO {
 			  System.out.println("IN AUTHENTICATEUSER");
 			  System.out.println(user);
 			  String q = "SELECT u FROM User u WHERE username = :un";
+		    System.out.println("Password Raw = " + rawPassword);
+
 					  
 			us = em.createQuery(q, User.class).setParameter("un", user.getUsername()).getSingleResult();
-//			us = em.createQuery("SELECT u FROM User u WHERE username = '" +
-//			  user.getUsername() + "'").getSingleResult();
-			System.out.println("U: " + us);
+			System.out.println("US: " + us);
 			
-//			 return u;
+			//resets frost date year if frost date has already passed
+			while(us.getFrostDate().isBefore(LocalDate.now())){
+				us.setFrostDate(us.getFrostDate().plusYears(1));
+			}
+			System.out.println("Checking PW " + rawPassword + ", " + us.getPassword());
+			if (passwordEncoder.matches(rawPassword, us.getPassword())) {
+				System.out.println("Checked PW passed");
+				return us;
+			}
 		} catch (Exception e) {
-			
+			System.out.println("Authenticate user failed");
+
 		}
-		  if (passwordEncoder.matches(rawPassword, us.getPassword())) {
-		    return us;
-		  }
 		  return null;
 	}
 	
 	@Override
 	public User authenticateUser(User user) {
-		// find the User by username
-		User us = null;
-		try {
-			System.out.println("IN AUTHENTICATEUSER");
-			System.out.println(user);
-			String q = "SELECT u FROM User u WHERE username = :un";
-			
-			us = em.createQuery(q, User.class).setParameter("un", user.getUsername()).getSingleResult();
-//			us = em.createQuery("SELECT u FROM User u WHERE username = '" +
-//			  user.getUsername() + "'").getSingleResult();
-			System.out.println("U: " + us);
-			
-//			 return u;
-		} catch (Exception e) {
-			
-		}
-		if (passwordEncoder.matches(user.getPassword(), us.getPassword())) {
-			return us;
-		}
-		return null;
+		return authenticateUser(user, user.getPassword());
 	}
 	
 	@Override
 	public User resetUserFrostDate(User user){
 		
 		//removes zone specifying character
-		 int tempZone = Integer.parseInt(user.getZone().substring(0, user.getZone().length()-1));
+		 int tempZone = Integer.parseInt(user.getZone());
 		
 		if (tempZone >= 11){
 			user.setFrostDate(null);
 			return user;
-		} else if(tempZone == 9 || tempZone == 10){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 12, 15));
+		} else if(tempZone == 10){
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 1, 31));
+			return user;
+		} else if(tempZone == 9){
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 2, 15));
 			return user;
 		} else if(tempZone == 8){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 11, 15));
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 3, 15));
 			return user;
 		} else if(tempZone >= 5 && tempZone <= 7){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 10, 15));
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 4, 15));
 			return user;
-		} else if(tempZone == 3 || tempZone == 4){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 9, 15));
-			return user;
-		} else if(tempZone == 2){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 8, 15));
+		} else if(tempZone >= 2 && tempZone <= 4){
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 5, 15));
 			return user;
 		} else if(tempZone == 1){
-			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 7, 15));
+			user.setFrostDate(LocalDate.of(LocalDate.now().getYear(), 6, 15));
 			return user;
 		}
 		return user;

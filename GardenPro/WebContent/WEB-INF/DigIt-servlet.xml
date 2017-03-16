@@ -17,12 +17,17 @@
 	<context:component-scan base-package="controllers" />
 	<bean id="plantdao" class="data.PlantDAOImpl" />
 	<bean id="plantingdao" class="data.PlantingDAOImpl" />
+	<bean id="reminderdao" class="data.ReminderDAOImpl" />
 	<bean id="authdao" class="data.AuthDAOImpl" /> 
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/plantings/**" />
-			<bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" />
+			<bean id="DataSecurityInterceptorPlantings" class="security.DataSecurityInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/reminders/**" />
+			<bean id="DataSecurityInterceptorReminders" class="security.DataSecurityInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 

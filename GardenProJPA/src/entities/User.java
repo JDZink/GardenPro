@@ -31,13 +31,11 @@ public class User {
 	private String password;
 	private String zone;
 	
-//	@Convert(converter = LocalDateAttributeConverter.class)
-//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	@Column(name="frost_date")
 	private LocalDate frostDate;
 	
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JsonManagedReference
+	@JsonManagedReference(value="plantings")
 	private Set<Planting> plantings;
 	
 	@OneToMany(fetch=FetchType.EAGER)
@@ -46,6 +44,7 @@ public class User {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="user", fetch=FetchType.EAGER)	
+	@JsonManagedReference(value="reminders")
 	private Set<Reminder> reminders;
 	
 	

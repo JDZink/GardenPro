@@ -4,26 +4,41 @@ var navController = function($location, authenticationService){
   var vm = this;
   vm.logout = function(){
     authenticationService.logout();
-    $location.path('/');
+    $location.path('/home');
+  };
+  vm.login = function(){
+    $location.path('/login');
+  };
+
+  vm.signup = function() {
+    $location.path('/register');
+  };
+
+  vm.isLoggedIn = function() {
+    return authenticationService.isLoggedIn();
   };
 };
 
 app.component('navComponent', {
   template : `
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand">ngGarden</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#/">Home</a></li>
-      <li><a href="#/garden">Garden</a></li>
-      <li><a href="#/about">About</a></li>
-      <li><a href="#/contact">Contact</a></li>
-      <li><button class="logout" type="button" ng-click='$ctrl.logout()'>LogOut</button></li>
-    </ul>
+  <div class="mynav">
+      <nav class="navbar navbar-default navigation-clean-button">
+          <div class="container nav-container">
+              <div class="navbar-header"><a class="navbar-brand navbar-link" href="#/home">DigIt <i class="fa fa-leaf" aria-hidden="true"></i></a>
+                  <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+              </div>
+              <div class="collapse navbar-collapse" id="navcol-1">
+                  <ul id="nav-links" class="nav navbar-nav">
+                      <li role="presentation"><a href="#/garden">Garden</a></li>
+                      <li role="presentation"><a href="#/addPlants">Add Plants</a></li>
+                  </ul>
+                  <p class="navbar-text navbar-right actions" id="signup" > <a class="btn btn-default action-button signup-button" role="button" ng-click="$ctrl.signup()">Sign Up</a></p>
+                  <p class="navbar-text navbar-right actions" id="login" > <a class="btn btn-default action-button login-button" role="button" ng-click="$ctrl.login()">Log In</a></p>
+                  <p class="navbar-text navbar-right actions" id="logout" > <a class="btn btn-default action-button logout-button" role="button" ng-click="$ctrl.logout()">Log Out</a></p>
+              </div>
+          </div>
+      </nav>
   </div>
-</nav>
   `,
   controller : navController
 });

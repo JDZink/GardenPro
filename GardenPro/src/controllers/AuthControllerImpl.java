@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +17,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import data.AuthDAO;
+import data.PlantingDAO;
+import data.ReminderDAO;
 import entities.User;
 import security.JsonWebTokenGenerator;
 
@@ -28,6 +29,12 @@ public class AuthControllerImpl implements AuthController {
 
 	@Autowired
 	AuthDAO dao;
+	
+	@Autowired
+	PlantingDAO pdao;
+	
+	@Autowired
+	ReminderDAO rdao;
 	
 	@GetMapping(path="ping")
 	public String ping(){
@@ -43,11 +50,11 @@ public class AuthControllerImpl implements AuthController {
 	    try {
 	      mapper.registerModule(new JavaTimeModule());
 	      user = mapper.readValue(userJson, User.class);
+	      String rawPassword = user.getPassword();
 	      
-//	      user.setZone("5a");
+	      if(user.getZone() == null) user.setZone("5");
 	      user = dao.resetUserFrostDate(user);
 	      dao.register(user);
-	      String rawPassword = user.getPassword();
 	      user = dao.authenticateUser(user, rawPassword);
 	      String jws = jwtGen.generateUserJwt(user);
 	      Map<String,String> responseJson = new HashMap<>();
@@ -83,6 +90,8 @@ public class AuthControllerImpl implements AuthController {
 	    // Find managed User, return it if password is correct
 	    try {
 	      user = dao.authenticateUser(user);
+	      user.setReminders(rdao.cleanupReminders(user));
+	      user.setPlantings(pdao.updatePlantingsStatus(user));
 	    } catch (Exception e) {
 	      // User not authenticated
 	      e.printStackTrace();
@@ -93,6 +102,8 @@ public class AuthControllerImpl implements AuthController {
 	    // Create encoded JWT for User
 	    String jws = jwtGen.generateUserJwt(user);
 	    Map<String, String> responseJson = new HashMap<>();
+//	    req.setAttribute("userId", user.getId());
+//	    System.out.println("setting user attr " + user.getId());
 	    responseJson.put("jwt", jws);
 	    return responseJson;
 	  }

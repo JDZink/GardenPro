@@ -34,13 +34,16 @@ public class Plant {
 	private String sowingMethod;
 	
 	@Column(name = "last_frost")
-	private int lastFrost;
+	private int weeksBeforeLastFrost;
 	private String depth;
 	private String space;
 	private String life;
 	private String transplant;
 	private String img;
 	private String comment;
+	private int startGerm;
+	private int endGerm;
+	
 	
 	//Getters & Setters
 //	public Planting getPlanting() {
@@ -49,8 +52,15 @@ public class Plant {
 //	public void setPlanting(Planting planting) {
 //		this.planting = planting;
 //	}
+	
 	public String getCommonName() {
 		return commonName;
+	}
+	public int getWeeksBeforeLastFrost() {
+		return weeksBeforeLastFrost;
+	}
+	public void setWeeksBeforeLastFrost(int weeksBeforeLastFrost) {
+		this.weeksBeforeLastFrost = weeksBeforeLastFrost;
 	}
 	public void setCommonName(String commonName) {
 		this.commonName = commonName;
@@ -84,12 +94,6 @@ public class Plant {
 	}
 	public void setSowingMethod(String sowingMethod) {
 		this.sowingMethod = sowingMethod;
-	}
-	public int getLastFrost() {
-		return lastFrost;
-	}
-	public void setLastFrost(int lastFrost) {
-		this.lastFrost = lastFrost;
 	}
 	public String getDepth() {
 		return depth;
@@ -130,10 +134,16 @@ public class Plant {
 	public int getId() {
 		return id;
 	}
-//	public Reminder getReminder() {
-//		return reminder;
-//	}
-//	public void setReminder(Reminder reminder) {
-//		this.reminder = reminder;
-//	}
+	public int getStartGerm() {
+		return startGerm;
+	}
+	public void setStartGerm(int startGerm) {
+		this.startGerm = startGerm;
+	}
+	public int getEndGerm() {
+		return endGerm;
+	}
+	public void setEndGerm(int endGerm) {
+		this.endGerm = endGerm;
+	}
 }

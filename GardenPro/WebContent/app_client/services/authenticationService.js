@@ -70,12 +70,32 @@ app.factory('authenticationService', function($window, $http){
     }
   };
 
+  var noUser = function() {
+    if(!isLoggedIn()){
+      $('#wrapper').addClass('toggled');
+      $('#sidebar-wrapper').hide();
+      $('#menu-toggle').hide();
+      $('#logout').hide();
+      $('#login').show();
+      $('#signup').show();
+      $('#nav-links').hide();
+    } else {
+      $('#sidebar-wrapper').show();
+      $('#menu-toggle').show();
+      $('#logout').show();
+      $('#login').hide();
+      $('#signup').hide();
+      $('#nav-links').show();
+    }
+  };
+
   return {
     login : login,
     register : register,
     logout : logout,
     isLoggedIn : isLoggedIn,
     currentUser : currentUser,
-    getToken : getToken
+    getToken : getToken,
+    noUser : noUser
   };
 });

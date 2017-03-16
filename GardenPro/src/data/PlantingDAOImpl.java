@@ -2,23 +2,30 @@ package data;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Plant;
 import entities.Planting;
+import entities.Reminder;
 import entities.User;
 
 @Transactional
 @Repository
-public class PlantingDAOImpl implements PlantingDAO{
+public class PlantingDAOImpl implements PlantingDAO {
 	@PersistenceContext
 	private EntityManager em;
+
+	@Autowired
+	ReminderDAO rdao;
 
 	@Override
 	public Collection<Planting> index() {
@@ -29,25 +36,88 @@ public class PlantingDAOImpl implements PlantingDAO{
 
 	@Override
 	public Collection<Planting> index(int userId) {
+		System.out.println("User id in index: " + userId);
 		User u = em.find(User.class, userId);
+		System.out.println(u);
 		return u.getPlantings();
 	}
 
 	@Override
 	public Planting show(int id) {
-		
+
 		return em.find(Planting.class, id);
 	}
 
 	@Override
 	public Planting update(int id, Planting planting) {
 		System.out.println("planting id to change = " + id);
+
 		Planting oldPlanting = em.find(Planting.class,id);
-//		oldPlanting.setComplete(planting.isComplete());
-//		oldPlanting.setTask(planting.getTask());
-//		oldPlanting.setDescription(planting.getDescription());
+
+		oldPlanting.setQty(planting.getQty());
+
+		int startStage = oldPlanting.getStage();
+		int newStage = planting.getStage();
+		oldPlanting.setStage(newStage);
+
+		try {
+			if (startStage != newStage){
+				switch(newStage){
+				case 1: 
+						oldPlanting.setStarted(LocalDate.now());
+						clearReminder(oldPlanting, 1);
+						rdao.create(oldPlanting, "germinate");
+						rdao.create(oldPlanting, "indoors");
+						break;
+				case 2:
+						break;
+
+				case 3:
+					rdao.create(oldPlanting, "outdoors");
+					rdao.create(planting, "water");
+					
+						break;
+
+				case 4: 
+					oldPlanting.setPlanted(LocalDate.now());
+//					rdao.create(oldPlanting, "harvest");
+					rdao.create(planting, "water");
+					clearReminder(oldPlanting, 1,2,3,4);
+				//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
+						break;
+
+				case 5: 
+//					rdao.create(oldPlanting, "harvest");
+						break;
+
+			}
+
+			}
+		} catch (Exception e) {
+			System.out.println("//////////planting update failed.//////////");
+			e.printStackTrace();
+		}
+
+		em.persist(oldPlanting);
 		em.flush();
 		return oldPlanting;
+	}
+
+	private void clearReminder(Planting planting, int... stages) {
+		Set<Reminder> reminders = planting.getReminders();
+		if (reminders != null && reminders.size() > 0) {
+			for (Reminder r : reminders) {
+				if (stages != null && stages.length > 0) {
+					for (int s : stages) {
+						if (r.getCategory() == s) {
+							r.setComplete(true);
+						}
+					}
+				}
+
+			} 
+		}
+
 	}
 
 	@Override
@@ -56,38 +126,59 @@ public class PlantingDAOImpl implements PlantingDAO{
 		planting.setUser(u);
 		Plant p = em.find(Plant.class, plantId);
 		planting.setPlant(p);
-		int weeksBefore = p.getLastFrost();
-//		int tillHarvest = p.getHarvest()
-		switch(planting.getStage()){
-			case 1: planting.setStarted(LocalDate.now());
-			break;
-			
-			case 2: planting.setStarted(LocalDate.now().minusWeeks(weeksBefore/2));
-			break;
-			
-			case 3: planting.setStarted(LocalDate.now().minusWeeks(weeksBefore));
-			break;
 
-			case 4: planting.setPlanted(LocalDate.now());
-			//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
-			break;
-			
-			case 5: planting.setPlanted(LocalDate.now());
-					planting.setHarvest(LocalDate.now().plusMonths(2));
-			break;
-			
-		}
 		em.persist(planting);
+
 		em.flush();
-		
+		switch (planting.getStage()) {
+		case 0:
+			rdao.create(planting, "start");
+			break;
+		case 1: 
+			planting.setStarted(LocalDate.now());
+			rdao.create(planting, "germinate");
+			rdao.create(planting, "indoors");
+			break;
+		case 4:
+			rdao.create(planting, "harvest");
+			rdao.create(planting, "water");
+			break;
+		case 5:
+			rdao.create(planting, "water");
+
+		}
 		return em.find(Planting.class, planting.getId());
 	}
 
 	@Override
 	public Planting destroy(int id) {
 		Planting planting = em.find(Planting.class, id);
+		planting.getUser().getPlantings().remove(planting);
 		em.remove(planting);
 		return planting;
 	}
 
+	@Override
+	public Set<Planting> updatePlantingsStatus(User user) {
+		LocalDate now = LocalDate.now();
+
+		for (Planting p : user.getPlantings()) {
+			int s = p.getStage();
+			int sproutDate = p.getPlant().getWeeksBeforeLastFrost() - p.getPlant().getEndGerm();
+
+			if (s > 0) {
+				if (p.getStarted() != null && p.getStarted().minusWeeks(Math.round(sproutDate / 2)).isBefore(now)
+						&& now.isBefore(p.getStarted().minusWeeks(sproutDate))) {
+					p.setStage(2);
+				} else if (p.getStarted() != null && p.getStarted().minusWeeks(sproutDate).isBefore(now)
+						&& now.isBefore(p.getUser().getFrostDate())) {
+					p.setStage(3);
+				} else if (s == 4 && p.getPlanted() != null && p.getPlanted().plusWeeks(6).isBefore(now)) {
+					p.setStage(5);
+				}
+			}
+			update(p.getId(), p);
+		}
+		return null;
+	}
 }
