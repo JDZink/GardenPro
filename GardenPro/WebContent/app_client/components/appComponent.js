@@ -21,7 +21,6 @@ var appController = function(authenticationService, reminderService, $scope){
     }
   };
   $scope.$on('$viewContentLoaded', function(event) {
-    console.log("content loaded");
     vm.loadReminders();
   });
 

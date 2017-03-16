@@ -4,8 +4,6 @@ app.filter('searchFilter', function() {
     return function(plants, searchStr) {
         var results = [];
 
-        console.log("In Search Filter..." + searchStr);
-
         if (!searchStr) {
             return plants;
         } else {
