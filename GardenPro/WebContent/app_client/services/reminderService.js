@@ -13,7 +13,7 @@ app.factory('reminderService', function($http, authenticationService){
     });
   };
 
-  service.updateRemider = function(reminder){
+  service.updateReminder = function(reminder){
     return $http({
       method : 'PUT',
       url : 'api/reminders/'+reminder.id,

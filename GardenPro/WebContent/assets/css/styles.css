@@ -70,6 +70,10 @@ a#menu-toggle {
 }
 
 /***************REMINDERS***************/
+.reminder {
+	color: #8e8e8e;
+	
+}
 .reminderDetail {
 	display: none;
 }
@@ -85,6 +89,26 @@ a#menu-toggle {
 }
 #completeCheck {
 	margin-top: -10px;
+}
+.reminderTitle{
+	margin-left: 10px;
+}
+.detailClick {
+	color: #e9e9e9;
+	text-align: center;
+}
+.detailClick:hover {
+	color: #268024;
+	cursor: pointer;
+}
+.reminderHeadDivider {
+	margin-bottom: 0;
+}
+.reminderDivider {
+	margin-top: 0;
+	margin-bottom: 0;
+	background-color: #403526;
+	color: #403526;
 }
 
 /*****************POPUP*****************/

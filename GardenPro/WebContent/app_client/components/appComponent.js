@@ -23,11 +23,16 @@ var appController = function(authenticationService, reminderService){
   console.log(vm.reminders);
 
   vm.show_reminder_detail = function(reminder){
-    if(document.getElementById("rDetail"+reminder.id).style.display === "none"){
+    if(document.getElementById("rDetail"+reminder.id).style.display !== "block"){
       document.getElementById("rDetail"+reminder.id).style.display = "block";
     } else {
       document.getElementById("rDetail"+reminder.id).style.display = "none";
     }
+  };
+
+  vm.updateReminder = function(reminder){
+    reminderService.updateReminder(reminder)
+    .then(vm.loadReminders);
   };
 };
 
@@ -41,15 +46,18 @@ app.component('appComponent', {
                 <br><span id="showComplete">
                 <input id="completeCheck" type='checkbox' ng-model='$ctrl.showComplete'></input> Show Complete?
               </span></h3>
-              <li class="reminder" ng-repeat="reminder in $ctrl.reminders | completeFilter:$ctrl.showComplete | orderBy:'date'">
-                <h4 class="reminderTitle" ng-click="$ctrl.show_reminder_detail(reminder)">
-                  {{reminder.title}}
-                  <input type='checkbox' ng-model='reminder.complete'></input>
+              <hr class="reminderHeadDivider">
+              <div class="reminder" ng-repeat="reminder in $ctrl.reminders | completeFilter:$ctrl.showComplete | orderBy:'date'">
+                <h4 class="reminderTitle">
+                  <span class="detailClick" ng-click="$ctrl.show_reminder_detail(reminder)">{{reminder.title}}
+                   {{reminder.date[1]}}/{{reminder.date[2]}}</span>
+                  <input type='checkbox' ng-model='reminder.complete' ng-change='$ctrl.updateReminder(reminder)'></input>
                 </h4>
                 <h5 class="reminderDetail" id="rDetail{{reminder.id}}">
                   {{reminder.description}}
                 </h5>
-              </li>
+                <hr class="reminderDivider">
+              </div>
           </ul>
 <!--*************************************************************************************-->
       </div>
