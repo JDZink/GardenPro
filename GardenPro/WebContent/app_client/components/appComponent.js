@@ -22,7 +22,6 @@ var appController = function(authenticationService, reminderService, $rootScope)
   };
   vm.loadReminders();
   $rootScope.$on('reminderUpdateEvent', function(event) {
-    console.log('update fired');
     vm.loadReminders();
   });
 
