@@ -9,16 +9,18 @@ var seedsComponentController = function(gardenService){
       planting.stage = 1;
       gardenService.updatePlanting(planting)
       .then(vm.plant_form_hide(planting))
-      .then(vm.loadData);
+      .then(vm.loadData)
+      .then(vm.loadReminders);
     } else {
       planting.qty = (planting.qty - qty);
       gardenService.updatePlanting(planting)
-      .then(vm.loadData);
+      .then(vm.loadData)
+      .then(vm.loadReminders);
       gardenService.createPlanting(planting.plant,qty,1)
       .then(vm.plant_form_hide(planting))
-      .then(vm.loadData);
+      .then(vm.loadData)
+      .then(vm.loadReminders);
     }
-
   };
 
   vm.transplantSeed = function(planting) {
@@ -27,20 +29,24 @@ var seedsComponentController = function(gardenService){
       planting.stage = 4;
       gardenService.updatePlanting(planting)
       .then(vm.transplant_form_hide(planting))
-      .then(vm.loadData);
+      .then(vm.loadData)
+      .then(vm.loadReminders);
     } else {
       planting.qty = (planting.qty - qty);
       gardenService.updatePlanting(planting)
-      .then(vm.loadData);
+      .then(vm.loadData)
+      .then(vm.loadReminders);
       gardenService.createPlanting(planting.plant,qty,4)
       .then(vm.transplant_form_hide(planting))
-      .then(vm.loadData);
+      .then(vm.loadData)
+      .then(vm.loadReminders);
     }
   };
 
   vm.deleteSeed = function(planting) {
     gardenService.deletePlanting(planting)
-    .then(vm.loadData);
+    .then(vm.loadData)
+    .then(vm.loadReminders);
   };
 
   vm.isSeed = function(seed) {
@@ -134,6 +140,8 @@ app.component('seedsComponent', {
   bindings : {
     garden: '=',
     showSeeds: '<',
-    loadData: '<'
+    loadData: '<',
+    reminders: '=',
+    loadReminders: '<'
   }
 });

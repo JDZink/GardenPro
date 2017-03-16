@@ -1,11 +1,12 @@
 var app = angular.module('ngGarden');
 
 /*****************APP COMPONENT*******************/
-var appController = function(authenticationService, reminderService){
+var appController = function(authenticationService, reminderService, $scope){
   var vm = this;
-  vm.userLoggedIn = function() {
-    return authenticationService.isLoggedIn();
+  vm.noUser = function() {
+    authenticationService.noUser();
   };
+  vm.noUser();
 
   vm.showComplete = false;
 
@@ -19,15 +20,19 @@ var appController = function(authenticationService, reminderService){
       });
     }
   };
-  vm.loadReminders();
-  console.log(vm.reminders);
+  $scope.$on('$viewContentLoaded', function(event) {
+    console.log("content loaded");
+    vm.loadReminders();
+  });
+
 
   vm.show_reminder_detail = function(reminder){
-    if(document.getElementById("rDetail"+reminder.id).style.display !== "block"){
-      document.getElementById("rDetail"+reminder.id).style.display = "block";
-    } else {
-      document.getElementById("rDetail"+reminder.id).style.display = "none";
-    }
+    $('#rDetail'+reminder.id).fadeToggle("slow");
+    // if(document.getElementById("rDetail"+reminder.id).style.display !== "block"){
+    //   document.getElementById("rDetail"+reminder.id).style.display = "block";
+    // } else {
+    //   document.getElementById("rDetail"+reminder.id).style.display = "none";
+    // }
   };
 
   vm.updateReminder = function(reminder){
@@ -67,13 +72,14 @@ app.component('appComponent', {
               <div class="row">
                   <div class="col-md-12">
 <!--******************************************** Page Content Here **********************-->
-                    <ng-view></ng-view>
+                    <ng-view reminders="$ctrl.reminders" load-reminders="$ctrl.loadReminders"></ng-view>
 <!--*************************************************************************************-->
                   </div>
               </div>
           </div>
       </div>
   </div>
+  {{$ctrl.noUser()}}
   <script src="assets/js/Sidebar-Menu.js"></script>
   `,
   controller : appController

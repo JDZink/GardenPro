@@ -19,7 +19,8 @@ var addplantsController = function(gardenService, $scope, $filter) {
     var qty = $('#qty'+plant.id).val();
     gardenService.createPlanting(plant,qty,stage)
       .then(vm.addplant_form_hide(plant))
-      .then(vm.loadData);
+      .then(vm.loadData)
+      .then(vm.loadReminders);
   };
 
   vm.addplant_form_show = function(plant) {
@@ -80,5 +81,9 @@ app.component('addplantsComponent',{
 
     </div>
   `,
-  controller : addplantsController
+  controller : addplantsController,
+  bindings : {
+    reminders: '=',
+    loadReminders: '<'
+  }
 });
