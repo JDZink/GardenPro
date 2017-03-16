@@ -12,10 +12,12 @@ var appController = function(authenticationService, reminderService){
   vm.reminders = [];
 
   vm.loadReminders = function() {
-    reminderService.getReminders()
-    .then(function(res){
-      vm.reminders = res.data;
-    });
+    if(authenticationService.isLoggedIn()){
+      reminderService.getReminders()
+      .then(function(res){
+        vm.reminders = res.data;
+      });
+    }
   };
   vm.loadReminders();
   console.log(vm.reminders);
