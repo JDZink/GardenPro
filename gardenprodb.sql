@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `gardenprodb`.`plant` (
   `comment` VARCHAR(1048) NULL DEFAULT NULL,
   `startGerm` INT(11) NOT NULL DEFAULT 0,
   `endGerm` INT(11) NOT NULL DEFAULT -2,
-  `zone` INT(2) NULL,
+  `zones` VARCHAR(20) NULL,
   `time_to_harvest` int(11) NULL,
   `harvestable` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`))
