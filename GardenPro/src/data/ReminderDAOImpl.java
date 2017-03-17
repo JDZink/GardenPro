@@ -32,8 +32,8 @@ public class ReminderDAOImpl implements ReminderDAO{
 
 	@Override
 	public Reminder create(Planting p, String cat) {
-
 		Plant plant = em.find(Plant.class, p.getPlant().getId());
+		System.out.println("creating reminder for cat " + cat + " on planting "+ plant.getCommonName());
 		Reminder r = new Reminder();
 
 		r.setUser(p.getUser());
@@ -82,7 +82,6 @@ public class ReminderDAOImpl implements ReminderDAO{
 
 			case "harvest":
 				r.setCategory(6);
-
 				r.setDate(p.getUser().getFrostDate().plusMonths(4));
 				r.setTitle("Harvest " + p.getPlant().getCommonName());
 				r.setDescription("It's time to harvest your " + p.getPlant().getCommonName() + "!");
