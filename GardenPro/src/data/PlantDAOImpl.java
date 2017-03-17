@@ -49,7 +49,6 @@ public class PlantDAOImpl implements PlantDAO{
 	public Plant create(Plant plant) {
 		em.persist(plant);
 		em.flush();
-		
 		return em.find(Plant.class, plant.getId());
 	}
 

@@ -75,8 +75,10 @@ public class ReminderDAOImpl implements ReminderDAO{
 						+ nl + "Check the weather to see if you have a frost coming up. The last one should have "
 						+ "passed and you can begin moving your plants outside. " 
 						+ nl +  "Comments: " + plant.getComment()  
-						+ nl +  "Planting Depth: " + plant.getDepth() + " inches."
-						+ nl +  "Plant Spacing: " + plant.getSpace() + " feet.");
+						+ nl +  "Planting Depth: " + plant.getDepth() 
+						+ nl +  "Plant Spacing: " + plant.getSpace()
+						+ nl +  "Plant Location: " + plant.getTransplant()
+						);
 				break;
 
 			case "water":
