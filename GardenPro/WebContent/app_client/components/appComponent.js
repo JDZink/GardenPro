@@ -9,6 +9,10 @@ var appController = function(authenticationService, reminderService, $rootScope)
   vm.noUser();
 
   vm.showComplete = false;
+  vm.toggleShowComplete = function() {
+    vm.showComplete = vm.showComplete?false:true;
+  };
+  vm.reminderTime = "day";
 
   vm.reminders = [];
 
@@ -50,11 +54,23 @@ app.component('appComponent', {
           <ul class="sidebar-nav">
 <!--******************************************** Reminders ******************************-->
               <h3 id="remindersHead">Reminders
-                <br><span id="showComplete">
-                <input id="completeCheck" type='checkbox' ng-model='$ctrl.showComplete'></input> Show Complete?
-              </span></h3>
+                <br>
+                <span id="showComplete"><input id="completeCheck" type='checkbox' ng-model='$ctrl.showComplete'></input>
+                <span id="showCompleteText" ng-click="$ctrl.toggleShowComplete()"> Show Complete? </span> </span>
+                <br>
+                <span id="reminderSpan">Reminders in next
+                 <select id="reminderTime" name="reminderTime" ng-model="$ctrl.reminderTime">
+                  <option value="day">Day</option>
+                  <option value="week">Week</option>
+                  <option value="month">Month</option>
+                  <option value="year">Year</option>
+                </select>
+                </span>
+              </h3>
+
               <hr class="reminderHeadDivider">
-              <div class="reminder" ng-repeat="reminder in $ctrl.reminders | completeFilter:$ctrl.showComplete | orderBy:['date[0]', 'date[1]', 'date[2]']">
+
+              <div class="reminder" ng-repeat="reminder in $ctrl.reminders | reminderFilter:$ctrl.showComplete:$ctrl.reminderTime | orderBy:['date[0]', 'date[1]', 'date[2]']">
                 <h4 class="reminderTitle">
                   <span class="detailClick" ng-click="$ctrl.show_reminder_detail(reminder)">{{reminder.title}}
                    {{reminder.date[1] + "/" + reminder.date[2]}}</span>
