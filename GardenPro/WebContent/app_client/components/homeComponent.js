@@ -48,7 +48,7 @@ app.component('homeComponent', {
                         <div class="col-md-5">
                             <img class="img-responsive" src="assets/img/icons/gardening-tools.svg">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 transBG">
                             <h3 class="name">By gardeners for gardeners </h3>
                             <p class="text-justify description">DigIt was created for novice and professional gardeners alike who struggle to keep their plants strong and healthy. In short, DigIt saves lives.</p>
                         </div>
@@ -59,7 +59,7 @@ app.component('homeComponent', {
                         <div class="col-md-5">
                             <img class="img-responsive" src="assets/img/icons/aloe.svg">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 transBG">
                             <h3 class="name">Region-Specific Gardening Tips</h3>
                             <p class="text-justify description">Some plants grow better in certain climates. Just plug in your hardiness zone upon registration, and DigIt will give you tips that are specific to your location.</p>
                         </div>
@@ -70,7 +70,7 @@ app.component('homeComponent', {
                         <div class="col-md-5">
                             <img class="img-responsive" src="assets/img/icons/watering-can.svg">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 transBG">
                             <h3 class="name">Never let your plants die</h3>
                             <p class="text-justify description">DigIt Reminders notify you when you should plant your seeds, when you should move your plants outdoors, and even when you should water them!</p>
                         </div>
@@ -81,7 +81,7 @@ app.component('homeComponent', {
                         <div class="col-md-5">
                             <img class="img-responsive" src="assets/img/icons/ecology.svg">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 transBG">
                             <h3 class="name">Crowdsourcing </h3>
                             <p class="text-justify description">DigIt's database is created with the help of all of DigIt's users. This allows users to get detailed information for any plant in the world!</p>
                         </div>
