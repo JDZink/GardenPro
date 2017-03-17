@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `gardenprodb`.`plant` (
   `common_name` VARCHAR(128) NOT NULL,
   `botanical_name` VARCHAR(128) NOT NULL,
   `variety` VARCHAR(128) NULL DEFAULT NULL,
-  `type` ENUM('orn','veg','herb','vine','tree','shrub','grass') NULL DEFAULT NULL,
+  `type` ENUM('orn','veg','herb','vine','tree','shrub','grass', 'fruit', 'grain') NULL DEFAULT NULL,
   `method_num` INT(5) NULL DEFAULT NULL,
   `sowing_method` VARCHAR(256) NULL DEFAULT NULL,
   `last_frost` INT(5) NOT NULL,
@@ -969,9 +969,6 @@ INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Heart-leaved alexanders','Zizia aptera','yellow','orn ','4','12 wks @ 39°F, move to 70°F for germ.','-12','thin','10','p','psha','ground cover. ',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Italian zucchini','Zucchetta rampicante tromboncino','yellow','vege','1','<2 wks @ 72°F, rapid germ., sow outdoors','1','covr','96','a','fsun','do not grow more than one plant. ',NULL);
 
-INSERT INTO user(username, password, zone, frost_date) VALUES ('robert', 'robert', '5a', '2017-03-02');
-INSERT INTO user(username, password, zone, frost_date) VALUES ('JoshZ', 'joshz', '7a', '2017-03-02');
-INSERT INTO user(username, password, zone, frost_date) VALUES ('Nick1', 'password', '1a', '2017-03-02');
 
 UPDATE plant SET startGerm = 0 WHERE method_num = 1;
 UPDATE plant SET endGerm = -2 WHERE method_num = 1;

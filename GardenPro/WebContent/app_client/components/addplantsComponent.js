@@ -1,7 +1,7 @@
 var app = angular.module('ngGarden');
 
 
-var addplantsController = function(gardenService, $rootScope, $filter) {
+var addplantsController = function(gardenService, $location, $rootScope, $filter) {
   var vm = this;
 
   vm.plants = [];
@@ -40,6 +40,7 @@ var addplantsController = function(gardenService, $rootScope, $filter) {
   vm.search= function(){
 	  vm.searchTerm = $('#searchString').val();
   };
+
   vm.trans= function(){
 	  vm.searchTransplant = $('#searchTransplant').val();
   };
@@ -48,6 +49,12 @@ var addplantsController = function(gardenService, $rootScope, $filter) {
   };
   vm.harv= function(){
 	  vm.searchHarvestable = $('#searchHarvestable').val();
+
+
+  vm.createPlant = function(){
+    console.log("In create plant func");
+    $location.path('/newPlant');
+
   };
 };
 
@@ -55,6 +62,10 @@ app.component('addplantsComponent',{
   template : `
     <div class="content-div">
       <h1>Plants</h1>
+      <form>
+      <button class="delete btn btn-danger" ng-click="$ctrl.createPlant()">Create new plant</button>
+      </form>
+      <br>
 	  <form>
 	  	Search<input id="searchString" type="text" placeholder="Search..." ng-change="$ctrl.search(value1)" ng-model="value1" ng-model-options="{debounce: 500}" name="searchStr">
 	  	Sun<select id="searchTransplant"  placeholder="Plant Locaton" ng-change="$ctrl.trans(value2)" ng-model="value2" ng-model-options="{debounce: 500}" name="searchTran">
@@ -64,16 +75,16 @@ app.component('addplantsComponent',{
 	  		<option value="fsha">Full Shade</option>
 	  		<option value="psha">Partial Shade</option>
 	  		<option></option>
-	  		
+
 	  	</select>
-	  	Zone<input id="searchZone" type="number" min="0" max="11" step="1" placeholder="Zone" ng-change="$ctrl.zone(value3)" ng-model="value3" ng-model-options="{debounce: 500}" name="searchZon"> 
+	  	Zone<input id="searchZone" type="number" min="0" max="11" step="1" placeholder="Zone" ng-change="$ctrl.zone(value3)" ng-model="value3" ng-model-options="{debounce: 500}" name="searchZon">
 	  	Food Producing<select id="searchHarvestable" placeholder="Search..." ng-change="$ctrl.harv(value4)" ng-model="value4" name="searchHarv">
 	  		<option value = ""></option>
 	  		<option value="Yes">Yes</option>
 	  		<option value="No">No</option>
 	  	</select>
 	  </form>
-        <div class="plants-box">
+        <div class="plants-box" id="get-plants-box">
           <div class="plant" ng-repeat="plant in $ctrl.plants | searchFilter:$ctrl.searchTerm:$ctrl.searchTransplant:$ctrl.searchZone:$ctrl.searchHarvestable | orderBy:'commonName'">
             <h4>{{plant.commonName}}</h4>
             <h5>Variety: {{plant.variety}}</h5>
@@ -97,7 +108,7 @@ app.component('addplantsComponent',{
                 </p>
                 <p>
                   <button class="add btn btn-primary" ng-click="$ctrl.addPlanting(plant)">Add</button>
-                  <button class="add btn btn-primary" ng-click="$ctrl.addplant_form_hide(plant)">Cancel</button>
+                  <button class="add btn btn-danger" ng-click="$ctrl.addplant_form_hide(plant)">Cancel</button>
                 </p>
               </form>
               </div>

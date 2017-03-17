@@ -1,10 +1,18 @@
+/**************PAGE****************/
+body {
+	background: linear-gradient(to bottom, rgba(254,254,254,0.3) 0%,rgba(254,254,254, 0.3) 100%), url("../img/shovel-garden1.jpg") no-repeat center bottom;
+	background-size: cover;
+  background-attachment: fixed;
+}
+
+
 /****************NAVBAR****************/
 .fa-leaf {
 	color: #1f741a
 }
 
 .nav, .navbar {
-	background-color: #c8c8c8;
+	background-color: #cccfbc;
 }
 
 .nav-container {
@@ -15,16 +23,39 @@
 .content-div, .seed, .plant {
 	text-align: center;
 }
+#seedToggle{
+	margin-bottom: 0px;
+	margin-top: 10px;
+}
+#seedStageHead{
+	margin-top: 5px;
+}
+
+#seed-box {
+	background-color: rgba(163, 118, 69, 0.9);
+}
+#plant-box {
+	background-color: rgba(134, 148, 41, 0.9);
+	margin-bottom: 20px;
+}
+#get-plants-box {
+	background-color: rgba(121, 92, 59, 0.9);
+	margin-bottom: 20px;
+}
+.plant {
+	background: linear-gradient(rgba(134, 148, 41, 0.9), rgba(117, 148, 41, 0.9));
+}
 
 .plantings-box, .plants-box {
 	display: inline-flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
 	border: 3px solid grey;
-	border-radius: 10px;
 	padding: 20px;
-	min-width: 30em;
+	min-width: 100%;
 	min-height: 15em;
+	margin-left: -17.6px;
+	margin-right: -17.6px;
 }
 
 .plant, .seed {
@@ -36,6 +67,12 @@
 	background-repeat: no-repeat;
 	background-position: center;
 }
+
+/*********************GET PLANTS PAGE******************/
+#searchString {
+	margin-bottom: 10px;
+}
+
 
 /* ****** BACKGROUNDS FOR PLANT BOXES*********/
 .stage0 {
@@ -70,16 +107,20 @@
 .reminders, .reminders:hover, .reminders:focus, .reminders:active {
 	position: fixed;
 	z-index: 10001;
-	background-color: rgba(255, 255, 255,1);
-	border: 1px solid rgb(51, 81, 158);
+	background-color: #4d9532;
+	border: 1px solid #507642;
 	border-radius: 5px;
 }
 a#menu-toggle {
 	margin-top: 25px;
 	margin-left: -35px;
-	background-color: #c8c8c8;
+	background-color: #cccfbc;
+}
+a#menu-toggle:hover {
+	background-color: #b3c496;
 }
 .fa-bell-o {
+	color: #507642;
 	font-size: 22px;
 	margin-right: -5px;
 	margin-left: -5px;
@@ -105,14 +146,14 @@ a#menu-toggle {
 	display: none;
 }
 #remindersHead {
-	color: #e0e0e0;
+	color: #869429;
 	margin-bottom: 0;
 	margin-left: 15px;
 }
 #showComplete {
 	margin-left: 5px;
 	font-size: 15px;
-	color: #949494;
+	color: #a7b493;
 }
 #completeCheck {
 	margin-top: -10px;
@@ -125,7 +166,7 @@ a#menu-toggle {
 	text-align: center;
 }
 .detailClick:hover {
-	color: #268024;
+	color: #507642;
 	cursor: pointer;
 }
 .reminderHeadDivider {
@@ -143,17 +184,16 @@ a#menu-toggle {
 	text-align: center;
 	width:100%;
 	height:100%;
-	opacity:.98;
 	top:0;
 	left:0;
 	display:none;
 	position:fixed;
-	background-color:#292318;
+	background-color: rgba(110, 110, 110, 0.75);
 	overflow:auto;
 	z-index: 1000001;
 }
 div.popupAddPlant {
-	background-color: #256019;
+	background-color: #869429;
 	border: 3px solid black;
 	opacity: 1;
 	border-radius: 10px;
@@ -168,11 +208,30 @@ div.popupAddPlant {
 	opacity: 1;
 }
 .popup-label {
-	color: rgb(255, 255, 255);
+	color: #ffffff;
 }
 .qtyInput {
 	width: 40px;
 }
 .black-text {
 	color: black;
+}
+
+/***********BUTTONS***************/
+.btn.btn-primary {
+	background-image: linear-gradient(to bottom,#52903c 0,#507642 100%);
+	background-repeat: repeat-x;
+	border-color: #507642;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+	border-color: #507642;
+	background-color: #507642;
+}
+.btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
+	border-color: #507642;
+	background-color: #507642;
+}
+
+input:checked {
+	color: #869429;
 }
