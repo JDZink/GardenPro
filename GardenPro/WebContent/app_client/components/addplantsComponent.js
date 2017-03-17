@@ -1,7 +1,7 @@
 var app = angular.module('ngGarden');
 
 
-var addplantsController = function(gardenService, $rootScope, $filter) {
+var addplantsController = function(gardenService, $location, $rootScope, $filter) {
   var vm = this;
 
   vm.plants = [];
@@ -37,12 +37,21 @@ var addplantsController = function(gardenService, $rootScope, $filter) {
   vm.search= function(){
 	  vm.searchTerm = $('#searchString').val();
   };
+
+  vm.createPlant = function(){
+    console.log("In create plant func");
+    $location.path('/newPlant');
+  };
 };
 
 app.component('addplantsComponent',{
   template : `
     <div class="content-div">
       <h1>Plants</h1>
+      <form>
+      <button class="delete btn btn-danger" ng-click="$ctrl.createPlant()">Create new plant</button>
+      </form>
+      <br>
 	  <form>
 	  	<input id="searchString" type="text" placeholder="Search..." ng-change="$ctrl.search(value)" ng-model="value" ng-model-options="{debounce: 500}" name="searchStr">
 	  </form>
