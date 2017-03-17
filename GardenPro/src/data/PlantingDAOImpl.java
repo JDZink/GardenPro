@@ -74,16 +74,16 @@ public class PlantingDAOImpl implements PlantingDAO {
 
 				case 3:
 					rdao.create(oldPlanting, "outdoors");
-					rdao.create(planting, "water");
+					rdao.create(oldPlanting, "water");
 					
 						break;
 
 				case 4: 
 					oldPlanting.setPlanted(LocalDate.now());
 //					rdao.create(oldPlanting, "harvest");
-					rdao.create(planting, "water");
+					rdao.create(oldPlanting, "water");
 					clearReminder(oldPlanting, 1,2,3,4);
-				//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
+				//oldPlanting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
 						break;
 
 				case 5: 

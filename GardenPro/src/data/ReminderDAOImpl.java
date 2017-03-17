@@ -38,37 +38,37 @@ public class ReminderDAOImpl implements ReminderDAO{
 
 		r.setUser(p.getUser());
 		r.setPlanting(p);
-		r.setPlant(p.getPlant());
+		r.setPlant(plant);
 		r.setComplete(false);
 		switch(cat){
 			case "start":
 				r.setCategory(1);
-				r.setTitle("Start " + p.getPlant().getCommonName());
+				r.setTitle("Start " + plant.getCommonName());
 				r.setDate(p.getUser().getFrostDate().plusWeeks(plant.getWeeksBeforeLastFrost()));
-				r.setDescription("It's time to start your " + p.getPlant().getCommonName() + "!" + nl
+				r.setDescription("It's time to start your " + plant.getCommonName() + "!" + nl
 						+ "Sowing Method: " + plant.getSowingMethod() + nl +  "Comments: " + plant.getComment() );
 				break;
 
 			case "germinate":
 				r.setCategory(2);
 				r.setDate(p.getStarted().plusWeeks(-plant.getStartGerm()));
-				r.setTitle( p.getPlant().getCommonName() + " Seeds Germinating.");
+				r.setTitle(plant.getCommonName() + " Seeds Germinating.");
 				r.setDescription("Getting Close! Keep the seeds moist. ");
 				break;
 
 			case "indoors":
 				r.setCategory(3);
 				r.setDate(p.getStarted().plusWeeks(- plant.getEndGerm()));
-				r.setTitle( p.getPlant().getCommonName() + " has Sprouted!");
-				r.setDescription("It's time to Pot your " + p.getPlant().getCommonName() + "!"+ nl
+				r.setTitle( plant.getCommonName() + " has Sprouted!");
+				r.setDescription("It's time to Pot your " +plant.getCommonName() + "!"+ nl
 					 +  "Comments: " + plant.getComment() );
 				break;
 
 			case "outdoors":
 				r.setCategory(4);
 				r.setDate(p.getUser().getFrostDate());
-				r.setTitle("Transplant " + p.getPlant().getCommonName() + " Outdoors " );
-				r.setDescription("It's time to plant your " + p.getPlant().getCommonName() + " outdoors! " +
+				r.setTitle("Transplant " + plant.getCommonName() + " Outdoors " );
+				r.setDescription("It's time to plant your " + plant.getCommonName() + " outdoors! " +
 				nl + "Check the weather to see if you have a frost coming up. The last one should have "
 						+ "passed and you can begin moving your plants outside. " + nl +  "Comments: " + plant.getComment()  );
 				break;
@@ -76,15 +76,15 @@ public class ReminderDAOImpl implements ReminderDAO{
 			case "water":
 				r.setCategory(5);
 				r.setDate(LocalDate.now().plusWeeks(1));
-				r.setTitle("Water " + p.getPlant().getCommonName());
-				r.setDescription("It's time to water your " + p.getPlant().getCommonName() + "!");
+				r.setTitle("Water " + plant.getCommonName());
+				r.setDescription("It's time to water your " + plant.getCommonName() + "!");
 				break;
 
 			case "harvest":
 				r.setCategory(6);
 				r.setDate(p.getUser().getFrostDate().plusMonths(4));
-				r.setTitle("Harvest " + p.getPlant().getCommonName());
-				r.setDescription("It's time to harvest your " + p.getPlant().getCommonName() + "!");
+				r.setTitle("Harvest " + plant.getCommonName());
+				r.setDescription("It's time to harvest your " + plant.getCommonName() + "!");
 				break;
 		}
 		em.persist(r);
