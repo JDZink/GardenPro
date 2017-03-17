@@ -41,6 +41,11 @@ public class Plant {
 	private String transplant;
 	private String img;
 	private String comment;
+	
+	private String zones;
+	@Column(name = "time_to_harvest")
+	private int timeToHarvest;
+	private boolean harvestable;
 	private int startGerm;
 	private int endGerm;
 	
