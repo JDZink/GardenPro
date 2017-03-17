@@ -21,17 +21,17 @@ var gardenController = function(gardenService) {
 app.component('gardenComponent',{
   template : `
     <div class="content-div">
-      <label ng-click="$ctrl.showComplete=($ctrl.showSeeds)?false:true;">Show Unplanted Seeds?</label>
+      <label id="seedToggle" ng-click="$ctrl.showComplete=($ctrl.showSeeds)?false:true;">Show Unplanted Seeds?</label>
       <input type='checkbox' ng-model='$ctrl.showSeeds'></input>
     </div>
     <div class="content-div">
-      <h1>Plants in Seed Stages <a href="#/addPlants"<button class="btn btn-primary">Add New Seeds</button></a></h1>
+      <h1 id="seedStageHead">Plants in Seed Stages <a href="#/addPlants"<button class="btn btn-primary">Get New Seeds</button></a></h1>
 
       <seeds-component garden="$ctrl.garden" show-seeds="$ctrl.showSeeds" load-data="$ctrl.loadData"
       reminders="$ctrl.reminders" load-reminders="$ctrl.loadReminders"></seeds-component>
     </div>
     <div class="content-div">
-      <h1>Plants</h1>
+      <h1 id="plantStageHead">Plants</h1>
 
       <plants-component garden="$ctrl.garden" load-data="$ctrl.loadData" load-reminders="$ctrl.loadReminders"></plants-component>
 
