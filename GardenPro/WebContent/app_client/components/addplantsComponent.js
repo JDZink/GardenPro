@@ -49,7 +49,7 @@ app.component('addplantsComponent',{
     <div class="content-div">
       <h1>Plants</h1>
       <form>
-      <button class="delete btn btn-danger" ng-click="$ctrl.createPlant()">Create new plant</button>
+      <button class="btn btn-danger" ng-click="$ctrl.createPlant()">Create new plant</button>
       </form>
       <br>
 	  <form>

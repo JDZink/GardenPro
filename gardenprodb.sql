@@ -1001,3 +1001,5 @@ UPDATE plant SET startGerm = -1 WHERE method_num = 17;
 UPDATE plant SET endGerm = -2 WHERE method_num = 17;
 
 DELETE from plant WHERE common_name = "";
+
+UPDATE plant SET harvestable = true WHERE type IN ("veg", "herb");
