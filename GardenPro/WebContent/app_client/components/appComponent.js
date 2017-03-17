@@ -28,12 +28,18 @@ var appController = function(authenticationService, reminderService, $rootScope)
 
 
   vm.show_reminder_detail = function(reminder){
-    $('#rDetail'+reminder.id).slideToggle("slow");
+    $('#rDetail'+reminder.id).slideToggle();
   };
 
   vm.updateReminder = function(reminder){
     reminderService.updateReminder(reminder)
     .then(vm.loadReminders);
+  };
+
+  vm.getDetails = function(det){
+    det = det + "";
+    var splitDet = det.split("&s&");
+    return splitDet;
   };
 };
 
@@ -68,9 +74,7 @@ app.component('appComponent', {
               <div class="row">
                   <div class="col-md-12">
 <!--******************************************** Page Content Here **********************-->
-                    <div id="page-bg">
-                      <ng-view></ng-view>
-                    </div>
+                    <ng-view></ng-view>
 <!--*************************************************************************************-->
                   </div>
               </div>

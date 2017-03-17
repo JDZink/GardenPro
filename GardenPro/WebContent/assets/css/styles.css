@@ -5,6 +5,9 @@ body {
   background-attachment: fixed;
 }
 
+.transBG {
+	background-color: rgba(255, 255, 255, 0.35);
+}
 
 /****************NAVBAR****************/
 .fa-leaf {
@@ -32,18 +35,19 @@ body {
 }
 
 #seed-box {
-	background-color: rgba(163, 118, 69, 0.9);
+	background-color: rgba(163, 118, 69, 0.8);
 }
 #plant-box {
-	background-color: rgba(134, 148, 41, 0.9);
+	background-color: rgba(134, 148, 41, 0.8);
 	margin-bottom: 20px;
 }
 #get-plants-box {
-	background-color: rgba(121, 92, 59, 0.9);
+	background-color: rgba(121, 92, 59, 0.8);
 	margin-bottom: 20px;
 }
 .plant {
-	background: linear-gradient(rgba(134, 148, 41, 0.9), rgba(117, 148, 41, 0.9));
+	background: linear-gradient(rgba(134, 148, 41, 0.8), rgba(117, 148, 41, 0.8));
+	max-height: 10em;
 }
 
 .plantings-box, .plants-box {
@@ -52,11 +56,15 @@ body {
 	justify-content: space-around;
 	border: 3px solid grey;
 	padding: 20px;
-	min-width: 100%;
+	min-width: 105%;
 	min-height: 15em;
 	margin-left: -17.6px;
 	margin-right: -17.6px;
 }
+.plants-box {
+		min-height: 34em;
+}
+
 
 .plant, .seed {
 	width: 15em;

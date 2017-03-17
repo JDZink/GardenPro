@@ -51,7 +51,6 @@ var addplantsController = function(gardenService, $location, $rootScope, $filter
 	  vm.searchHarvestable = $('#searchHarvestable').val();
   };
 
-
   vm.createPlant = function(){
     console.log("In create plant func");
     $location.path('/newPlant');
@@ -64,7 +63,7 @@ app.component('addplantsComponent',{
     <div class="content-div">
       <h1>Plants</h1>
       <form>
-      <button class="delete btn btn-danger" ng-click="$ctrl.createPlant()">Create new plant</button>
+      <button class="btn btn-danger" ng-click="$ctrl.createPlant()">Create new plant</button>
       </form>
       <br>
 	  <form>
