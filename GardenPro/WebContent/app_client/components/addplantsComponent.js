@@ -49,6 +49,7 @@ var addplantsController = function(gardenService, $location, $rootScope, $filter
   };
   vm.harv= function(){
 	  vm.searchHarvestable = $('#searchHarvestable').val();
+  };
 
 
   vm.createPlant = function(){
