@@ -56,7 +56,7 @@ body {
 	justify-content: space-around;
 	border: 3px solid grey;
 	padding: 20px;
-	min-width: 105%;
+	min-width: 104.5%;
 	min-height: 15em;
 	margin-left: -17.6px;
 	margin-right: -17.6px;
@@ -148,20 +148,25 @@ a#menu-toggle:hover {
 /***************REMINDERS***************/
 .reminder {
 	color: #8e8e8e;
-
 }
 .reminderDetail {
 	display: none;
+}
+#reminderTime {
+	color: black;
 }
 #remindersHead {
 	color: #869429;
 	margin-bottom: 0;
 	margin-left: 15px;
 }
-#showComplete {
+#showComplete, #reminderSpan {
 	margin-left: 5px;
 	font-size: 15px;
 	color: #a7b493;
+}
+#showComplete:hover {
+	cursor: pointer;
 }
 #completeCheck {
 	margin-top: -10px;
