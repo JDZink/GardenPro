@@ -22,7 +22,15 @@ var appController = function(authenticationService, reminderService, $rootScope)
   };
   vm.loadReminders();
   $rootScope.$on('reminderUpdateEvent', function(event) {
-    vm.loadReminders();
+    var i = 0;
+    var reload = function(){
+      if( i < 2 ) {
+        setTimeout(vm.loadReminders(), 500);
+        i++;
+        reload();
+      }
+    };
+    setTimeout(vm.loadReminders(), 500);
   });
 
 

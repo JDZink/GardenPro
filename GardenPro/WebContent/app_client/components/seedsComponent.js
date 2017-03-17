@@ -35,7 +35,6 @@ var seedsComponentController = function(gardenService, $rootScope){
       planting.stage = 4;
       gardenService.updatePlanting(planting)
       .then(function(){
-        vm.transplant_form_hide(planting);
         $rootScope.$broadcast('reminderUpdateEvent');
       })
       .then(vm.loadData);
@@ -82,6 +81,7 @@ var seedsComponentController = function(gardenService, $rootScope){
     document.getElementById("transplant"+seed.id).style.display = "block";
   };
   vm.transplant_form_hide = function(seed) {
+    console.log(seed);
     document.getElementById("transplant"+seed.id).style.display = "none";
   };
 
