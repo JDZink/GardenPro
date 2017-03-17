@@ -97,7 +97,7 @@ var seedsComponentController = function(gardenService, $rootScope){
 app.component('seedsComponent', {
   template : `
   {{$ctrl.noSeeds($ctrl.garden | seedFilter:true)}}
-  <div class="plantings-box">
+  <div class="plantings-box" id="seed-box">
     <div class="seed stage{{seed.stage}}" ng-repeat="seed in $ctrl.garden | seedFilter:$ctrl.showSeeds | orderBy:'commonName'">
       <h3>{{seed.plant.commonName}}</h3>
       <h4>Quantity: {{seed.qty}}<h4>
@@ -116,7 +116,7 @@ app.component('seedsComponent', {
           </p>
           <p>
             <button class="add btn btn-primary" ng-click="$ctrl.plantSeed(seed)">Plant</button>
-            <button class="add btn btn-primary" ng-click="$ctrl.plant_form_hide(seed)">Cancel</button>
+            <button class="add btn btn-danger" ng-click="$ctrl.plant_form_hide(seed)">Cancel</button>
           </p>
         </form>
         </div>
@@ -132,7 +132,7 @@ app.component('seedsComponent', {
           </p>
           <p>
             <button class="add btn btn-primary" ng-click="$ctrl.transplantSeed(seed)">Plant</button>
-            <button class="add btn btn-primary" ng-click="$ctrl.transplant_form_hide(seed)">Cancel</button>
+            <button class="add btn btn-danger" ng-click="$ctrl.transplant_form_hide(seed)">Cancel</button>
           </p>
         </form>
         </div>

@@ -55,7 +55,7 @@ app.component('appComponent', {
                   <input type='checkbox' ng-model='reminder.complete' ng-change='$ctrl.updateReminder(reminder)'></input>
                 </h4>
                 <h5 class="reminderDetail" id="rDetail{{reminder.id}}">
-                  {{reminder.description}}
+                  <p ng-repeat="det in $ctrl.getDetails(reminder.description)">{{det}}</p>
                 </h5>
                 <hr class="reminderDivider">
               </div>
@@ -68,7 +68,9 @@ app.component('appComponent', {
               <div class="row">
                   <div class="col-md-12">
 <!--******************************************** Page Content Here **********************-->
-                    <ng-view></ng-view>
+                    <div id="page-bg">
+                      <ng-view></ng-view>
+                    </div>
 <!--*************************************************************************************-->
                   </div>
               </div>

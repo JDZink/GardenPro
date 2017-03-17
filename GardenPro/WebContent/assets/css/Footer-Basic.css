@@ -1,6 +1,6 @@
 .footer-basic {
-  padding:5px 0;
-  background-color:#ffffff;
+  padding:10px 0;
+  background-color:#cccfbc;
   color:#4b4c4d;
   bottom:0;
   position: inherit;
@@ -18,7 +18,7 @@
 }
 
 .footer-basic li {
-  padding:0 10px;
+  padding:0 20px;
 }
 
 .footer-basic ul a {

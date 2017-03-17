@@ -46,7 +46,7 @@ app.component('addplantsComponent',{
 	  <form>
 	  	<input id="searchString" type="text" placeholder="Search..." ng-change="$ctrl.search(value)" ng-model="value" ng-model-options="{debounce: 500}" name="searchStr">
 	  </form>
-        <div class="plants-box">
+        <div class="plants-box" id="get-plants-box">
           <div class="plant" ng-repeat="plant in $ctrl.plants | searchFilter:$ctrl.searchTerm | orderBy:'commonName'">
             <h4>{{plant.commonName}}</h4>
             <h5>Variety: {{plant.variety}}</h5>
@@ -70,7 +70,7 @@ app.component('addplantsComponent',{
                 </p>
                 <p>
                   <button class="add btn btn-primary" ng-click="$ctrl.addPlanting(plant)">Add</button>
-                  <button class="add btn btn-primary" ng-click="$ctrl.addplant_form_hide(plant)">Cancel</button>
+                  <button class="add btn btn-danger" ng-click="$ctrl.addplant_form_hide(plant)">Cancel</button>
                 </p>
               </form>
               </div>

@@ -17,6 +17,12 @@ var navController = function($location, authenticationService){
   vm.isLoggedIn = function() {
     return authenticationService.isLoggedIn();
   };
+  vm.getDetails = function(det){
+    console.log(det);
+    det = det + "";
+    var splitDet = det.split("&s&");
+    return splitDet;
+  };
 };
 
 app.component('navComponent', {
@@ -30,7 +36,7 @@ app.component('navComponent', {
               <div class="collapse navbar-collapse" id="navcol-1">
                   <ul id="nav-links" class="nav navbar-nav">
                       <li role="presentation"><a href="#/garden">Garden</a></li>
-                      <li role="presentation"><a href="#/addPlants">Add Plants</a></li>
+                      <li role="presentation"><a href="#/addPlants">Get Plants</a></li>
                   </ul>
                   <p class="navbar-text navbar-right actions" id="signup" > <a class="btn btn-default action-button signup-button" role="button" ng-click="$ctrl.signup()">Sign Up</a></p>
                   <p class="navbar-text navbar-right actions" id="login" > <a class="btn btn-default action-button login-button" role="button" ng-click="$ctrl.login()">Log In</a></p>
