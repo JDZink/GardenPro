@@ -17,12 +17,6 @@ var navController = function($location, authenticationService){
   vm.isLoggedIn = function() {
     return authenticationService.isLoggedIn();
   };
-  vm.getDetails = function(det){
-    console.log(det);
-    det = det + "";
-    var splitDet = det.split("&s&");
-    return splitDet;
-  };
 };
 
 app.component('navComponent', {
