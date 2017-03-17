@@ -14,31 +14,41 @@ app.filter('searchFilter', function() {
             });
         } else {
         	results = plants;
-        	}
-        
-        function matchTrans(val){
-        	return val.transplant === trans;
-        	}
-        
-        if(trans){
-        	results = results.filter(matchTrans);
-        	}
-        
-        function matchTrans(val){
-        	return val.transplant === trans;
-        	}
-        
-        if(trans){
-        	results = results.filter(matchTrans);
-        	}
+        }
         
         function matchHarv(val){
         	return val.harvestable;
         	}
         
-        if(harvestable){
+        function matchNoHarv(val){
+        	return !val.harvestable;
+        	}
+        
+        if(harvestable == "No"){
+        	results = results.filter(matchNoHarv);
+        	}
+        else if(harvestable == "Yes"){
         	results = results.filter(matchHarv);
         	}
+        
+        function matchTrans(val){
+        	return val.transplant === trans;
+        	}
+        
+        if(trans){
+        	results = results.filter(matchTrans);
+        	}
+        
+        function matchTrans(val){
+        	return val.transplant === trans;
+        	}
+        
+        if(trans){
+        	results = results.filter(matchTrans);
+        	}
+        
+ 
+        
         
         function matchZone(val){
         	if (val.zones && val.zones.indexOf(zone) > -1){

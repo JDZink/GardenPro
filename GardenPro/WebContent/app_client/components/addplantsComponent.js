@@ -57,7 +57,7 @@ app.component('addplantsComponent',{
       <h1>Plants</h1>
 	  <form>
 	  	Search<input id="searchString" type="text" placeholder="Search..." ng-change="$ctrl.search(value1)" ng-model="value1" ng-model-options="{debounce: 500}" name="searchStr">
-	  	Sun<select id="searchTransplant"  placeholder="Plant Locaton" ng-change="$ctrl.trans(value2)" ng-model="value2" ng-model-options="{debounce: 500}" name="searchStr">
+	  	Sun<select id="searchTransplant"  placeholder="Plant Locaton" ng-change="$ctrl.trans(value2)" ng-model="value2" ng-model-options="{debounce: 500}" name="searchTran">
 	  		<option value = ""></option>
 	  		<option value="fsun">Full Sun</option>
 	  		<option value="psun">Partial Sun</option>
@@ -66,8 +66,12 @@ app.component('addplantsComponent',{
 	  		<option></option>
 	  		
 	  	</select>
-	  	Zone<input id="searchZone" type="number" min="0" max="11" step="1" placeholder="Zone" ng-change="$ctrl.zone(value3)" ng-model="value3" ng-model-options="{debounce: 500}" name="searchStr"> 
-	  	Harvestable<input id="searchHarvestable" type="Checkbox" placeholder="Search..." ng-change="$ctrl.harv(value4)" ng-model="value4" ng-model-options="{debounce: 500}" name="searchStr">
+	  	Zone<input id="searchZone" type="number" min="0" max="11" step="1" placeholder="Zone" ng-change="$ctrl.zone(value3)" ng-model="value3" ng-model-options="{debounce: 500}" name="searchZon"> 
+	  	Food Producing<select id="searchHarvestable" placeholder="Search..." ng-change="$ctrl.harv(value4)" ng-model="value4" name="searchHarv">
+	  		<option value = ""></option>
+	  		<option value="Yes">Yes</option>
+	  		<option value="No">No</option>
+	  	</select>
 	  </form>
         <div class="plants-box">
           <div class="plant" ng-repeat="plant in $ctrl.plants | searchFilter:$ctrl.searchTerm:$ctrl.searchTransplant:$ctrl.searchZone:$ctrl.searchHarvestable | orderBy:'commonName'">
