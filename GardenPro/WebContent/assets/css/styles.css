@@ -40,20 +40,20 @@
 /* ****** BACKGROUNDS FOR PLANT BOXES*********/
 .stage0 {
 	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage0.svg");
-	
+
 }
 .stage1 {
 	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage1.svg");
-	
+
 }
 .stage2 {
 	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage2.svg");
 	background-repeat: no-repeat;
-	
+
 }
 .stage3 {
 	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage3.svg");
-	
+
 }
 .stage4 {
 	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage4.svg");
@@ -75,7 +75,8 @@
 	border-radius: 5px;
 }
 a#menu-toggle {
-	margin-left: -55px;
+	margin-top: 25px;
+	margin-left: -35px;
 	background-color: #c8c8c8;
 }
 .fa-bell-o {
@@ -98,7 +99,7 @@ a#menu-toggle {
 /***************REMINDERS***************/
 .reminder {
 	color: #8e8e8e;
-	
+
 }
 .reminderDetail {
 	display: none;
