@@ -53,7 +53,7 @@ public class PlantingDAOImpl implements PlantingDAO {
 		System.out.println("planting id to change = " + id);
 
 		Planting oldPlanting = em.find(Planting.class,id);
-
+		Plant plant = em.find(Plant.class, planting.getPlant().getId());
 		oldPlanting.setQty(planting.getQty());
 
 		int startStage = oldPlanting.getStage();
@@ -68,6 +68,7 @@ public class PlantingDAOImpl implements PlantingDAO {
 						clearReminder(oldPlanting, 1);
 						rdao.create(oldPlanting, "germinate");
 						rdao.create(oldPlanting, "indoors");
+						rdao.create(oldPlanting, "water");
 						break;
 				case 2:
 						break;
@@ -80,14 +81,17 @@ public class PlantingDAOImpl implements PlantingDAO {
 
 				case 4: 
 					oldPlanting.setPlanted(LocalDate.now());
-//					rdao.create(oldPlanting, "harvest");
+					if(plant.isHarvestable()){
+						rdao.create(oldPlanting, "harvest");
+						oldPlanting.setHarvest(oldPlanting.getStarted().plusWeeks(-plant.getEndGerm()).plusWeeks(plant.getTimeToHarvest()));
+					}
 					rdao.create(oldPlanting, "water");
-					clearReminder(oldPlanting, 1,2,3,4);
-				//oldPlanting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
+					clearReminder(oldPlanting, 1,2,3,4);		
 						break;
 
 				case 5: 
-//					rdao.create(oldPlanting, "harvest");
+					rdao.create(oldPlanting, "harvest");
+					rdao.create(oldPlanting, "water");
 						break;
 
 			}
