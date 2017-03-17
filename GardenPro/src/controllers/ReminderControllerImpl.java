@@ -34,9 +34,7 @@ public class ReminderControllerImpl implements ReminderController {
 	@Override
 	@GetMapping
 	public Collection<Reminder> index(HttpServletRequest req, HttpServletResponse res) {
-		String userId = req.getParameter("userId");
-//		int userId = 29;
-		System.out.println("userId: " + userId);
+//		String userId = req.getParameter("userId");
 		int uid = (int)req.getAttribute("userId");
 		return dao.index(uid);
 	}
@@ -58,7 +56,6 @@ public class ReminderControllerImpl implements ReminderController {
 	@Override
 	public Reminder create(HttpServletRequest req, HttpServletResponse res,@RequestBody String ReminderJson) {
 		Reminder reminder = mapReminder(ReminderJson);
-		
 		return dao.create(reminder, (int)req.getAttribute("userId"));
 	}
 

@@ -12,13 +12,7 @@ public class Plant {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
-//	@OneToOne(mappedBy="plant")
-//	private Planting planting;
-//	
-//	@OneToOne(mappedBy="plant")
-//	private Reminder reminder;
-	
+		
 	@Column(name = "common_name")
 	private String commonName;
 	
@@ -41,18 +35,35 @@ public class Plant {
 	private String transplant;
 	private String img;
 	private String comment;
+	
 	private int startGerm;
 	private int endGerm;
 	
+	private String zones;
+	@Column(name = "time_to_harvest")
+	private int timeToHarvest;
+	private boolean harvestable;
 	
-	//Getters & Setters
-//	public Planting getPlanting() {
-//		return planting;
-//	}
-//	public void setPlanting(Planting planting) {
-//		this.planting = planting;
-//	}
 	
+	
+	public String getZones() {
+		return zones;
+	}
+	public void setZones(String zones) {
+		this.zones = zones;
+	}
+	public int getTimeToHarvest() {
+		return timeToHarvest;
+	}
+	public void setTimeToHarvest(int timeToHarvest) {
+		this.timeToHarvest = timeToHarvest;
+	}
+	public boolean isHarvestable() {
+		return harvestable;
+	}
+	public void setHarvestable(boolean harvestable) {
+		this.harvestable = harvestable;
+	}
 	public String getCommonName() {
 		return commonName;
 	}

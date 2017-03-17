@@ -22,7 +22,8 @@ public class ReminderDAOImpl implements ReminderDAO{
 	@PersistenceContext
 	private EntityManager em;
 
-	private String nl = System.lineSeparator();
+//	private String nl = System.lineSeparator();
+	private String nl = "&s&";
 
 	@Override
 	public Reminder create(Reminder reminder, int userId) {
@@ -46,7 +47,9 @@ public class ReminderDAOImpl implements ReminderDAO{
 				r.setTitle("Start " + plant.getCommonName());
 				r.setDate(p.getUser().getFrostDate().plusWeeks(plant.getWeeksBeforeLastFrost()));
 				r.setDescription("It's time to start your " + plant.getCommonName() + "!" + nl
-						+ "Sowing Method: " + plant.getSowingMethod() + nl +  "Comments: " + plant.getComment() );
+						+ "Sowing Method: " + plant.getSowingMethod() 
+						+ nl +  "Planting Depth: " + plant.getDepth()
+						+ nl +  "Comments: " + plant.getComment());
 				break;
 
 			case "germinate":
@@ -68,23 +71,49 @@ public class ReminderDAOImpl implements ReminderDAO{
 				r.setCategory(4);
 				r.setDate(p.getUser().getFrostDate());
 				r.setTitle("Transplant " + plant.getCommonName() + " Outdoors " );
-				r.setDescription("It's time to plant your " + plant.getCommonName() + " outdoors! " +
-				nl + "Check the weather to see if you have a frost coming up. The last one should have "
-						+ "passed and you can begin moving your plants outside. " + nl +  "Comments: " + plant.getComment()  );
+				r.setDescription("It's time to plant your " + plant.getCommonName() + " outdoors! " 
+						+ nl + "Check the weather to see if you have a frost coming up. The last one should have "
+						+ "passed and you can begin moving your plants outside. " 
+						+ nl +  "Comments: " + plant.getComment()  
+						+ nl +  "Planting Depth: " + plant.getDepth() + " inches."
+						+ nl +  "Plant Spacing: " + plant.getSpace() + " feet.");
 				break;
 
 			case "water":
 				r.setCategory(5);
-				r.setDate(LocalDate.now().plusWeeks(1));
-				r.setTitle("Water " + plant.getCommonName());
-				r.setDescription("It's time to water your " + plant.getCommonName() + "!");
+				switch(p.getStage()){
+					case 1: 
+					case 2:
+						r.setDate(LocalDate.now().plusDays(3));
+						r.setTitle("Check " + plant.getCommonName());
+						r.setDescription("Make sure the planting medium is still moist in your " + plant.getCommonName());
+						break;
+					case 3:
+						r.setDate(LocalDate.now().plusDays(5));
+						r.setTitle("Check " + plant.getCommonName());
+						r.setDescription("Make sure the planting medium is still moist in your " + plant.getCommonName());
+						break;
+					case 4: 
+						r.setDate(LocalDate.now().plusWeeks(1));
+						r.setTitle("Water " + plant.getCommonName());
+						r.setDescription("Water your " + plant.getCommonName() + ". If the soil is no longer moist when "
+								+ "you go to water consider adding some mulch to retain a bit more moisture. If soil is "
+								+ "still wet you may not have enough drainage, skip wattering this week."  );
+				
+					case 5: 
+						r.setDate(LocalDate.now().plusWeeks(1));
+						r.setTitle("Water " + plant.getCommonName());
+						r.setDescription("Water your " + plant.getCommonName() + ". If the soil is completely dry when you go to "
+								+ "water consider adding some mulch to retain a bit more moisture or water a bit longer. If soil "
+								+ "is very wet you may not have enough drainage, skip wattering this week."  );
+					}
 				break;
 
 			case "harvest":
 				r.setCategory(6);
-				r.setDate(p.getUser().getFrostDate().plusMonths(4));
+				r.setDate(p.getStarted().plusWeeks(plant.getTimeToHarvest()));
 				r.setTitle("Harvest " + plant.getCommonName());
-				r.setDescription("It's time to harvest your " + plant.getCommonName() + "!");
+				r.setDescription("It is about time to harvest your " + plant.getCommonName() + "!");
 				break;
 		}
 		em.persist(r);
