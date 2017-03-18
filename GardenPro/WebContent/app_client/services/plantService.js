@@ -1,6 +1,6 @@
 var app = angular.module('ngGarden');
 
-app.factory('plantService', function($window, $http){
+app.factory('plantService', function(authenticationService, $window, $http){
 	var service = this;
 	service.createPlant = function(plant){
     return $http({
@@ -10,11 +10,11 @@ app.factory('plantService', function($window, $http){
         "Content-Type" : "application/json",
         'x-access-token' : authenticationService.getToken()
       },
-      data : user
+      data : plant
     })
-    .then(function(res){
-      saveToken(res.data.jwt);
-    });
+    // .then(function(res){
+    //   saveToken(res.data.jwt);
+    // });
   };
 
   service.editPlant = function(plant){
@@ -25,7 +25,7 @@ app.factory('plantService', function($window, $http){
 	        "Content-Type" : "application/json",
 	        'x-access-token' : authenticationService.getToken()
 	      },
-	      data : user
+	      data : plant
 	    })
 	    .then(function(res){
 	      saveToken(res.data.jwt);

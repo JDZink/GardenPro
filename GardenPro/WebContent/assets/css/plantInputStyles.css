@@ -23,8 +23,6 @@ input[type=textarea]{
 	height: 100px;
 }
 
-
-
-/* .flex {
-	display: flex;
-} */
+#regForm input[type=submit]{
+	background-color: #507642 !important;
+}
