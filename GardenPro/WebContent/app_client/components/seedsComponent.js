@@ -112,7 +112,7 @@ app.component('seedsComponent', {
           <h3 class="popup-label">Planting {{seed.plant.commonName}} Seeds</h3>
           <p>
             <h4 class="popup-label">How Many?: <span class="black-text">
-            <input class="qtyInput" type="number" value="{{seed.qty}}" id="seedqty{{seed.id}}" name="qty"></span></h4>
+            <input class="qtyInput" type="number" min="0" max="{{seed.qty}}" step="1" required value="{{seed.qty}}" id="seedqty{{seed.id}}" name="qty"></span></h4>
           </p>
           <p>
             <button class="add btn btn-primary" ng-click="$ctrl.plantSeed(seed)">Plant</button>
@@ -128,7 +128,7 @@ app.component('seedsComponent', {
           <h3 class="popup-label">Transplanting <br> {{seed.plant.commonName}} Plants</h3>
           <p>
             <h4 class="popup-label">How Many?: <span class="black-text">
-            <input class="qtyInput" type="number" value="{{seed.qty}}" id="transplantqty{{seed.id}}" name="qty"></span></h4>
+            <input class="qtyInput" type="number" min="0" max="{{seed.qty}}" step="1" required value="{{seed.qty}}" id="transplantqty{{seed.id}}" name="qty"></span></h4>
           </p>
           <p>
             <button class="add btn btn-primary" ng-click="$ctrl.transplantSeed(seed)">Plant</button>

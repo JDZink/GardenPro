@@ -9,6 +9,34 @@ body {
 	background-color: rgba(255, 255, 255, 0.35);
 }
 
+/************REGISTRATION FROMS***********/
+.regBtn {
+  width:45%;
+  margin:10px 5px;
+}
+.regBtnFull {
+  width:90%;
+}
+.signupHead {
+	font-family: sans-serif;
+	font-size: 35px;
+}
+.zoneSelect {
+	font-size: 20px;
+	text-align: center;
+}
+.regHead {
+	text-align:center;
+  padding:0 0 20px;
+  font-size:64px;
+  font-family: Skia;
+  color:#262626;
+	margin-top: -40px;
+}
+.moveUp {
+	margin-top: -40px;
+}
+
 /****************NAVBAR****************/
 .fa-leaf {
 	color: #1f741a
