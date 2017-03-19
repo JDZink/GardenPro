@@ -104,7 +104,7 @@ app.component('addplantsComponent',{
                 </p>
                 <p>
                   <h4 class="popup-label">Quantity: <span class="black-text">
-                  <input class="qtyInput" type="number" value="1" id="qty{{plant.id}}" name="qty"></span></h4>
+                  <input class="qtyInput" type="number" min="0" step="1" required value="1" id="qty{{plant.id}}" name="qty"></span></h4>
                 </p>
                 <p>
                   <button class="add btn btn-primary" ng-click="$ctrl.addPlanting(plant)">Add</button>
