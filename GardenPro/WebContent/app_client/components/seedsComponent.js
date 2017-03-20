@@ -81,7 +81,6 @@ var seedsComponentController = function(gardenService, $rootScope){
     document.getElementById("transplant"+seed.id).style.display = "block";
   };
   vm.transplant_form_hide = function(seed) {
-    console.log(seed);
     document.getElementById("transplant"+seed.id).style.display = "none";
   };
 
@@ -108,7 +107,7 @@ app.component('seedsComponent', {
     <div class="seed stage{{seed.stage}}" ng-repeat="seed in $ctrl.garden | seedFilter:$ctrl.showSeeds | orderBy:'commonName'">
       <h3><a class="plantDetailClick" ng-click="$ctrl.plant_detail_show(seed)">{{seed.plant.commonName}}</a></h3>
       <h4>Quantity: {{seed.qty}}</h4>
-      <h4>Stage: {{$ctrl.showStage(seed.stage)}}</h4>
+      <h4>Stage: {{$ctrl.showDetail(seed.stage)}}</h4>
       <button class="plant-button btn btn-primary" ng-click="$ctrl.plant_form_show(seed)" ng-show="$ctrl.isSeed(seed)">Plant</button>
       <button class="transplant-button btn btn-primary" ng-click="$ctrl.transplant_form_show(seed)" ng-hide="$ctrl.isSeed(seed)">Transplant</button>
       <button class="delete btn btn-danger" ng-click="$ctrl.deleteSeed(seed)">Delete</button>
@@ -137,6 +136,7 @@ app.component('seedsComponent', {
             <h4 class="popup-label">How Many?: <span class="black-text">
             <input class="qtyInput" type="number" min="0" max="{{seed.qty}}" step="1" required value="{{seed.qty}}" id="transplantqty{{seed.id}}" name="qty"></span></h4>
           </p>
+          <p class="popup-label italic" ng-show="{{seed.stage < 3}}"><span class="warn">Warning:</span> This plant may be too young to move outside.</p>
           <p>
             <button class="add btn btn-primary" ng-click="$ctrl.transplantSeed(seed)">Plant</button>
             <button class="add btn btn-danger" ng-click="$ctrl.transplant_form_hide(seed)">Cancel</button>
@@ -152,15 +152,13 @@ app.component('seedsComponent', {
           <h4>Botanical Name: {{seed.plant.botanicalName}}</h4>
           <h4>Variety: {{seed.plant.variety}}</h4>
           <h4>Sowing Instructions: {{seed.plant.sowingMethod}}</h4>
-          <h4>Sowing Instructions: {{seed.plant.sowingMethod}}</h4>
-          <h4>Last Frost: {{seed.plant.lastFrost}}</h4>
-          <h4>Type: {{seed.plant.type}}</h4>
-          <h4>Life Cycle: {{seed.plant.life}}</h4>
+          <h4>Type: {{$ctrl.showDetail(seed.plant.type)}}</h4>
+          <h4>Life Cycle: {{$ctrl.showDetail(seed.plant.life)}}</h4>
           <h4>Germination: Weeks {{seed.plant.startGerm}}-{{seed.plant.endGerm}}</h4>
-          <h4>Sowing Depth: {{seed.plant.depth}}</h4>
-          <h4>Plant Spacing: {{seed.plant.space}}</h4>
+          <h4>Sowing Depth: {{seed.plant.depth}}in.</h4>
+          <h4>Plant Spacing: {{seed.plant.space}}in.</h4>
           <h4>Time to Harvest: {{seed.plant.timeToHarvest}}</h4>
-          <h4>Required Sun: {{seed.plant.transplant}}</h4>
+          <h4>Required Sun: {{$ctrl.showDetail(seed.plant.transplant)}}</h4>
           <h4>Zones: {{seed.plant.zones}}</h4>
           <h4>Comments: {{seed.plant.comment}}</h4>
           <p>
@@ -188,6 +186,6 @@ app.component('seedsComponent', {
     garden: '=',
     showSeeds: '<',
     loadData: '<',
-    showStage: '<'
+    showDetail: '<'
   }
 });

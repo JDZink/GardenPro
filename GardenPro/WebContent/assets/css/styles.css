@@ -44,11 +44,9 @@ input.btn.btn-primary.regBtnFull {
 }
 
 .nav, .navbar {
-	background-color: #cccfbc; 
+	background-color: #cccfbc;
 }
-.navbar {
-	border-bottom: 4px solid #86942a;
-}
+
 .nav-container {
 	width: 95%;
 }
@@ -61,34 +59,23 @@ input.btn.btn-primary.regBtnFull {
 	margin-bottom: 0px;
 	margin-top: 10px;
 }
-.seedStageHead{
+#seedStageHead{
 	margin-top: 5px;
-	color: white;
-	text-shadow: 2px 2px black;
 }
-
-
 
 #seed-box {
 	background-color: rgba(163, 118, 69, 0.8);
-	border-top: 3px solid #86942a;
-	border-bottom: 3px solid #86942a;
-	
 }
 #plant-box {
 	background-color: rgba(134, 148, 41, 0.8);
-	border-top: 3px solid #a37b45;
-	border-bottom: 3px solid #a37b45;
 	margin-bottom: 20px;
 }
 #get-plants-box {
 	background-color: rgba(121, 92, 59, 0.8);
 	margin-bottom: 20px;
-	border-top: 3px solid #86942a;
-	border-bottom: 3px solid #86942a;
 }
 .plant {
-	background: linear-gradient(rgba(134, 148, 41, 0.3), rgba(117, 148, 41, 0.8));
+	background: linear-gradient(rgba(134, 148, 41, 0.8), rgba(117, 148, 41, 0.8));
 	/*max-height: 10em;*/
 }
 
@@ -96,6 +83,7 @@ input.btn.btn-primary.regBtnFull {
 	display: inline-flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
+	border: 3px solid grey;
 	padding: 20px;
 	min-width: 100%;
 	min-height: 15em;
@@ -124,35 +112,25 @@ input.btn.btn-primary.regBtnFull {
 
 
 /* ****** BACKGROUNDS FOR PLANT BOXES*********/
-
-div.seed, .plantings-box div.plant{
-	background-color: rgba(254,254,254,0.5);
-	background-size: 50px;
-	background-position: 3%;
-}
-div.seed{
-		border: 2px solid #86942a;
-}
-.plantings-box div.plant{
-		border: 2px solid #a37b45;
-}
 .stage0 {
-	background-image: url("../img/icons/stage0.svg");
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage0.svg");
+
 }
 .stage1 {
-	background-image: url("../img/icons/stage1.svg");
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage1.svg");
+
 }
 .stage2 {
-	background-image: url("../img/icons/stage2.svg");
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage2.svg");
+	background-repeat: no-repeat;
+
 }
 .stage3 {
-	background-image: url("../img/icons/stage3.svg");
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage3.svg");
+
 }
 .stage4 {
-	background-image: url("../img/icons/stage4.svg");
-}
-.stage5 {
-	background-image: url("../img/icons/stage5.svg");
+	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage4.svg");
 }
 /* ****** BACKGROUNDS FOR PLANT BOXES*********/
 
@@ -160,6 +138,7 @@ div.seed{
 .container-fluid {
 	margin-top: 70px;
 }
+
 
 /***********REMINDER TOGGLE BTN*********/
 .reminders, .reminders:hover, .reminders:focus, .reminders:active {
@@ -270,8 +249,8 @@ div.popupAddPlant {
 div.popupAddPlant.detailPopup {
 	left:20%;
 	margin-left:0px;
-	top:5%;
-	height: 90%;
+	top:12.5%;
+	height: 75%;
 	width: 60%;
 }
 .btn {
@@ -295,6 +274,13 @@ a.plantDetailClick:hover {
 	text-decoration: none;
 	cursor: pointer;
 	text-shadow: 0px 0px 5px #2b3e24;
+}
+.warn {
+	color: #d41616;
+	font-weight: 800;
+}
+.italic {
+	font-style: italic;
 }
 
 /****************ZONE LOOKUP POPUP*************/
@@ -323,7 +309,7 @@ div#zoneLookup.popup {
 div.lookupBox {
 	position: fixed;
 	top: 35%;
-	padding-left: 25px; 
+	padding-left: 25px;
 }
 
 /***********BUTTONS***************/
