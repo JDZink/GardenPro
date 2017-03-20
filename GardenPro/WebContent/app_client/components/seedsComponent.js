@@ -138,6 +138,22 @@ app.component('seedsComponent', {
         </div>
       </div>
 
+      <div class="popup" id="detail{{seed.id}}">
+        <div class="popupAddPlant">
+        <form>
+          <h3 class="popup-label">{{seed.plant.commonName}} Detail</h3>
+          <p>
+            <h4 class="popup-label">How Many?: <span class="black-text">
+            <input class="qtyInput" type="number" min="0" max="{{seed.qty}}" step="1" required value="{{seed.qty}}" id="seedqty{{seed.id}}" name="qty"></span></h4>
+          </p>
+          <p>
+            <button class="add btn btn-primary" ng-click="$ctrl.plantSeed(seed)">Plant</button>
+            <button class="add btn btn-danger" ng-click="$ctrl.plant_form_hide(seed)">Cancel</button>
+          </p>
+        </form>
+        </div>
+      </div>
+
     </div>
 
     <div id="noSeeds">
