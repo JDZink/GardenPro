@@ -40,6 +40,8 @@
 .navigation-clean-button .navbar-brand {
   font-weight:bold;
   color:inherit;
+  font-family: Skia;
+  font-size: 1.5em;
 }
 
 .navigation-clean-button .navbar-brand:hover {
@@ -104,11 +106,17 @@
 
 .navigation-clean-button.navbar-default .navbar-nav > li > a {
   color:#465765;
+  transition: 0.3s ease;
+  text-decoration: none;
+  padding: 5px 0;
+  margin: 10px 20px 0px 0px;
 }
 
 .navigation-clean-button.navbar-default .navbar-nav > li > a:focus, .navigation-clean-button.navbar-default .navbar-nav > li > a:hover {
-  color:#37434d !important;
   background-color:transparent;
+  color: #ffffff;
+  border-top: 4px solid #86942a;
+  padding: 0;
 }
 
 .navigation-clean-button .navbar-nav > li > .dropdown-menu {
