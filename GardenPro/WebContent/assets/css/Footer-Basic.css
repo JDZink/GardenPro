@@ -6,6 +6,7 @@
   position: inherit;
   width:100%;
   z-index:1000;
+  border-top: 3px solid #86942a;
 }
 
 .footer-basic ul {

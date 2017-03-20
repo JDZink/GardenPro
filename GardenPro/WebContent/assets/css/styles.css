@@ -44,7 +44,7 @@ input.btn.btn-primary.regBtnFull {
 }
 
 .nav, .navbar {
-	background-color: #cccfbc; 
+	background-color: #cccfbc;
 }
 .navbar {
 	border-bottom: 4px solid #86942a;
@@ -66,14 +66,11 @@ input.btn.btn-primary.regBtnFull {
 	color: white;
 	text-shadow: 2px 2px black;
 }
-
-
-
 #seed-box {
 	background-color: rgba(163, 118, 69, 0.8);
 	border-top: 3px solid #86942a;
 	border-bottom: 3px solid #86942a;
-	
+
 }
 #plant-box {
 	background-color: rgba(134, 148, 41, 0.8);
@@ -87,11 +84,17 @@ input.btn.btn-primary.regBtnFull {
 	border-top: 3px solid #86942a;
 	border-bottom: 3px solid #86942a;
 }
-.plant {
+.plant, .seed {
 	background: linear-gradient(rgba(134, 148, 41, 0.3), rgba(117, 148, 41, 0.8));
 	/*max-height: 10em;*/
 }
-
+div .quantityAndStageBox{
+	display: inline-block;
+}
+.seed h4{
+	display: inline-flex;
+	font-size: 12px;
+}
 .plantings-box, .plants-box {
 	display: inline-flex;
 	flex-flow: row wrap;
@@ -127,7 +130,6 @@ input.btn.btn-primary.regBtnFull {
 
 div.seed, .plantings-box div.plant{
 	background-color: rgba(254,254,254,0.5);
-	background-size: 50px;
 	background-position: 3%;
 }
 div.seed{
@@ -136,23 +138,29 @@ div.seed{
 .plantings-box div.plant{
 		border: 2px solid #a37b45;
 }
-.stage0 {
+.imgStage0 {
 	background-image: url("../img/icons/stage0.svg");
+	display: inline-flex;
 }
-.stage1 {
+.imgStage1 {
 	background-image: url("../img/icons/stage1.svg");
+	display: inline-flex;
 }
-.stage2 {
+.imgStage2 {
 	background-image: url("../img/icons/stage2.svg");
+	display: inline-flex;
 }
-.stage3 {
+.imgStage3 {
 	background-image: url("../img/icons/stage3.svg");
+	display: inline-flex;
 }
-.stage4 {
+.imgStage4 {
 	background-image: url("../img/icons/stage4.svg");
+	display: inline-flex;
 }
-.stage5 {
+.imgStage5 {
 	background-image: url("../img/icons/stage5.svg");
+	display: inline-flex;
 }
 /* ****** BACKGROUNDS FOR PLANT BOXES*********/
 
@@ -323,7 +331,7 @@ div#zoneLookup.popup {
 div.lookupBox {
 	position: fixed;
 	top: 35%;
-	padding-left: 25px; 
+	padding-left: 25px;
 }
 
 /***********BUTTONS***************/

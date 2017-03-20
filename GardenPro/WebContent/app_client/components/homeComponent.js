@@ -117,6 +117,7 @@ app.component('homeComponent', {
                                       <li><u>Partial Sun:</u> 3-6 hours of direct sunlight each day.</li>
                                       <li><u>Full Shade:</u>  Less than 3 hours of direct sunlight each day, ideally from morning sunlight. In the absence of direct sunlight, a bright light could count as "full shade".</li>
                                       <li><u>Partial Shade:</u> 3-6 hours of morning or early afternoon sun. Relief from the intense late afternoon sun is needed.</li>
+							    	  <li><u>Deep Shade:</u> No direct sunlight. Ever.</li>
                                       </ul>
                                       </p>
                                   </div>

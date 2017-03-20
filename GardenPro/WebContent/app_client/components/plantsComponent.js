@@ -33,6 +33,7 @@ app.component('plantsComponent', {
   <div class="plantings-box" id="plant-box">
     <div class="plant stage{{plant.stage}}" ng-repeat="plant in $ctrl.garden | plantFilter | orderBy:'commonName'">
       <h3><a class="plantDetailClick" ng-click="$ctrl.plant_detail_show(plant)">{{plant.plant.commonName}}</a></h3>
+      <div class="imgStage{{plant.stage}}" style="width: 50px; height: 50px;"></div>
       <h4>Quantity: {{plant.qty}}</h4>
       <h4>Stage: {{$ctrl.showStage(plant.stage)}}</h4>
       <button class="delete btn btn-danger" ng-click="$ctrl.deletePlant(plant)">Delete</button>

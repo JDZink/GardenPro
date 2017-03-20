@@ -46,9 +46,16 @@ public class ReminderDAOImpl implements ReminderDAO {
 			r.setCategory(1);
 			r.setTitle("Start " + plant.getCommonName());
 			r.setDate(p.getUser().getFrostDate().plusWeeks(plant.getWeeksBeforeLastFrost()));
-			r.setDescription("It's time to start your " + plant.getCommonName() + "!" + nl + "Sowing Method: "
-					+ plant.getSowingMethod() + nl + "Planting Depth: " + plant.getDepth() + nl + "Comments: "
-					+ plant.getComment());
+			if(plant.getSowingMethod().toLowerCase().contains("sow outdoors") || plant.getMethodNum() == 10){
+				r.setDescription("It's time to start your " + plant.getCommonName() + "!" + nl + "Sowing Method: "
+						+ plant.getSowingMethod() + nl + "Planting Depth: " + plant.getDepth() + nl + "Comments: "
+						+ plant.getComment());
+			}
+			else{
+				r.setDescription("It's time to start your " + plant.getCommonName() + "!" + nl + "Sow indoors: "
+						+ plant.getSowingMethod() + nl + "Planting Depth: " + plant.getDepth() + nl + "Comments: "
+						+ plant.getComment());
+			}
 			break;
 
 		case "germinate":
@@ -58,8 +65,8 @@ public class ReminderDAOImpl implements ReminderDAO {
 			} else {
 				r.setDate(p.getStarted().plusWeeks(-plant.getStartGerm()));
 			}
-			r.setTitle(plant.getCommonName() + " Seeds Germinating.");
-			r.setDescription("Getting Close! Keep the seeds moist. ");
+			r.setTitle(plant.getCommonName() + " Seeds Germinating");
+			r.setDescription("Getting Close! Your seeds should be sprouting any day now! Keep them moist. ");
 			break;
 
 		case "indoors":
@@ -67,14 +74,14 @@ public class ReminderDAOImpl implements ReminderDAO {
 			r.setDate(p.getStarted().plusWeeks(-plant.getEndGerm()));
 			r.setTitle(plant.getCommonName() + " has Sprouted!");
 			r.setDescription(
-					"It's time to Pot your " + plant.getCommonName() + "!" + nl + "Comments: " + plant.getComment());
+					"It's time to pot your " + plant.getCommonName() + "! Keep it inside until your last frost passes." + nl + "Comments: " + plant.getComment());
 			break;
 
 		case "outdoors":
 			r.setCategory(4);
 			r.setDate(p.getUser().getFrostDate());
 			r.setTitle("Transplant " + plant.getCommonName() + " Outdoors ");
-			r.setDescription("It's time to plant your " + plant.getCommonName() + " outdoors! " + nl
+			r.setDescription("It's time to transplant your " + plant.getCommonName() + " outdoors! " + nl
 					+ "Check the weather to see if you have a frost coming up. The last one should have "
 					+ "passed and you can begin moving your plants outside. " + nl + "Comments: " + plant.getComment()
 					+ nl + "Planting Depth: " + plant.getDepth() + nl + "Plant Spacing: " + plant.getSpace() + nl
@@ -82,28 +89,42 @@ public class ReminderDAOImpl implements ReminderDAO {
 			break;
 
 		case "water":
+			LocalDate started = p.getStarted();
+			LocalDate lastWatered = started;
 			r.setCategory(5);
 			switch (p.getStage()) {
 			case 1:
 			case 2:
-				r.setDate(LocalDate.now().plusDays(3));
+				while(lastWatered.isBefore(LocalDate.now())){
+					lastWatered = lastWatered.plusDays(3);
+				}
+				r.setDate(lastWatered);
 				r.setTitle("Check " + plant.getCommonName());
 				r.setDescription("Make sure the planting medium is still moist in your " + plant.getCommonName());
 				break;
 			case 3:
-				r.setDate(LocalDate.now().plusDays(5));
+				while(lastWatered.isBefore(LocalDate.now())){
+					lastWatered = lastWatered.plusDays(5);
+				}
+				r.setDate(lastWatered);		
 				r.setTitle("Check " + plant.getCommonName());
 				r.setDescription("Make sure the planting medium is still moist in your " + plant.getCommonName());
 				break;
 			case 4:
-				r.setDate(LocalDate.now().plusWeeks(1));
+				while(lastWatered.isBefore(LocalDate.now())){
+					lastWatered = lastWatered.plusWeeks(1);
+				}
+				r.setDate(lastWatered);			
 				r.setTitle("Water " + plant.getCommonName());
 				r.setDescription("Water your " + plant.getCommonName() + ". If the soil is no longer moist when "
 						+ "you go to water consider adding some mulch to retain a bit more moisture. If soil is "
 						+ "still wet you may not have enough drainage, skip wattering this week.");
 
 			case 5:
-				r.setDate(LocalDate.now().plusWeeks(1));
+				while(lastWatered.isBefore(LocalDate.now())){
+					lastWatered = lastWatered.plusWeeks(1);
+				}
+				r.setDate(lastWatered);
 				r.setTitle("Water " + plant.getCommonName());
 				r.setDescription(
 						"Water your " + plant.getCommonName() + ". If the soil is completely dry when you go to "

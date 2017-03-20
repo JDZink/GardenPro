@@ -124,6 +124,9 @@ public class PlantingDAOImpl implements PlantingDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see data.PlantingDAO#create(entities.Planting, int, int)
+	 */
 	@Override
 	public Planting create(Planting planting, int userId, int plantId) {
 		User u = em.find(User.class, userId);
@@ -144,7 +147,7 @@ public class PlantingDAOImpl implements PlantingDAO {
 			rdao.create(planting, "indoors");
 			break;
 		case 4:
-			rdao.create(planting, "harvest");
+			planting.setStarted(LocalDate.now());
 			rdao.create(planting, "water");
 			break;
 		case 5:
