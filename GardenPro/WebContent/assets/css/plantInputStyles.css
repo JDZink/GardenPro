@@ -1,0 +1,35 @@
+.newPlantIllustration{
+	padding-top: 10px;
+}
+#data {
+    padding:0;
+    height: 1.6em;
+}
+#regForm select{
+	  width: 100%;
+	  overflow-y: overlay;
+}
+#regForm option {
+	border:1px solid #000;
+	display:inline-block;
+	width: 9.09%;
+}
+
+#regForm {
+	background-color: rgba(255,255,255,0.7);
+	padding: 20px;
+}
+
+#regForm input[type=textarea]{
+	height: 100px;
+}
+
+#regForm input[type=submit]{
+	background-color: #507642 !important;
+}
+#regForm input{
+	width: 100%;
+}
+#regForm input.ng-pristine.ng-untouched.ng-valid.ng-empty.ng-valid-min.ng-valid-max{
+	width: 46%;
+}
