@@ -77,7 +77,7 @@ app.component('addplantsComponent',{
 	  		<option></option>
 
 	  	</select>
-	  	Zone<input id="searchZone" type="number" min="0" max="11" step="1" placeholder="Zone" ng-change="$ctrl.zone(value3)" ng-model="value3" ng-model-options="{debounce: 500}" name="searchZon">
+	  	Zone<input id="searchZone" type="number" min="0" max="11" step="1" ng-change="$ctrl.zone(value3)" ng-model="value3" ng-model-options="{debounce: 500}" name="searchZon">
 	  	Food Producing<select id="searchHarvestable" placeholder="Search..." ng-change="$ctrl.harv(value4)" ng-model="value4" name="searchHarv">
 	  		<option value = ""></option>
 	  		<option value="Yes">Yes</option>
