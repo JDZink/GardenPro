@@ -65,10 +65,12 @@ input.btn.btn-primary.regBtnFull {
 #seedStageHead{
 	margin-top: 5px;
 }
+
 #seed-box {
 	background-color: rgba(163, 118, 69, 0.8);
 	border-top: 3px solid #86942a;
 	border-bottom: 3px solid #86942a;
+}
 
 #plant-box {
 	background-color: rgba(134, 148, 41, 0.8);
@@ -86,10 +88,7 @@ input.btn.btn-primary.regBtnFull {
 div .quantityAndStageBox{
 	display: inline-block;
 }
-.seed h4{
-	display: inline-flex;
-	font-size: 12px;
-}
+
 .plantings-box, .plants-box {
 	display: inline-flex;
 	flex-flow: row wrap;
@@ -156,7 +155,6 @@ div.seed{
 .imgStage5 {
 	background-image: url("../img/icons/stage5.svg");
 	display: inline-flex;
-
 }
 /* ****** BACKGROUNDS FOR PLANT BOXES*********/
 
