@@ -75,7 +75,7 @@ body {
 }
 .plant {
 	background: linear-gradient(rgba(134, 148, 41, 0.8), rgba(117, 148, 41, 0.8));
-	max-height: 10em;
+	/*max-height: 10em;*/
 }
 
 .plantings-box, .plants-box {
@@ -84,7 +84,7 @@ body {
 	justify-content: space-around;
 	border: 3px solid grey;
 	padding: 20px;
-	min-width: 104.5%;
+	min-width: 100%;
 	min-height: 15em;
 	margin-left: -17.6px;
 	margin-right: -17.6px;
