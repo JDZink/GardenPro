@@ -100,8 +100,8 @@ app.component('seedsComponent', {
   <div class="plantings-box" id="seed-box">
     <div class="seed stage{{seed.stage}}" ng-repeat="seed in $ctrl.garden | seedFilter:$ctrl.showSeeds | orderBy:'commonName'">
       <h3>{{seed.plant.commonName}}</h3>
-      <h4>Quantity: {{seed.qty}}<h4>
-      <h4>Stage: {{seed.stage}}<h4>
+      <h4>Quantity: {{seed.qty}}</h4>
+      <h4>Stage: {{seed.stage}}</h4>
       <button class="plant-button btn btn-primary" ng-click="$ctrl.plant_form_show(seed)" ng-show="$ctrl.isSeed(seed)">Plant</button>
       <button class="transplant-button btn btn-primary" ng-click="$ctrl.transplant_form_show(seed)" ng-hide="$ctrl.isSeed(seed)">Transplant</button>
       <button class="delete btn btn-danger" ng-click="$ctrl.deleteSeed(seed)">Delete</button>
