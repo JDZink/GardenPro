@@ -11,6 +11,7 @@ var signupController = function($location, authenticationService){
   var user = {};
   user.zone = 1;
 
+  var temp = {};
   vm.zone_lookup_show = function() {
     document.getElementById("zoneLookup").style.display = "flex";
   };
@@ -45,7 +46,7 @@ app.component('signupComponent', {
                 required ng-minlength="6">
           </div>
           <div class="form-group">
-              <input class="form-control" type="password" name="password2" ng-model="user.password" placeholder="confirm password"
+              <input class="form-control" type="password" name="password2" ng-model="temp.password" placeholder="confirm password"
                 required ng-minlength="6">
           </div>
           <div class="form-group zoneSelect">
@@ -85,15 +86,17 @@ app.component('signupComponent', {
               <li ng-show="regForm.password.$dirty && regForm.password.$invalid">
                 password must be at least 6 characters
               </li>
-
-              <li ng-show="regForm.password.$dirty && regForm.password.$invalid && regForm.password2.$dirty && regForm.password2.$invalid
-              && (regForm.password !== regForm.password2)">
-                password must match confirm password
-              </li>
-
               <li ng-show="regForm.password.$dirty && regForm.password.$error.required">
                 password is required
               </li>
+              <li ng-show="regForm.password2.$dirty && regForm.password.$error.required">
+                password confirmation is required
+              </li>
+
+              <li ng-show="regForm.password.$dirty && regForm.password2.$dirty && (user.password !== temp.password)">
+                password must match confirm password
+              </li>
+
             </ul>
           </div>
           <div class="form-group">

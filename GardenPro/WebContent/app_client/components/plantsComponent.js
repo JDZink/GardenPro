@@ -35,7 +35,7 @@ app.component('plantsComponent', {
       <h3><a class="plantDetailClick" ng-click="$ctrl.plant_detail_show(plant)">{{plant.plant.commonName}}</a></h3>
       <div class="imgStage{{plant.stage}}" style="width: 50px; height: 50px;"></div>
       <h4>Quantity: {{plant.qty}}</h4>
-      <h4>Stage: {{$ctrl.showStage(plant.stage)}}</h4>
+      <h4>Stage: {{$ctrl.showDetail(plant.stage)}}</h4>
       <button class="delete btn btn-danger" ng-click="$ctrl.deletePlant(plant)">Delete</button>
 
       <div class="popup" id="detail{{plant.id}}">
@@ -45,15 +45,13 @@ app.component('plantsComponent', {
           <h4>Botanical Name: {{plant.plant.botanicalName}}</h4>
           <h4>Variety: {{plant.plant.variety}}</h4>
           <h4>Sowing Instructions: {{plant.plant.sowingMethod}}</h4>
-          <h4>Sowing Instructions: {{plant.plant.sowingMethod}}</h4>
-          <h4>Last Frost: {{plant.plant.lastFrost}}</h4>
-          <h4>Type: {{plant.plant.type}}</h4>
-          <h4>Life Cycle: {{plant.plant.life}}</h4>
+          <h4>Type: {{$ctrl.showDetail(plant.plant.type)}}</h4>
+          <h4>Life Cycle: {{$ctrl.showDetail(plant.plant.life)}}</h4>
           <h4>Germination: Weeks {{plant.plant.startGerm}}-{{plant.plant.endGerm}}</h4>
-          <h4>Sowing Depth: {{plant.plant.depth}}</h4>
-          <h4>Plant Spacing: {{plant.plant.space}}</h4>
+          <h4>Sowing Depth: {{plant.plant.depth}}in.</h4>
+          <h4>Plant Spacing: {{plant.plant.space}}in.</h4>
           <h4>Time to Harvest: {{plant.plant.timeToHarvest}}</h4>
-          <h4>Required Sun: {{plant.plant.transplant}}</h4>
+          <h4>Required Sun: {{$ctrl.showDetail(plant.plant.transplant)}}</h4>
           <h4>Zones: {{plant.plant.zones}}</h4>
           <h4>Comments: {{plant.plant.comment}}</h4>
           <p>
@@ -79,6 +77,6 @@ app.component('plantsComponent', {
   bindings : {
     garden: '=',
     loadData: '<',
-    showStage: '<'
+    showDetail: '<'
   }
 });
