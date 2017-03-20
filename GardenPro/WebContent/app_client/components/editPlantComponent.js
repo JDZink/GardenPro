@@ -41,6 +41,35 @@ var newPlantController = function($location, $scope, plantService){
     '10',
     '11'
   ];
+  
+  typeOptions = [{
+	   name: 'fruit',
+	   value: 'fruit'
+	}, {
+	   name: 'grain',
+	   value: 'grain'
+	}, {
+	   name: 'grass',
+	   value: 'grass'	
+	}, {
+	   name: 'herb',
+	   value: 'herb'
+	}, {
+	   name: 'orn',
+	   value: 'orn'
+	}, {
+	   name: 'shrub',
+	   value: 'shrub'
+	}, {
+	   name: 'tree',
+	   value: 'tree'
+	}, {
+	   name: 'veg',
+	   value: 'veg'
+	}, {
+	   name: 'vine',
+	   value: 'vine'
+	}];
 };
 
 app.component('newPlantComponent', {
@@ -60,6 +89,8 @@ app.component('newPlantComponent', {
       <input type="textarea" name="sowingMethod" ng-model="plant.sowingMethod" value="{{plant.sowingMethod}}"> <br>
       How many weeks before the frost date must it be planted indoors?
       <input type="number" id="weeksBeforeLastFrostId" name="weeksBeforeLastFrost" ng-model="plant.weeksBeforeLastFrost" value="{{plant.weeksBeforeLastFrost}}" min="0" max="52" REQUIRED> <br>
+
+	  <select ng-model="model.typeOptions" ng-options="to.value for to in typeOption" ng-init="model.typeOption=typeOptions[0]"></select>
 
       Type:
       <select name="type" ng-model="plant.type">
