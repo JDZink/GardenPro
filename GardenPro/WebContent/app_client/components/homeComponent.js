@@ -121,12 +121,20 @@ app.component('homeComponent', {
                                       </p>
                                   </div>
                                   <div class="justifiedParagraph">
-                                    <h4>Hardiness Zone</h4>
-                                      <p>First developed by the United States Department of Agriculture (USDA), a hardiness zone is a geographically defined area in which a specific category of plant life is capable of growing, as defined by climatic conditions, including its ability to withstand the minimum temperatures of the zone. For example, a plant that is described as "hardy to zone 10" means that the plant can withstand a minimum temperature of −1 °C (30 °F). A more resilient plant that is "hardy to zone 9" can tolerate a minimum temperature of −7 °C (19 °F).</p>
+                                    <h4>Life Cycle</h4>
+                                      <p>
+                                      <ul>
+                                      <li><u>Annual:</u> Plants that perform their entire life cycle from seed to flower to seed within a single growing season. All roots, stems and leaves of the plant die annually. Only the dormant seed bridges the gap between one generation and the next.</li>
+                                      <li><u>Perennial:</u> Plants that persist for many growing seasons. Generally the top portion of the plant dies back each winter and regrows the following spring from the same root system.</li>
+                                      <li><u>Biennial:</u> Plants which require two years to complete their life cycle. First season growth results in a small rosette of leaves near the soil surface. During the second season's growth stem elongation, flowering and seed formation occur followed by the entire plant's death.</li>
+                                      <li><u>Hardy:</u> Hardy plants require less light (3-6 hours of direct sun), can tolerate hard frost, and grow best in cool weather, so they should be planted in early spring or in the fall.</li>
+                                      <li><u>Tender:</u> Tender plants need more sun (8 hours), do not tolerate frost, and grow best in warm (not hot) weather. Any frost will kill them, so they should be planted on or after the frost date, which usually occurs in late spring or early summer.</li>
+                                      </ul>
+                                      </p>
                                   </div>
                                   <div class="justifiedParagraph">
-                                    <h4>Hardiness Zone</h4>
-                                      <p>First developed by the United States Department of Agriculture (USDA), a hardiness zone is a geographically defined area in which a specific category of plant life is capable of growing, as defined by climatic conditions, including its ability to withstand the minimum temperatures of the zone. For example, a plant that is described as "hardy to zone 10" means that the plant can withstand a minimum temperature of −1 °C (30 °F). A more resilient plant that is "hardy to zone 9" can tolerate a minimum temperature of −7 °C (19 °F).</p>
+                                    <h4>Frost Date</h4>
+                                      <p>The average date that the last frost occurs in a hardiness zone. A frost is defined as any dip below 32°F (0°C), which tends to kill or overly stress most non-hardy plants. Frost dates are used to determine the start and end of the growing season. Most plants require being planted indoors while they are young, then they may be transplanted outdoors after the frost date has passed. Don't worry--DigIt has taken this into consideration!</p>
                                   </div>
                                   </div>
                               </div>

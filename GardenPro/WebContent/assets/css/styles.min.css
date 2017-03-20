@@ -1,6 +1,5 @@
 .navbar {
 	margin-bottom: 0;
-	border: none
 }
 
 .navbar-brand .glyphicon {
@@ -521,7 +520,7 @@ li{
 }
 
 .carousel-caption{
-	padding: 0px;
+	padding-left: 10px;
 	height: 100%;
 	width: 100%;
 	position: initial;
