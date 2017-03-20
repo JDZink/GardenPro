@@ -12,9 +12,6 @@ app.factory('plantService', function(authenticationService, $window, $http){
       },
       data : plant
     })
-    // .then(function(res){
-    //   saveToken(res.data.jwt);
-    // });
   };
 
   service.editPlant = function(plant){
@@ -27,9 +24,6 @@ app.factory('plantService', function(authenticationService, $window, $http){
 	      },
 	      data : plant
 	    })
-	    .then(function(res){
-	      saveToken(res.data.jwt);
-	    });
 	  };
 	  return service;
 });
