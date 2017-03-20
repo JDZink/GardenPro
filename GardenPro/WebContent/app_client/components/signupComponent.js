@@ -10,6 +10,13 @@ var signupController = function($location, authenticationService){
   };
   var user = {};
   user.zone = 1;
+
+  vm.zone_lookup_show = function() {
+    document.getElementById("zoneLookup").style.display = "flex";
+  };
+  vm.zone_lookup_hide = function(seed) {
+    document.getElementById("zoneLookup").style.display = "none";
+  };
 };
 
 app.component('signupComponent', {
@@ -55,6 +62,16 @@ app.component('signupComponent', {
             <option value="10">10</option>
             <option value="11">11</option>
           </select></span>
+          <p class="zoneLookupPar"><a class="zoneLookupClick" ng-click="$ctrl.zone_lookup_show()">Zone Lookup</a></p>
+          </div>
+
+          <div class="popup" id="zoneLookup">
+            <div class="lookupBox">
+              <div class="close">
+                <i class="btn fa fa-window-close" aria-hidden="true" ng-click="$ctrl.zone_lookup_hide()"></i>
+              </div>
+              <iframe name="zonelookup" src="https://www.arborday.org/webtools/hortzones/ziplookup.cfm?RegID=4563" height="300" width="300" scrolling="No" frameborder="0" marginheight="0" marginwidth="0">[Your browser doesn't support IFrames. <a href="https://www.arborday.org/TreeInfo/ZoneLookup.cfm" target="_blank">Click here</a> to look up your arborday.org hardiness zone.]</iframe>
+            </div>
           </div>
 
           <div class="errorMessages">
