@@ -13,6 +13,17 @@ var gardenController = function(gardenService) {
       });
   };
 
+  vm.showStage = function(stage) {
+    switch (stage) {
+      case 0: return "Seed";
+      case 1: return "Started";
+      case 2: return "Germinated";
+      case 3: return "Sprout";
+      case 4: return "Young Plant";
+      case 5: return "Mature Plant";
+    }
+  };
+
   vm.showSeeds = true;
 
   vm.loadData();
@@ -28,12 +39,12 @@ app.component('gardenComponent',{
       <h1 id="seedStageHead">Plants in Seed Stages <a href="#/addPlants"<button class="btn btn-primary">Get New Seeds</button></a></h1>
 
       <seeds-component garden="$ctrl.garden" show-seeds="$ctrl.showSeeds" load-data="$ctrl.loadData"
-      reminders="$ctrl.reminders" load-reminders="$ctrl.loadReminders"></seeds-component>
+        show-stage="$ctrl.showStage"></seeds-component>
     </div>
     <div class="content-div">
       <h1 id="plantStageHead">Plants</h1>
 
-      <plants-component garden="$ctrl.garden" load-data="$ctrl.loadData" load-reminders="$ctrl.loadReminders"></plants-component>
+      <plants-component garden="$ctrl.garden" load-data="$ctrl.loadData" show-stage="$ctrl.showStage"></plants-component>
 
     </div>
   `,
