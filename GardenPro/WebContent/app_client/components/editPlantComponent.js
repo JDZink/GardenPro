@@ -3,7 +3,7 @@ var app = angular.module('ngGarden');
 var newPlantController = function($location, $scope, plantService){
   var vm = this;
 
-  vm.editPlant = function(plant) {
+  vm.createPlant = function(plant) {
 
     if(plant.zones){
     plant.zones = plant.zones.toString();
@@ -21,7 +21,7 @@ var newPlantController = function($location, $scope, plantService){
     if(plant.endGerm !== null){
       plant.endGerm = -plant.endGerm;
     }
-	  plantService.editPlant(plant)
+	  plantService.createPlant(plant)
     .then(function(res){
       $location.path('/addPlants');
     });
@@ -43,20 +43,26 @@ var newPlantController = function($location, $scope, plantService){
   ];
 };
 
-app.component('editPlantComponent', {
-  controller : editPlantController,
+app.component('newPlantComponent', {
+  controller : newPlantController,
   template : `
 
-  <div class="flex">
+  <div class="flex login-clean form-group newPlantIllustration">
+  <div class="illustration"><strong>Create New Plant</strong> <i class="fa fa-leaf" aria-hidden="true"></i></div>
     <form name="regForm" id="regForm">
-      <input type="text" name="commonName" ng-model="plant.commonName" placeholder="Common Name" value="{{plant.name}}" REQUIRED>
-      <input type="text" name="botanicalName" ng-model="plant.botanicalName" placeholder="Botanical Name" REQUIRED>
-      <input type="text" name="variety" ng-model="plant.variety" placeholder="Variety (ex: color, size)"> <br>
-      <input type="textarea" name="sowingMethod" ng-model="plant.sowingMethod" placeholder="Sowing instructions"> <br>
-       <label for="weeksBeforeLastFrostId">How many weeks before the frost date should it be planted indoors?</label><br>
-      <input type="number" id="weeksBeforeLastFrostId" name="weeksBeforeLastFrost" ng-model="plant.weeksBeforeLastFrost" min="0" max="52" REQUIRED> <br>
+      Common Name:
+      <input type="text" name="commonName" ng-model="plant.commonName" value="{{plant.commonName}}" REQUIRED>
+      Botanical Name:
+      <input type="text" name="botanicalName" ng-model="plant.botanicalName" value="{{plant.botanicalName}}" REQUIRED>
+      Variety:
+      <input type="text" name="variety" ng-model="plant.variety" value="{{plant.variety}}" > <br>
+      Sowing Instructions:
+      <input type="textarea" name="sowingMethod" ng-model="plant.sowingMethod" value="{{plant.sowingMethod}}"> <br>
+      How many weeks before the frost date must it be planted indoors?
+      <input type="number" id="weeksBeforeLastFrostId" name="weeksBeforeLastFrost" ng-model="plant.weeksBeforeLastFrost" value="{{plant.weeksBeforeLastFrost}}" min="0" max="52" REQUIRED> <br>
 
-      Type: <select name="type" ng-model="plant.type">
+      Type:
+      <select name="type" ng-model="plant.type">
         <option value="fruit">Fruit</option>
         <option value="grain">Grain</option>
         <option value="grass">Grass</option>
@@ -68,20 +74,25 @@ app.component('editPlantComponent', {
         <option value="vine">Vine</option>
       </select> <br>
 
-      Life Cycle: <select name="life" ng-model="plant.life" >
+      Life Cycle:
+      <select name="life" ng-model="plant.life" >
         <option value="a">Annual</option>
         <option value="p">Perennial</option>
         <option value="b">Biennial</option>
       </select> <br>
 
-      Germination time in weeks (ex: 2 - 4)<br>
-      <input type="number" name="startGerm" ng-model="plant.startGerm" placeholder="Start germ" min="0" max="52"> --
-      <input type="number" name="endGerm" ng-model="plant.endGerm" placeholder="End germ" min="0" max="52"> <br>
-      <input type="number" name="depth" ng-model="plant.depth" placeholder="Sowing depth (inches)" min="1"> <br>
-      <input type="number" name="space" ng-model="plant.space" placeholder="Plant spacing (inches)" min="1"> <br>
-      If fruit-bearing: <input type="number" name="timeToHarvest" ng-model="plant.timeToHarvest" placeholder="Weeks until harvest (once sprouted)"> <br>
+      Germination time in weeks (ex: 2 - 4):
+      <input type="number" name="startGerm" ng-class="germTime" ng-model="plant.startGerm"  value="{{plant.startGerm}}" min="0" max="52"> --
+      <input type="number" name="endGerm" ng-class="germTime" ng-model="plant.endGerm"  value="{{plant.endGerm}}" min="0" max="52"> <br>
+      Sowing Depth (in inches)
+      <input type="number" name="depth" ng-model="plant.depth" value="{{plant.depth}}" min="1"> <br>
+      Plant spacing (in inches)
+      <input type="number" name="space" ng-model="plant.space" value="{{plant.space}}" min="1"> <br>
+      If fruit-bearing, how many weeks until harvest (from sprout date):
+      <input type="number" name="timeToHarvest" ng-model="plant.timeToHarvest" value="{{plant.timeToHarvest}}"<br>
 
-      Required Sunlight: <select name="transplant" ng-model="plant.transplant" REQUIRED>
+      Required Sunlight:
+      <select name="transplant" ng-model="plant.transplant" REQUIRED>
         <option value="fsun">Full Sun</option>
         <option value="psun">Partial Sun</option>
         <option value="fsha">Full Shade</option>
@@ -92,10 +103,10 @@ app.component('editPlantComponent', {
       <div id="data">
 	      <select class="zoneSelect" name="zones" ng-model="plant.zones" multiple>
 	      	<option class="zoneOptions" ng-repeat="zone in zonesNums" value={{zone}}>{{zone}}</option>
-	      </select> <br>
+	      </select> <br><br>
       </div>
 
-      <input type="textarea" rows="4" cols="30" name="comment" ng-model="plant.comment" placeholder="Comments..."> <br>
+      <input type="textarea" rows="4" cols="30" name="comment" ng-model="plant.comment" value="{{plant.comment}}"> <br>
 
       <input type="submit" class="btn btn-default action-button logout-button" value="Add Plant" ng-click="$ctrl.createPlant(plant)">
     </form>
