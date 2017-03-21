@@ -149,10 +149,16 @@ public class PlantingDAOImpl implements PlantingDAO {
 		case 4:
 			planting.setStarted(LocalDate.now());
 			rdao.create(planting, "water");
+			if(p.isHarvestable()){
+				rdao.create(planting, "harvest");
+			}
 			break;
 		case 5:
+			planting.setStarted(LocalDate.now());
 			rdao.create(planting, "water");
-
+			if(p.isHarvestable()){
+				rdao.create(planting, "harvest");
+			}
 		}
 		return em.find(Planting.class, planting.getId());
 	}

@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `gardenprodb`.`plant` (
   `common_name` VARCHAR(128) NOT NULL,
   `botanical_name` VARCHAR(128) NOT NULL,
   `variety` VARCHAR(128) NULL DEFAULT NULL,
-  `type` ENUM('orn','veg','herb','vine','tree','shrub','grass', 'fruit', 'grain') NULL DEFAULT NULL,
+  `type` ENUM('orn','veg','herb','vine','tree','shrb','grass', 'fruit', 'grain', 'house', 'succulent', 'cactus') NULL DEFAULT NULL,
   `method_num` INT(5) NULL DEFAULT 99,
   `sowing_method` VARCHAR(256) NULL DEFAULT NULL,
   `last_frost` INT(5) NOT NULL,
@@ -157,6 +157,8 @@ DEFAULT CHARACTER SET = utf8;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+GRANT SELECT, INSERT, UPDATE, DELETE on gardenprodb.* to 'student'@'localhost';
 
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Prayer beads','Abrus precatorius','yellow','vine','1','nick and soak, <2 wks @ 59°F, rapid germ.','-6',5,'18','a','fsun','vine to 30 ft., requires string or wire. ',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Flowering maple','Abutilon vitifolium','light blue','orn','1','<2 wks @ 68°F, rapid germ.','-7',2,'18','a','fsun','to zone 7, winter indoors. spray for whitefly',NULL);
@@ -387,7 +389,7 @@ INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Black snake root','Cimicifuga racemosa','white','herb','5','16 wks @ 68°F, move to 39° indefinitely','-18',5,'26','p','psha','3 to 6 ft high, deep loamy soil. ',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Snakeroot','Cimicifuga ramosa','white','herb','5','16 wks @ 68°F, move to 39° indefinitely','-18',5,'26','p','psha','5 to 8 ft high, deep loamy soil. ',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Dusty Miller','Cineraria maritima','diamond','orn','1','<2 wks @ 74°F in lite, rapid germ.','-13',0,'12','a/b','fsun','. grow cool',NULL);
-INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Watermelon','Citrullus lanatus','Yellow doll','vege','1','sow outdoors, <2 wks @ 71°F, rapid germ.','2',5,'48','a','fsun','best variety. grow cool',NULL);
+INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Watermelon','Citrullus lanatus','Yellow doll','fruit','1','sow outdoors, <2 wks @ 71°F, rapid germ.','2',5,'48','a','fsun','best variety. grow cool',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Clarkia','Clarkia elegans','apple blossom','orn','1','<2 wks @ 68°F, rapid germ.','-3',2,'8','a','fsun','to 20 inches. ',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Cleome','Cleome hasslerana','purple','orn','10','surface sow outdoors in the fall for spring germ.','25',0,'20','a','fsun','grow warm, 70-75. ',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Wild basil','Clinopodium vulgare','rose-purple','herb','1','<2 wks @ 72°F, rapid germ.','-4',2,'12','p','fsun','. ',NULL);
@@ -406,7 +408,7 @@ INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Peking cotoneaster','Cotoneaster acutifolius','pink','shrub','10-17','wash seed, Sow outdoors in fall, slow germ. up to 18 months','25',5,'180','p','fsun','well drained, loose, fertile soil. dull green hairy foliage, black berries',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Herring bone cotoneaster','Cotoneaster horizontalis','pink','shrub','10-17','wash seed, Sow outdoors in fall, slow germ. up to 18 months','25',5,'180','p','fsun','well drained, loose, fertile soil. red berries',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Lucifer crocosmia','Crocosmia sp ex ''''lucifer''''','scarlet/yellow','orn','2','>2 wks @ 68°F, slow germ.','-6',2,'18','p','fsun','3-4 ft. ',NULL);
-INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Ambrosia cantaloupe','Cucumis melo','yellow','vege','1','sow outdoors, <2 wks @ 75°F, rapid germ.','1',5,'24','a','fsun','small fruit will not mature. ',NULL);
+INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Ambrosia cantaloupe','Cucumis melo','yellow','fruit','1','sow outdoors, <2 wks @ 75°F, rapid germ.','1',5,'24','a','fsun','small fruit will not mature. ',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Kiwano','Cucumis metuliferus','yellow','orn','1','<2 wks @ 75°F, rapid germ.','0',5,'12','a','fsun','hairy climber, zone 10. ',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Cucumber','Cucumis sativus','Arkansas little leaf','vege','1','sow outdoors, <2 wks @ 72°F, rapid germ.','0',5,'48','a','fsun','Pickling type, but decent slicer. grow cool',NULL);
 INSERT INTO plant(common_name, botanical_name, variety, type, method_num, sowing_method, last_frost, depth, space, life, transplant, comment, img) VALUES ('Zucchini','Cucurbita maxima','spineless beauty hyb.','vege','1','<2 wks @ 72°F, rapid germ.','1',5,'48','a','fsun','. grow cool',NULL);
@@ -1003,4 +1005,7 @@ UPDATE plant SET endGerm = -2 WHERE method_num = 17;
 DELETE from plant WHERE common_name = "";
 
 UPDATE plant SET type = "veg" WHERE type = "";
-UPDATE plant SET harvestable = true WHERE type IN ("veg", "herb");
+UPDATE plant SET harvestable = true WHERE type IN ("veg", "herb", "fruit");
+update plant set time_to_harvest = 6 where type = "herb";
+update plant set time_to_harvest = 10 where type = "veg";
+update plant set time_to_harvest = 12 where type = "fruit";

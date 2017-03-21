@@ -95,24 +95,24 @@ public class ReminderDAOImpl implements ReminderDAO {
 			switch (p.getStage()) {
 			case 1:
 			case 2:
-				r.setDate(LocalDate.now());
+				r.setDate(LocalDate.now().plusDays(3));
 				r.setTitle("Check " + plant.getCommonName());
 				r.setDescription("Make sure the planting medium is still moist in your " + plant.getCommonName());
 				break;
 			case 3:
-				r.setDate(LocalDate.now());
+				r.setDate(LocalDate.now().plusDays(5));
 				r.setTitle("Check " + plant.getCommonName());
 				r.setDescription("Make sure the planting medium is still moist in your " + plant.getCommonName());
 				break;
 			case 4:
-				r.setDate(LocalDate.now());
+				r.setDate(LocalDate.now().plusWeeks(1));
 				r.setTitle("Water " + plant.getCommonName());
 				r.setDescription("Water your " + plant.getCommonName() + ". If the soil is no longer moist when "
 						+ "you go to water consider adding some mulch to retain a bit more moisture. If soil is "
 						+ "still wet you may not have enough drainage, skip wattering this week.");
 
 			case 5:
-				r.setDate(LocalDate.now());
+				r.setDate(LocalDate.now().plusWeeks(1));
 				r.setTitle("Water " + plant.getCommonName());
 				r.setDescription(
 						"Water your " + plant.getCommonName() + ". If the soil is completely dry when you go to "
@@ -148,11 +148,34 @@ public class ReminderDAOImpl implements ReminderDAO {
 	@Override
 	public Reminder update(int id, Reminder reminder) {
 		Reminder r = em.find(Reminder.class, id);
+		if(reminder.getCategory() == 5 && reminder.getDate().isBefore(LocalDate.now())){
+			switch(r.getPlanting().getStage()){
+			case 0:	
+				r.setDate(LocalDate.now().plusDays(3));
+				break;
+			case 1:	
+				r.setDate(LocalDate.now().plusDays(3));
+				break;
+			case 2:	
+				r.setDate(LocalDate.now().plusDays(3));
+				break;
+			case 3:	
+				r.setDate(LocalDate.now().plusDays(5));
+				break;
+			case 4:	
+				r.setDate(LocalDate.now().plusWeeks(1));
+				break;
+			case 5:	
+				r.setDate(LocalDate.now().plusWeeks(1));
+				break;
+			}
+		} else{
+			r.setDate(reminder.getDate());
+		}
 		r.setCategory(reminder.getCategory());
 		r.setComplete(reminder.isComplete());
 		r.setDescription(reminder.getDescription());
 		r.setTitle(reminder.getTitle());
-		r.setDate(reminder.getDate());
 		return r;
 	}
 
