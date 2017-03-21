@@ -3,23 +3,23 @@
   <head>
   	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GardenPro</title>
-
+    <title>DigIt</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico"/>
 
     <!-- HOMEPAGE CSS -->
 
-   <!--  <link rel="stylesheet" href="assets/css/styles.min.css"> -->
-
-
+    <link rel="stylesheet" href="assets/css/styles.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button1.css">
     <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
     <link rel="stylesheet" href="assets/css/Sidebar-Menu1.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/plantInputStyles.css">
     <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/vendor/angular.min.js"></script>
@@ -28,6 +28,7 @@
 	  <script src="app_client/services/gardenService.js"></script>
     <script src="app_client/services/authenticationService.js"></script>
     <script src="app_client/services/reminderService.js"></script>
+    <script src="app_client/services/plantService.js"></script>
     <script src="app_client/components/appComponent.js"></script>
     <script src="app_client/components/registrationComponent.js"></script>
     <script src="app_client/components/signupComponent.js"></script>
@@ -41,10 +42,11 @@
     <script src="app_client/components/outlineComponent.js"></script>
     <script src="app_client/components/footerComponent.js"></script>
     <script src="app_client/components/homeComponent.js"></script>
+    <script src="app_client/components/newPlantComponent.js"></script>
     <script src="app_client/filters/seedFilter.js"></script>
     <script src="app_client/filters/plantFilter.js"></script>
     <script src="app_client/filters/searchFilter.js"></script>
-    <script src="app_client/filters/completeFilter.js"></script>
+    <script src="app_client/filters/reminderFilter.js"></script>
   </head>
   <body>
     <nav-component></nav-component>
@@ -52,9 +54,10 @@
     <div class="footer-basic">
         <footer>
             <ul class="list-inline">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+              <li><a href="#/home">Home</a></li>
+              <li><a href="#/login">Login / Register</a></li>
+              <li><a href="https://github.com/nmarchese/GardenPro">GitHub</a></li>
+
             </ul>
             <p class="copyright">DigIt © 2017</p>
         </footer>

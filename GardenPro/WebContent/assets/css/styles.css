@@ -1,10 +1,53 @@
+/**************PAGE****************/
+body {
+	background: linear-gradient(to bottom, rgba(254,254,254,0.3) 0%,rgba(254,254,254, 0.3) 100%), url("../img/shovel-garden1.jpg") no-repeat center bottom;
+	background-size: cover;
+  background-attachment: fixed;
+}
+
+.transBG {
+	background-color: rgba(255, 255, 255, 0.35);
+}
+
+/************REGISTRATION FROMS***********/
+.regBtn {
+  width:45%;
+  margin:10px 5px;
+}
+input.btn.btn-primary.regBtnFull {
+	margin-top: 5px;
+  width:100%;
+}
+.signupHead {
+	font-family: sans-serif;
+	font-size: 35px;
+}
+.zoneSelect {
+	font-size: 20px;
+	text-align: center;
+}
+.regHead {
+	text-align:center;
+  padding:0 0 20px;
+  font-size:64px;
+  font-family: Skia;
+  color:#262626;
+	margin-top: -40px;
+}
+.moveUp {
+	margin-top: -40px;
+}
+
 /****************NAVBAR****************/
 .fa-leaf {
 	color: #1f741a
 }
 
 .nav, .navbar {
-	background-color: #c8c8c8;
+	background-color: #cccfbc;
+}
+.navbar {
+	border-bottom: 4px solid #86942a;
 }
 
 .nav-container {
@@ -15,17 +58,52 @@
 .content-div, .seed, .plant {
 	text-align: center;
 }
+#seedToggle{
+	margin-bottom: 0px;
+	margin-top: 10px;
+}
+#seedStageHead{
+	margin-top: 5px;
+}
+
+#seed-box {
+	background-color: rgba(163, 118, 69, 0.8);
+	border-top: 3px solid #86942a;
+	border-bottom: 3px solid #86942a;
+}
+
+#plant-box {
+	background-color: rgba(134, 148, 41, 0.8);
+	margin-bottom: 20px;
+}
+#get-plants-box {
+	background-color: rgba(121, 92, 59, 0.8);
+	margin-bottom: 20px;
+}
+.plant, .seed {
+	background: linear-gradient(rgba(134, 148, 41, 0.3), rgba(117, 148, 41, 0.8));
+
+	/*max-height: 10em;*/
+}
+div .quantityAndStageBox{
+	display: inline-block;
+}
 
 .plantings-box, .plants-box {
 	display: inline-flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
 	border: 3px solid grey;
-	border-radius: 10px;
 	padding: 20px;
-	min-width: 30em;
+	min-width: 100%;
 	min-height: 15em;
+	margin-left: -17.6px;
+	margin-right: -17.6px;
 }
+.plants-box {
+		min-height: 34em;
+}
+
 
 .plant, .seed {
 	width: 15em;
@@ -37,26 +115,46 @@
 	background-position: center;
 }
 
+/*********************GET PLANTS PAGE******************/
+#searchString {
+	margin-bottom: 10px;
+}
+
+
 /* ****** BACKGROUNDS FOR PLANT BOXES*********/
-.stage0 {
-	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage0.svg");
-	
+div.seed, .plantings-box div.plant{
+	background-color: rgba(254,254,254,0.5);
+	background-position: 3%;
 }
-.stage1 {
-	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage1.svg");
-	
+div.seed{
+		border: 2px solid #86942a;
 }
-.stage2 {
-	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage2.svg");
-	background-repeat: no-repeat;
-	
+.plantings-box div.plant{
+		border: 2px solid #a37b45;
 }
-.stage3 {
-	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage3.svg");
-	
+.imgStage0 {
+	background-image: url("../img/icons/stage0.svg");
+	display: inline-flex;
 }
-.stage4 {
-	background-image: linear-gradient(to bottom, rgba(254,254,254,0.75) 0%,rgba(254,254,254, 0.75) 100%), url("../img/icons/stage4.svg");
+.imgStage1 {
+	background-image: url("../img/icons/stage1.svg");
+	display: inline-flex;
+}
+.imgStage2 {
+	background-image: url("../img/icons/stage2.svg");
+	display: inline-flex;
+}
+.imgStage3 {
+	background-image: url("../img/icons/stage3.svg");
+	display: inline-flex;
+}
+.imgStage4 {
+	background-image: url("../img/icons/stage4.svg");
+	display: inline-flex;
+}
+.imgStage5 {
+	background-image: url("../img/icons/stage5.svg");
+	display: inline-flex;
 }
 /* ****** BACKGROUNDS FOR PLANT BOXES*********/
 
@@ -70,15 +168,20 @@
 .reminders, .reminders:hover, .reminders:focus, .reminders:active {
 	position: fixed;
 	z-index: 10001;
-	background-color: rgba(255, 255, 255,1);
-	border: 1px solid rgb(51, 81, 158);
+	background-color: #4d9532;
+	border: 1px solid #507642;
 	border-radius: 5px;
 }
 a#menu-toggle {
-	margin-left: -55px;
-	background-color: #c8c8c8;
+	margin-top: 25px;
+	margin-left: -35px;
+	background-color: #cccfbc;
+}
+a#menu-toggle:hover {
+	background-color: #b3c496;
 }
 .fa-bell-o {
+	color: #507642;
 	font-size: 22px;
 	margin-right: -5px;
 	margin-left: -5px;
@@ -98,20 +201,25 @@ a#menu-toggle {
 /***************REMINDERS***************/
 .reminder {
 	color: #8e8e8e;
-	
 }
 .reminderDetail {
 	display: none;
 }
+#reminderTime {
+	color: black;
+}
 #remindersHead {
-	color: #e0e0e0;
+	color: #869429;
 	margin-bottom: 0;
 	margin-left: 15px;
 }
-#showComplete {
+#showComplete, #reminderSpan {
 	margin-left: 5px;
 	font-size: 15px;
-	color: #949494;
+	color: #a7b493;
+}
+#showComplete:hover {
+	cursor: pointer;
 }
 #completeCheck {
 	margin-top: -10px;
@@ -124,7 +232,7 @@ a#menu-toggle {
 	text-align: center;
 }
 .detailClick:hover {
-	color: #268024;
+	color: #507642;
 	cursor: pointer;
 }
 .reminderHeadDivider {
@@ -142,17 +250,16 @@ a#menu-toggle {
 	text-align: center;
 	width:100%;
 	height:100%;
-	opacity:.98;
 	top:0;
 	left:0;
 	display:none;
 	position:fixed;
-	background-color:#292318;
+	background-color: rgba(110, 110, 110, 0.75);
 	overflow:auto;
 	z-index: 1000001;
 }
 div.popupAddPlant {
-	background-color: #256019;
+	background-color: #869429;
 	border: 3px solid black;
 	opacity: 1;
 	border-radius: 10px;
@@ -163,15 +270,87 @@ div.popupAddPlant {
 	margin-left:-202px;
 	font-family:'Raleway',sans-serif
 }
+div.popupAddPlant.detailPopup {
+	left:20%;
+	margin-left:0px;
+	top:12.5%;
+	height: 75%;
+	width: 60%;
+}
 .btn {
 	opacity: 1;
 }
 .popup-label {
-	color: rgb(255, 255, 255);
+	color: #ffffff;
 }
 .qtyInput {
 	width: 40px;
 }
 .black-text {
 	color: black;
+}
+a.plantDetailClick {
+	color: #333;
+	text-shadow: none;
+	transition: text-shadow .3s;
+}
+a.plantDetailClick:hover {
+	text-decoration: none;
+	cursor: pointer;
+	text-shadow: 0px 0px 5px #2b3e24;
+}
+.warn {
+	color: #d41616;
+	font-weight: 800;
+}
+.italic {
+	font-style: italic;
+}
+
+/****************ZONE LOOKUP POPUP*************/
+a.zoneLookupClick {
+	font-size: 12px;
+}
+a.zoneLookupClick:hover {
+	cursor: pointer;
+}
+.zoneLookupPar {
+	margin-bottom: 0px;
+}
+.zoneSelect {
+	margin-bottom: 0px;
+}
+
+.close .fa-window-close:before {
+	font-size: 35px;
+	color: #bf0000;
+	z-index: 1000002;
+	margin-left: -75px;
+}
+div#zoneLookup.popup {
+	justify-content: center;
+}
+div.lookupBox {
+	position: fixed;
+	top: 35%;
+	padding-left: 25px;
+}
+
+/***********BUTTONS***************/
+.btn.btn-primary {
+	background-image: linear-gradient(to bottom,#52903c 0,#507642 100%);
+	background-repeat: repeat-x;
+	border-color: #507642;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+	border-color: #507642;
+	background-color: #507642;
+}
+.btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
+	border-color: #507642;
+	background-color: #507642;
+}
+
+input:checked {
+	color: #869429;
 }

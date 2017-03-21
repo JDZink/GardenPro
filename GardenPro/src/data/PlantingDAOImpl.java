@@ -53,7 +53,7 @@ public class PlantingDAOImpl implements PlantingDAO {
 		System.out.println("planting id to change = " + id);
 
 		Planting oldPlanting = em.find(Planting.class,id);
-
+		Plant plant = em.find(Plant.class, planting.getPlant().getId());
 		oldPlanting.setQty(planting.getQty());
 
 		int startStage = oldPlanting.getStage();
@@ -68,26 +68,30 @@ public class PlantingDAOImpl implements PlantingDAO {
 						clearReminder(oldPlanting, 1);
 						rdao.create(oldPlanting, "germinate");
 						rdao.create(oldPlanting, "indoors");
+						rdao.create(oldPlanting, "water");
 						break;
 				case 2:
 						break;
 
 				case 3:
 					rdao.create(oldPlanting, "outdoors");
-					rdao.create(planting, "water");
+					rdao.create(oldPlanting, "water");
 					
 						break;
 
 				case 4: 
 					oldPlanting.setPlanted(LocalDate.now());
-//					rdao.create(oldPlanting, "harvest");
-					rdao.create(planting, "water");
-					clearReminder(oldPlanting, 1,2,3,4);
-				//planting.setHarvest(LocalDate.now().plusWeeks(tillHarvest)
+					if(plant.isHarvestable()){
+						rdao.create(oldPlanting, "harvest");
+						oldPlanting.setHarvest(oldPlanting.getStarted().plusWeeks(-plant.getEndGerm()).plusWeeks(plant.getTimeToHarvest()));
+					}
+					rdao.create(oldPlanting, "water");
+					clearReminder(oldPlanting, 1,2,3,4);		
 						break;
 
 				case 5: 
-//					rdao.create(oldPlanting, "harvest");
+					rdao.create(oldPlanting, "harvest");
+					rdao.create(oldPlanting, "water");
 						break;
 
 			}
@@ -120,6 +124,9 @@ public class PlantingDAOImpl implements PlantingDAO {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see data.PlantingDAO#create(entities.Planting, int, int)
+	 */
 	@Override
 	public Planting create(Planting planting, int userId, int plantId) {
 		User u = em.find(User.class, userId);
@@ -140,12 +147,18 @@ public class PlantingDAOImpl implements PlantingDAO {
 			rdao.create(planting, "indoors");
 			break;
 		case 4:
-			rdao.create(planting, "harvest");
+			planting.setStarted(LocalDate.now());
 			rdao.create(planting, "water");
+			if(p.isHarvestable()){
+				rdao.create(planting, "harvest");
+			}
 			break;
 		case 5:
+			planting.setStarted(LocalDate.now());
 			rdao.create(planting, "water");
-
+			if(p.isHarvestable()){
+				rdao.create(planting, "harvest");
+			}
 		}
 		return em.find(Planting.class, planting.getId());
 	}
