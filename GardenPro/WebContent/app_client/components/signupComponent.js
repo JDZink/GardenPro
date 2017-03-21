@@ -9,7 +9,7 @@ var signupController = function($location, authenticationService){
     });
   };
   var user = {};
-  user.zone = 1;
+  user.zone = 5;
 
   var temp = {};
   vm.zone_lookup_show = function() {

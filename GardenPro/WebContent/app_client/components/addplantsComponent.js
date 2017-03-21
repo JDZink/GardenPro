@@ -56,6 +56,40 @@ var addplantsController = function(gardenService, $location, $rootScope, $filter
     $location.path('/newPlant');
 
   };
+
+  vm.showDetail = function(key) {
+    switch (key) {
+      case 0: return "Seed";
+      case 1: return "Started";
+      case 2: return "Germinated";
+      case 3: return "Sprout";
+      case 4: return "Young Plant";
+      case 5: return "Mature Plant";
+      case "p": return "Perennial";
+      case "a": return "Annual";
+      case "b": return "Biennial";
+      case "orn": return "Ornamental";
+      case "veg": return "Vegtable";
+      case "herb": return "Herb";
+      case "vine": return "Vine";
+      case "tree": return "Tree";
+      case "shrub": return "Shrub";
+      case "grass": return "Grass";
+      case "fruit": return "Fruit";
+      case "grain": return "Grain";
+      case "fsun": return "Full Sun";
+      case "psun": return "Partial Sun";
+      case "psha": return "Partial Shade";
+      case "fsha": return "Full Shade";
+      case "dsha": return "Deep Shade";
+    }
+  };
+  vm.plant_detail_show = function(plant) {
+    document.getElementById("detail"+plant.id).style.display = "block";
+  };
+  vm.plant_detail_hide = function(plant) {
+    document.getElementById("detail"+plant.id).style.display = "none";
+  };
 };
 
 app.component('addplantsComponent',{
@@ -86,7 +120,7 @@ app.component('addplantsComponent',{
 	  </form>
         <div class="plants-box" id="get-plants-box">
           <div class="plant" ng-repeat="plant in $ctrl.plants | searchFilter:$ctrl.searchTerm:$ctrl.searchTransplant:$ctrl.searchZone:$ctrl.searchHarvestable | orderBy:'commonName'">
-            <h4>{{plant.commonName}}</h4>
+            <h4><a class="plantDetailClick" ng-click="$ctrl.plant_detail_show(plant)">{{plant.commonName}}</a></h4>
             <h5>Variety: {{plant.variety}}</h5>
             <button class="add btn btn-primary" ng-click="$ctrl.addplant_form_show(plant)">Add Plant</button>
 
@@ -109,6 +143,29 @@ app.component('addplantsComponent',{
                 <p>
                   <button class="add btn btn-primary" ng-click="$ctrl.addPlanting(plant)">Add</button>
                   <button class="add btn btn-danger" ng-click="$ctrl.addplant_form_hide(plant)">Cancel</button>
+                </p>
+              </form>
+              </div>
+            </div>
+
+            <div class="popup" id="detail{{plant.id}}">
+              <div class="popupAddPlant detailPopup">
+              <form>
+                <h3 class="popup-label">{{plant.commonName}} Detail</h3>
+                <h4>Botanical Name: {{plant.botanicalName}}</h4>
+                <h4>Variety: {{plant.variety}}</h4>
+                <h4>Sowing Instructions: {{plant.sowingMethod}}</h4>
+                <h4>Type: {{$ctrl.showDetail(plant.type)}}</h4>
+                <h4>Life Cycle: {{$ctrl.showDetail(plant.life)}}</h4>
+                <h4>Germination: Weeks {{plant.startGerm}}-{{plant.plant.endGerm}}</h4>
+                <h4>Sowing Depth: {{plant.depth}}in.</h4>
+                <h4>Plant Spacing: {{plant.space}}in.</h4>
+                <h4>Time to Harvest: {{plant.timeToHarvest}}</h4>
+                <h4>Required Sun: {{$ctrl.showDetail(plant.transplant)}}</h4>
+                <h4>Zones: {{plant.zones}}</h4>
+                <h4>Comments: {{plant.comment}}</h4>
+                <p>
+                  <button class="add btn btn-danger" ng-click="$ctrl.plant_detail_hide(plant)">Cancel</button>
                 </p>
               </form>
               </div>
