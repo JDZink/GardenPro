@@ -25,11 +25,14 @@ var gardenController = function(gardenService) {
       case "a": return "Annual";
       case "b": return "Biennial";
       case "orn": return "Ornamental";
-      case "veg": return "Vegtable";
+      case "veg": return "Vegetable";
+      case "cactus": return "Cactus";
+      case "succulent": return "Succulent";
+      case "house": return "Houseplant";
       case "herb": return "Herb";
       case "vine": return "Vine";
       case "tree": return "Tree";
-      case "shrub": return "Shrub";
+      case "shrb": return "Shrub";
       case "grass": return "Grass";
       case "fruit": return "Fruit";
       case "grain": return "Grain";

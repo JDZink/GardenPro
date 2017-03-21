@@ -106,20 +106,12 @@ app.component('homeComponent', {
                                   <div class="carousel-caption">
                                   <h1>TERMINOLOGY</h1>
                                   <div class="justifiedParagraph">
-                                    <h4>Hardiness Zone</h4>
-                                      <p>First developed by the United States Department of Agriculture (USDA), a hardiness zone is a geographically defined area in which a specific category of plant life is capable of growing, as defined by climatic conditions, including its ability to withstand the minimum temperatures of the zone. For example, a plant that is described as "hardy to zone 10" means that the plant can withstand a minimum temperature of −1 °C (30 °F). A more resilient plant that is "hardy to zone 9" can tolerate a minimum temperature of −7 °C (19 °F).</p>
+                                    <h4>Frost Date</h4>
+                                      <p>The average date that the last frost occurs in a hardiness zone. A frost is defined as any dip below 32°F (0°C), which tends to kill or overly stress most non-hardy plants. Frost dates are used to determine the start and end of the growing season. Most plants require being planted indoors while they are young, then they may be transplanted outdoors after the frost date has passed. Don't worry--DigIt has taken this into consideration!</p>
                                   </div>
                                   <div class="justifiedParagraph">
-                                    <h4>Sun Schedule</h4>
-                                      <p>
-                                      <ul>
-                                      <li><u>Full Sun:</u> 6 full hours of direct sunlight.</li>
-                                      <li><u>Partial Sun:</u> 3-6 hours of direct sunlight each day.</li>
-                                      <li><u>Full Shade:</u>  Less than 3 hours of direct sunlight each day, ideally from morning sunlight. In the absence of direct sunlight, a bright light could count as "full shade".</li>
-                                      <li><u>Partial Shade:</u> 3-6 hours of morning or early afternoon sun. Relief from the intense late afternoon sun is needed.</li>
-							    	  <li><u>Deep Shade:</u> No direct sunlight. Ever.</li>
-                                      </ul>
-                                      </p>
+                                    <h4>Hardiness Zone</h4>
+                                      <p>First developed by the United States Department of Agriculture (USDA), a hardiness zone is a geographically defined area in which a specific category of plant life is capable of growing, as defined by climatic conditions, including its ability to withstand the minimum temperatures of the zone. For example, a plant that is described as "hardy to zone 10" means that the plant can withstand a minimum temperature of −1 °C (30 °F). A more resilient plant that is "hardy to zone 9" can tolerate a minimum temperature of −7 °C (19 °F).</p>
                                   </div>
                                   <div class="justifiedParagraph">
                                     <h4>Life Cycle</h4>
@@ -134,8 +126,16 @@ app.component('homeComponent', {
                                       </p>
                                   </div>
                                   <div class="justifiedParagraph">
-                                    <h4>Frost Date</h4>
-                                      <p>The average date that the last frost occurs in a hardiness zone. A frost is defined as any dip below 32°F (0°C), which tends to kill or overly stress most non-hardy plants. Frost dates are used to determine the start and end of the growing season. Most plants require being planted indoors while they are young, then they may be transplanted outdoors after the frost date has passed. Don't worry--DigIt has taken this into consideration!</p>
+                                    <h4>Sun Schedule</h4>
+                                      <p>
+                                      <ul>
+                                      <li><u>Full Sun:</u> 6 full hours of direct sunlight.</li>
+                                      <li><u>Partial Sun:</u> 3-6 hours of direct sunlight each day.</li>
+                                      <li><u>Full Shade:</u>  Less than 3 hours of direct sunlight each day, ideally from morning sunlight. In the absence of direct sunlight, a bright light could count as "full shade".</li>
+                                      <li><u>Partial Shade:</u> 3-6 hours of morning or early afternoon sun. Relief from the intense late afternoon sun is needed.</li>
+							    	                  <li><u>Deep Shade:</u> No direct sunlight. Ever.</li>
+                                      </ul>
+                                      </p>
                                   </div>
                                   </div>
                               </div>
