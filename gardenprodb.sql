@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `gardenprodb`.`plant` (
   `common_name` VARCHAR(128) NOT NULL,
   `botanical_name` VARCHAR(128) NOT NULL,
   `variety` VARCHAR(128) NULL DEFAULT NULL,
-  `type` ENUM('orn','veg','herb','vine','tree','shrb','grass', 'fruit', 'grain', 'house') NULL DEFAULT NULL,
+  `type` ENUM('orn','veg','herb','vine','tree','shrb','grass', 'fruit', 'grain', 'house', 'succulent', 'cactus') NULL DEFAULT NULL,
   `method_num` INT(5) NULL DEFAULT 99,
   `sowing_method` VARCHAR(256) NULL DEFAULT NULL,
   `last_frost` INT(5) NOT NULL,
