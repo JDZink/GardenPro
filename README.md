@@ -20,10 +20,11 @@ Upon user registration, users must input their hardiness zone which they can loo
 - HTML
 - CSS
 - REST
+- MySQL
 - AngularJS
 - BootStrap Studio
 - AWS
-- Spring Tool Suite
+- Eclipse/Spring Tool Suite
 
 #### Premise
 The concept of DigIt comes from our own personal frustrations as novice home gardeners. With so many responsibilities in our day-to-day lives, paying close attention to your houseplants can be difficult. We decided to build an app that will remind us when it is time to get out the watering bucket and gardening gloves. How you care for a plant has many factors. Apple trees must be treated very differently than an orchid. An apple tree sproutling must be watered much more frequently than a mature apple tree. Apple trees grow very differently in a cold climate than a temperate one. There are countless variables to consider when planting your garden, and DigIt is there to help. DigIt will send custom reminders for when to sow, water, transplant and harvest based on the user's location, plant type, and its maturity.
