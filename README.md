@@ -17,13 +17,16 @@ Upon user registration, users must input their hardiness zone which they can loo
 - Spring MVC
 - Java
 - JavaScript
+- AngularJS
 - HTML
 - CSS
 - REST
 - MySQL
-- AngularJS
+- JPQL
+- JPA
 - BootStrap
 - AWS
+- Tomcat Web Server
 - Eclipse/Spring Tool Suite
 
 #### Premise
