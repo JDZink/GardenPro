@@ -20,8 +20,9 @@
 	padding: 20px;
 }
 
-#regForm input[type=textarea]{
+textarea{
 	height: 100px;
+	width: 100%;
 }
 
 #regForm input[type=submit]{

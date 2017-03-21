@@ -57,7 +57,7 @@ app.component('newPlantComponent', {
       Variety:
       <input type="text" name="variety" ng-model="plant.variety" placeholder="ex: color, size"> <br>
       Sowing Instructions:
-      <input type="textarea" name="sowingMethod" ng-model="plant.sowingMethod"> <br>
+      <textarea name="sowingMethod" overflow="wrap" ng-model="plant.sowingMethod"/> <br>
       How many weeks before the frost date must it be planted indoors?
       <input type="number" id="weeksBeforeLastFrostId" name="weeksBeforeLastFrost" ng-model="plant.weeksBeforeLastFrost" min="0" max="52" REQUIRED> <br>
 
@@ -105,9 +105,9 @@ app.component('newPlantComponent', {
 	      	<option class="zoneOptions" ng-repeat="zone in zonesNums" value={{zone}}>{{zone}}</option>
 	      </select> <br><br>
       </div>
-
-      <input type="textarea" rows="4" cols="30" name="comment" ng-model="plant.comment" placeholder="Comments..."> <br>
-
+      <div class="commentDiv">
+        <textarea name="comment" overflow="wrap" ng-model="plant.comment" placeholder="Comments..."/> <br>
+      </div>
       <input type="submit" class="btn btn-default action-button logout-button" value="Add Plant" ng-click="$ctrl.createPlant(plant)">
     </form>
   </div>

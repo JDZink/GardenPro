@@ -95,36 +95,24 @@ public class ReminderDAOImpl implements ReminderDAO {
 			switch (p.getStage()) {
 			case 1:
 			case 2:
-				while(lastWatered.isBefore(LocalDate.now())){
-					lastWatered = lastWatered.plusDays(3);
-				}
-				r.setDate(lastWatered);
+				r.setDate(LocalDate.now());
 				r.setTitle("Check " + plant.getCommonName());
 				r.setDescription("Make sure the planting medium is still moist in your " + plant.getCommonName());
 				break;
 			case 3:
-				while(lastWatered.isBefore(LocalDate.now())){
-					lastWatered = lastWatered.plusDays(5);
-				}
-				r.setDate(lastWatered);		
+				r.setDate(LocalDate.now());
 				r.setTitle("Check " + plant.getCommonName());
 				r.setDescription("Make sure the planting medium is still moist in your " + plant.getCommonName());
 				break;
 			case 4:
-				while(lastWatered.isBefore(LocalDate.now())){
-					lastWatered = lastWatered.plusWeeks(1);
-				}
-				r.setDate(lastWatered);			
+				r.setDate(LocalDate.now());
 				r.setTitle("Water " + plant.getCommonName());
 				r.setDescription("Water your " + plant.getCommonName() + ". If the soil is no longer moist when "
 						+ "you go to water consider adding some mulch to retain a bit more moisture. If soil is "
 						+ "still wet you may not have enough drainage, skip wattering this week.");
 
 			case 5:
-				while(lastWatered.isBefore(LocalDate.now())){
-					lastWatered = lastWatered.plusWeeks(1);
-				}
-				r.setDate(lastWatered);
+				r.setDate(LocalDate.now());
 				r.setTitle("Water " + plant.getCommonName());
 				r.setDescription(
 						"Water your " + plant.getCommonName() + ". If the soil is completely dry when you go to "
