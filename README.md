@@ -22,7 +22,7 @@ Upon user registration, users must input their hardiness zone which they can loo
 - REST
 - MySQL
 - AngularJS
-- BootStrap Studio
+- BootStrap
 - AWS
 - Eclipse/Spring Tool Suite
 
